@@ -1,0 +1,48 @@
+body {
+    background-color: skyblue;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: .25rem; /* make the box edges rounder*/
+    box-shadow: 0 0 5px 2px rgb(0 , 0, 0, .2);
+    background-color: whitesmoke;
+    outline: auto;
+    transform-style: preserve-3d; /* keep the text readable and not backwards */
+    height: 250px; /* size of cards*/
+    width:auto; /* size of cards*/
+    transition: 300ms; /* slows the animation */
+    cursor: pointer; /* switch cursor to pointer finger when hovering*/
+    transform: perspective(2000px) rotateY(var(--rotate-y, 0)); /* adds a flipping animation */
+    margin: 10px; /* Add margin around each card */
+}
+
+.card:hover {
+    box-shadow: 0 0 5px 5px rgb(0 , 0, 0, .5); /* when cursor hover over show animation*/
+} 
+.card.flip {
+    --rotate-y : 180deg; /* if card.flip exist set rotate-y to 180deg */
+}
+
+.card .front,
+.card .back {
+    position: absolute; /* front and back are in the same spot and are not pushing each other*/
+    padding: 1rem;
+    backface-visibility: hidden; /* whatever is facing backwards, hide it */
+}   
+
+.card .back {
+    transform: rotateY(180deg); /* backside is currently facing backwards*/
+}
+
+.options /*array*/ {
+    margin-top: .5rem;
+}
+
+.option /*individual data in array option*/ {
+    margin-top: .25rem;
+    font-size: .75rem;
+}
