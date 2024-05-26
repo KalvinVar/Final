@@ -1,11 +1,12 @@
 {
+  "homepage": "https://KalvinVar.github.io/Final",
   "name": "mod-7",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build",  
+    "deploy": "gh-pages -d dist",
     "devstart": "nodemon server.js",
     "dev": "vite",
     "build": "vite build",
