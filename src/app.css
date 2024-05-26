@@ -1,7 +1,7 @@
 /* Set background color and font for the entire body */
 body {
     background-color: skyblue;
-    font-family: Arial, sans-serif; /* Set a consistent font for the entire app */
+    font-family: 'Roboto', Arial, sans-serif; /* Set a consistent font for the entire app */
 }
 
 /* Styling for the header section */
