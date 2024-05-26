@@ -2,7 +2,7 @@ import http from 'http';
 import fs from 'fs';
 // import express from 'express';
 // const app = express()
-const port = 5173;
+ const port = 5173;
 
 const server = http.createServer(function(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });

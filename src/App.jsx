@@ -1,49 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import {Route, Routes} from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import FlashcardList from './components/FlashcardList';
-import sampleData from './sampleData'; // grab the data
-import axios from 'axios' // makes the fetching process easier
-import './app.css'
-import { Games } from './games';
-import { Animal } from './animal';
+import axios from 'axios'; // makes the fetching process easier
+import './app.css';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Box, TextField, Button } from '@mui/material';
 
 function App() {
-  const [flashcards, setFlashcards] = useState(sampleData); // grab the current state of sampleData and give it a name flashcards
+  const [flashcards, setFlashcards] = useState([]); // grab the current state of sampleData and give it a name flashcards
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState(10);
 
   useEffect(() => {
-    axios.get(Animal()) // fetches the trivia data
-      .then(results => {
-        setFlashcards(results.data.results.map((qItem, index) => { // get the data and identifier/our curent place in the array for each question we recive from trivia aray
-          const a = htmldecoder(qItem.correct_answer) /* rename the qitem.answer to ans to make the triva array compatible with our code */
-          const q = [...qItem.incorrect_answers.map(o => htmldecoder(o)/* pass to decoder for readability*/), a] /* add a/answer to the option array */
-          return {
-            id: `${index /* rename the index to id to make the triva array compatible with our code */}
-          -${Date.now() /* to make sure id is unique attach the current time alongside the id value*/}`,
-            question: htmldecoder(qItem.question), /* rename the qitem.question to question to make the triva array compatible with our code */
-            ans: a, /* make a = ans */
-            option: q.sort(() => Math.random() - .5) /*randomize the position of the array that contains the option and answer*/
-          }
+    axios.get('https://opentdb.com/api_category.php')
+      .then(res => {
+        setCategories(res.data.trivia_categories);
+      });
+  }, []);
 
-        }))
-        console.log(results.data)
+  function htmldecoder(string) {
+    const textArea = document.createElement('textarea');
+    textArea.innerHTML = string;
+    return textArea.value;
+  }
 
-      })
-  }, [])
-
-  function htmldecoder(string) /*recive string that contain unreadable html text*/ {
-    const textArea = document.createElement('textarea') /*creat element called text*/
-    textArea.innerHTML = string /*make string = to .innerHtml to make it readable*/
-    return (
-      textArea.value
-    )
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios.get('https://opentdb.com/api.php', {
+      params: {
+        amount: amount,
+        category: category
+      }
+    })
+    .then(results => {
+      setFlashcards(results.data.results.map((qItem, index) => {
+        const a = htmldecoder(qItem.correct_answer);
+        const q = [...qItem.incorrect_answers.map(o => htmldecoder(o)), a];
+        return {
+          id: `${index}-${Date.now()}`,
+          question: htmldecoder(qItem.question),
+          ans: a,
+          option: q.sort(() => Math.random() - 0.5)
+        };
+      }));
+      console.log(results.data);
+    });
   }
 
   return (
-    <div className="app">
-      <button>asdasd</button>
-      <FlashcardList flashcards={flashcards} />
-    </div> // send flashcards to FlashcardList
-    
+    <>
+      <form className="header" onSubmit={handleSubmit}>
+        <Box className="form-row" sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <FormControl className="form-group" sx={{ minWidth: 120 }}>
+            <InputLabel id="category-label">Category</InputLabel>
+            <Select
+              labelId="category-label"
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              label="Category"
+            >
+              {categories.map(category => (
+                <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl className="form-group">
+            <TextField
+              id="amount"
+              label="Number of Questions"
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              InputProps={{ inputProps: { min: 1 } }}
+            />
+          </FormControl>
+        </Box>
+        <div className="form-group">
+          <Button type="submit" variant="contained" color="primary" className="generatebtn">
+            Generate
+          </Button>
+        </div>
+      </form>
+
+      <div className="app">
+        {/* <Button>asdasd</Button> */}
+        <FlashcardList flashcards={flashcards /*send flashcards to FlashcardList */} />
+      </div>
+    </>
   );
 }
 
