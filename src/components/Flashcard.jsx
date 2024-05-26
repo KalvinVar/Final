@@ -18,7 +18,7 @@ export default function Flashcard({ flashcard }) {
           {flashcard.question}
           <div className='options'/* give css to option array/option holder*/>
             {flashcard.option.map(option => {
-              return <div className='option'/* give css to individual options*/> {option} </div>
+              return <div className='option'key={option}/* give css to individual options*/> {option} </div>
             })}
           </div>
         </div>
