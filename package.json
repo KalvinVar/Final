@@ -5,13 +5,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-<<<<<<< HEAD
-    "predeploy": "npm run build",  
-    "deploy": "gh-pages -d dist",
-=======
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
->>>>>>> a860803aeaddd0ebf5b58475806351467affa7be
     "devstart": "nodemon server.js",
     "dev": "vite",
     "build": "vite build",
