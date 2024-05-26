@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import FlashcardList from './components/FlashcardList';
 import axios from 'axios'; // makes the fetching process easier
@@ -52,7 +52,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="app-container">
       <form className="header" onSubmit={handleSubmit}>
         <Box className="form-row" sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           <FormControl className="form-group" sx={{ minWidth: 120 }}>
@@ -88,10 +88,9 @@ function App() {
       </form>
 
       <div className="app">
-        {/* <Button>asdasd</Button> */}
         <FlashcardList flashcards={flashcards /*send flashcards to FlashcardList */} />
       </div>
-    </>
+    </div>
   );
 }
 
