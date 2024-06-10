@@ -32,41 +32,52 @@ const Register = () => {
   };
 
   return (
-    <Paper sx={{ padding: '2rem', maxWidth: '400px', margin: '2rem auto' }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Register
-      </Typography>
-      {error && <Alert severity="error">{error}</Alert>} {/* Step 3.4: Display error message */}
-      <form onSubmit={handleSubmit}>
-        <Box mb={2}>
-          <TextField
-            label="Username"
-            variant="outlined"
-            fullWidth
-            value={username}
-            onChange={(e) => setUsername(e.target.value)} // Step 2.1: User inputs the username
-          />
+    <Box
+      sx={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage: "url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F1261646.jpg&f=1&nofb=1&ipt=aca31ee0336b63a2e01d9f2c5b921794f28d18b4388a1db4f499a369c3f1d445&ipo=images')",
+        backgroundSize: "cover",
+      }}
+    >
+      <Paper sx={{ padding: '2rem', maxWidth: '400px' }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Register
+        </Typography>
+        {error && <Alert severity="error">{error}</Alert>} {/* Step 3.4: Display error message */}
+        <form onSubmit={handleSubmit}>
+          <Box mb={2}>
+            <TextField
+              label="Username"
+              variant="outlined"
+              fullWidth
+              value={username}
+              onChange={(e) => setUsername(e.target.value)} // Step 2.1: User inputs the username
+            />
+          </Box>
+          <Box mb={2}>
+            <TextField
+              label="Password"
+              variant="outlined"
+              type="password"
+              fullWidth
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} // Step 2.2: User inputs the password
+            />
+          </Box>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Register {/* Step 2.3: User presses the submit button */}
+          </Button>
+        </form>
+        <Box mt={2} textAlign="center">
+          <Button variant="outlined" color="secondary" fullWidth onClick={handleLoginClick}>
+            Already have an account? Login {/* Step 4.2: User presses the login button */}
+          </Button>
         </Box>
-        <Box mb={2}>
-          <TextField
-            label="Password"
-            variant="outlined"
-            type="password"
-            fullWidth
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} // Step 2.2: User inputs the password
-          />
-        </Box>
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Register {/* Step 2.3: User presses the submit button */}
-        </Button>
-      </form>
-      <Box mt={2} textAlign="center">
-        <Button variant="outlined" color="secondary" fullWidth onClick={handleLoginClick}>
-          Already have an account? Login {/* Step 4.2: User presses the login button */}
-        </Button>
-      </Box>
-    </Paper>
+      </Paper>
+    </Box>
   );
 };
 

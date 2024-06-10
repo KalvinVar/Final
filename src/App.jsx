@@ -99,7 +99,7 @@ const App = () => {
   }
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ backgroundImage: "url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F5453427.jpg&f=1&nofb=1&ipt=23702cdc459d044e635b54e51ea5aed0444206cc1327f244e3643050f60a73f7&ipo=images')", backgroundSize: 'cover', height: '100vh' }}>
       <AppBar position="static" sx={{ borderRadius: '10px', marginBottom: '20px' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography variant="h6" component="div">
