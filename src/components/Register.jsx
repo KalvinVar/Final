@@ -1,32 +1,34 @@
-import React, { useState } from 'react'; // Import React and necessary hooks
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import { TextField, Button, Box, Typography, Paper } from '@mui/material'; // Import Material-UI components
+import React, { useState } from 'react'; // Step 1.1: Import necessary hooks from React
+import { useNavigate } from 'react-router-dom'; // Step 1.2: Import navigation hooks from react-router-dom
+import { TextField, Button, Box, Typography, Paper, Alert } from '@mui/material'; // Step 1.3: Import components from Material-UI
+import { registerUser } from '../auth'; // Step 1.4: Import registerUser function from auth module
 
 const Register = () => {
-  // State for form inputs
-  const [username, setUsername] = useState(''); // State to store the username input
-  const [password, setPassword] = useState(''); // State to store the password input
-
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const [username, setUsername] = useState(''); // Step 2.1: Initialize state for username
+  const [password, setPassword] = useState(''); // Step 2.2: Initialize state for password
+  const [error, setError] = useState(''); // Step 2.3: Initialize state for error messages
+  const navigate = useNavigate(); // Step 2.4: Initialize useNavigate for navigation
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // Step 3.1: Prevent the default form submission behavior
 
-    // Step 3.2: Retrieve existing users from localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    try {
+      if (!username || !password) {
+        setError('Username and password are required'); // Step 3.1.1: Set error message if inputs are empty
+        return;
+      }
 
-    // Step 3.3: Create a new user object
-    const newUser = { username, password };
+      registerUser(username, password); // Step 3.2: Call registerUser function
+      navigate('/login'); // Step 3.3: Navigate to the login page after successful registration
+    } catch (err) {
+      setError(err.message); // Step 3.4: Set error message if registration fails
+    }
+  };
 
-    // Step 3.4: Add the new user to the users array
-    users.push(newUser);
-
-    // Step 3.5: Save the updated users array to localStorage
-    localStorage.setItem('users', JSON.stringify(users));
-
-    // Step 3.6: Navigate to the login page after successful registration
-    navigate('/login');
+  // Navigate to the login page
+  const handleLoginClick = () => {
+    navigate('/login'); // Step 4.1: Navigate to the login page
   };
 
   return (
@@ -34,6 +36,7 @@ const Register = () => {
       <Typography variant="h4" component="h1" gutterBottom>
         Register
       </Typography>
+      {error && <Alert severity="error">{error}</Alert>} {/* Step 3.4: Display error message */}
       <form onSubmit={handleSubmit}>
         <Box mb={2}>
           <TextField
@@ -58,6 +61,11 @@ const Register = () => {
           Register {/* Step 2.3: User presses the submit button */}
         </Button>
       </form>
+      <Box mt={2} textAlign="center">
+        <Button variant="outlined" color="secondary" fullWidth onClick={handleLoginClick}>
+          Already have an account? Login {/* Step 4.2: User presses the login button */}
+        </Button>
+      </Box>
     </Paper>
   );
 };
@@ -71,11 +79,17 @@ export default Register;
  *    2.1. User inputs the username.
  *    2.2. User inputs the password.
  *    2.3. User presses the submit button.
+ *    2.4. (Optional) User can navigate to the login page.
  * 3. handleSubmit is called, which:
  *    3.1. Prevents the default form submission.
- *    3.2. Retrieves existing users from localStorage.
- *    3.3. Creates a new user object and adds it to the users array.
- *    3.4. Adds the new user to the users array.
- *    3.5. Saves the updated users array back to localStorage.
- *    3.6. Navigates to the login page.
+ *         e.preventDefault();
+ *    3.2. Calls registerUser function.
+ *         registerUser(username, password);
+ *    3.3. If successful, navigates to the login page.
+ *         navigate('/login');
+ *    3.4. If the registration fails, an error message is shown.
+ *         setError(err.message);
+ * 4. handleLoginClick is called, which:
+ *    4.1. Navigates to the login page.
+ *         navigate('/login');
  */

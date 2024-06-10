@@ -1,48 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Routes, HashRouter as Router, useNavigate } from 'react-router-dom';
-import FlashcardList from './components/FlashcardList';
-import Login from './components/Login';
-import Register from './components/Register';
-import axios from 'axios';
-import './app.css';
-import InputLabel from '@mui/material/InputLabel';
+import React, { useState, useEffect } from 'react'; // Import React and necessary hooks
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import FlashcardList from './components/FlashcardList'; // Import FlashcardList component
+import axios from 'axios'; // Import axios for API calls
+import './app.css'; // Import CSS file
+import InputLabel from '@mui/material/InputLabel'; // Import Material-UI components
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Box, TextField, Button, Typography, AppBar, Toolbar } from '@mui/material';
+import { getCurrentUser, isAuthenticated, logoutUser } from './auth'; // Correct import path
 
-function App() {
-  const [flashcards, setFlashcards] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState('');
-  const [amount, setAmount] = useState(12);
-  const [score, setScore] = useState(0);
-  const [correctAnswers, setCorrectAnswers] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState('');
-  const navigate = useNavigate();
+const App = () => {
+  // State variables
+  const [flashcards, setFlashcards] = useState([]); // State for flashcards
+  const [categories, setCategories] = useState([]); // State for categories
+  const [category, setCategory] = useState(''); // State for selected category
+  const [amount, setAmount] = useState(12); // State for number of questions
+  const [score, setScore] = useState(0); // State for score
+  const [correctAnswers, setCorrectAnswers] = useState(''); // State for correct answers input
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const username = getCurrentUser(); // Get current user from localStorage
 
+  // useEffect to run on component mount
   useEffect(() => {
-    // Fetch categories from API
+    // Step 1.1.1: Fetch categories from API
     axios.get('https://opentdb.com/api_category.php')
       .then(res => {
-        setCategories(res.data.trivia_categories); // Set categories state
+        setCategories(res.data.trivia_categories); // Step 1.1.1: Set categories state
       });
 
-    // Check if user is authenticated
-    const auth = localStorage.getItem('isAuthenticated');
-    const currentUser = localStorage.getItem('currentUser');
-    if (auth && currentUser) {
-      setIsAuthenticated(true); // Set authentication status
-      setUsername(currentUser); // Set username
-      const userScore = localStorage.getItem(`score_${currentUser}`); // Get user's score from localStorage
+    // Step 1.1.2: Check if user is authenticated
+    if (isAuthenticated() && username) {
+      const userScore = localStorage.getItem(`score_${username}`); // Step 1.1.3: Get user's score from localStorage
       if (userScore) {
-        setScore(Number(userScore)); // Set score state
+        setScore(Number(userScore)); // Step 1.1.3: Set score state
       }
     } else {
-      navigate('/login'); // Redirect to login if not authenticated
+      navigate('/login'); // Step 1.1.4: Redirect to login if not authenticated
     }
-  }, [navigate]); // Dependencies for useEffect
+  }, [navigate, username]); // Dependencies for useEffect
 
   // Function to decode HTML entities
   function htmldecoder(string) {
@@ -53,12 +49,12 @@ function App() {
 
   // Handle form submission for generating flashcards
   function handleSubmit(e) {
-    e.preventDefault(); // Prevent default form submission behavior
-    // Fetch flashcards from API
+    e.preventDefault(); // Step 2.3.1: Prevent default form submission behavior
+    // Step 2.3.2: Fetch flashcards from API
     axios.get('https://opentdb.com/api.php', {
       params: {
-        amount: amount, // Number of questions
-        category: category // Selected category
+        amount: amount, // Step 2.3.3: Number of questions
+        category: category // Step 2.3.3: Selected category
       }
     })
       .then(results => {
@@ -71,127 +67,118 @@ function App() {
             ans: a,
             option: q.sort(() => Math.random() - 0.5)
           };
-        })); // Set flashcards state
+        })); // Step 2.3.4: Set flashcards state
         console.log(results.data);
       });
   }
 
   // Handle form submission for submitting score
   function handleScoreSubmit(e) {
-    e.preventDefault(); // Prevent default form submission behavior
-    const newScore = score + Number(correctAnswers); // Calculate new score
-    setScore(newScore); // Set score state
-    setCorrectAnswers(''); // Clear correct answers input
-    localStorage.setItem(`score_${username}`, newScore); // Save new score to localStorage
+    e.preventDefault(); // Step 2.5.1: Prevent default form submission behavior
+    const newScore = score + Number(correctAnswers); // Step 2.5.2: Calculate new score
+    setScore(newScore); // Step 2.5.3: Set score state
+    setCorrectAnswers(''); // Step 2.5.4: Clear correct answers input
+    localStorage.setItem(`score_${username}`, newScore); // Step 2.5.5: Save new score to localStorage
   }
 
   // Handle score reset
   function handleScoreReset() {
-    setScore(0); // Reset score state
-    localStorage.removeItem(`score_${username}`); // Remove user's score from localStorage
+    setScore(0); // Step 2.7.1: Reset score state
+    localStorage.removeItem(`score_${username}`); // Step 2.7.2: Remove user's score from localStorage
   }
 
   // Handle logout
   function handleLogout() {
-    localStorage.removeItem('isAuthenticated'); // Remove authentication status from localStorage
-    localStorage.removeItem('currentUser'); // Remove current user from localStorage
-    navigate('/login'); // Redirect to login
+    logoutUser(); // Step 1.2.3: Call logoutUser function
+    navigate('/login'); // Step 1.2.3: Redirect to login
   }
 
   // If not authenticated, return null or a loading spinner
-  if (!isAuthenticated) {
+  if (!isAuthenticated()) {
     return null;
   }
 
   return (
-    <Router> {/* Wrap the Router component around your Routes */}
-      <div className="app-container">
-        <AppBar position="static" sx={{ borderRadius: '10px', marginBottom: '20px' }}>
-          <Toolbar sx={{ justifyContent: 'space-between' }}>
-            <Typography variant="h6" component="div">
-              Welcome, {username} {/* Display username */}
-            </Typography>
-            <Typography variant="h6" component="div" sx={{ marginLeft: '20px' }}>
-              Total Correct Answers: {score} {/* Display total correct answers */}
-            </Typography>
-            <Button variant="contained" color="secondary" onClick={handleLogout} sx={{ marginLeft: '20px' }}>
-              Logout {/* Logout button */}
-            </Button>
-          </Toolbar>
-        </AppBar>
+    <div className="app-container">
+      <AppBar position="static" sx={{ borderRadius: '10px', marginBottom: '20px' }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Typography variant="h6" component="div">
+            Welcome, {username} {/* Step 1.2.1: Display username */}
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ marginLeft: '20px' }}>
+            Total Correct Answers: {score} {/* Step 1.2.2: Display total correct answers */}
+          </Typography>
+          <Button variant="contained" color="secondary" onClick={handleLogout} sx={{ marginLeft: '20px' }}>
+            Logout {/* Step 1.2.3: Logout button */}
+          </Button>
+        </Toolbar>
+      </AppBar>
 
-        <form className="header" onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
-          <Box className="form-row" sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', gap: '20px' }}>
-            <FormControl className="form-group" sx={{ minWidth: 120 }}>
-              <InputLabel id="category-label">Category</InputLabel>
-              <Select
-                labelId="category-label"
-                id="category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)} // User selects category
-                label="Category"
-              >
-                {categories.map(category => (
-                  <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl className="form-group">
-              <TextField
-                id="amount"
-                label="Number of Questions"
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)} // User sets number of questions
-                InputProps={{ inputProps: { min: 1 } }}
-              />
-            </FormControl>
-          </Box>
-          <div className="form-group" style={{ marginTop: '20px', width: '100%' }}>
-            <Button type="submit" variant="contained" color="primary" className="generatebtn" sx={{ height: '56px' }}>
-              Generate {/* User generates flashcards */}
-            </Button>
-          </div>
-        </form>
-
-        <div className="app">
-          <FlashcardList flashcards={flashcards} /> {/* Display flashcards */}
+      <form className="header" onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+        <Box className="form-row" sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', gap: '20px' }}>
+          <FormControl className="form-group" sx={{ minWidth: 120 }}>
+            <InputLabel id="category-label">Category</InputLabel>
+            <Select
+              labelId="category-label"
+              id="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)} // Step 2.1: User selects category
+              label="Category"
+            >
+              {categories.map(category => (
+                <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl className="form-group">
+            <TextField
+              id="amount"
+              label="Number of Questions"
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)} // Step 2.2: User sets number of questions
+              InputProps={{ inputProps: { min: 1 } }}
+            />
+          </FormControl>
+        </Box>
+        <div className="form-group" style={{ marginTop: '20px', width: '100%' }}>
+          <Button type="submit" variant="contained" color="primary" className="generatebtn" sx={{ height: '56px' }}>
+            Generate {/* Step 2.3: User generates flashcards */}
+          </Button>
         </div>
+      </form>
 
-        <form className="header" onSubmit={handleScoreSubmit} style={{ marginTop: '20px' }}>
-          <Box className="form-row" sx={{ display: 'flex', alignItems: 'center', width: '100%', gap: '20px' }}>
-            <Button type="submit" variant="contained" color="primary" className="scorebtn" sx={{ flex: 1, height: '56px' }}>
-              Submit {/* Submit correct answers count */}
-            </Button>
-            <FormControl className="form-group" sx={{ flex: 6 }}>
-              <TextField
-                id="correct"
-                label="How many questions you answered correctly?"
-                type="number"
-                value={correctAnswers}
-                onChange={(e) => setCorrectAnswers(e.target.value)} // User inputs correct answers count
-                InputProps={{ inputProps: { min: 0 } }}
-                fullWidth
-                sx={{ height: '56px' }}
-              />
-            </FormControl>
-            <Button type="button" variant="contained" color="secondary" onClick={handleScoreReset} className="resetbtn" sx={{ flex: 1, height: '56px' }}>
-              Reset {/* Reset correct answers count */}
-            </Button>
-          </Box>
-        </form>
+      <div className="app">
+        <FlashcardList flashcards={flashcards} /> {/* Step 2.4: Display flashcards */}
       </div>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<App />} />
-      </Routes>
-    </Router>
+
+      <form className="header" onSubmit={handleScoreSubmit} style={{ marginTop: '20px' }}>
+        <Box className="form-row" sx={{ display: 'flex', alignItems: 'center', width: '100%', gap: '20px' }}>
+          <Button type="submit" variant="contained" color="primary" className="scorebtn" sx={{ flex: 1, height: '56px' }}>
+            Submit {/* Step 2.5: Submit correct answers count */}
+          </Button>
+          <FormControl className="form-group" sx={{ flex: 6 }}>
+            <TextField
+              id="correct"
+              label="How many questions you answered correctly?"
+              type="number"
+              value={correctAnswers}
+              onChange={(e) => setCorrectAnswers(e.target.value)} // Step 2.6: User inputs correct answers count
+              InputProps={{ inputProps: { min: 0 } }}
+              fullWidth
+              sx={{ height: '56px' }}
+            />
+          </FormControl>
+          <Button type="button" variant="contained" color="secondary" onClick={handleScoreReset} className="resetbtn" sx={{ flex: 1, height: '56px' }}>
+            Reset {/* Step 2.7: Reset correct answers count */}
+          </Button>
+        </Box>
+      </form>
+    </div>
   );
-}
+};
 
 export default App;
-
 
 /**
  * Main App Flow:

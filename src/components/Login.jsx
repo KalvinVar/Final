@@ -1,32 +1,34 @@
-import React, { useState } from 'react'; // Import React and necessary hooks
-import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link for navigation
-import { TextField, Button, Box, Typography, Paper } from '@mui/material'; // Import Material-UI components
+import React, { useState } from 'react'; // Step 1.1: Import necessary hooks from React
+import { useNavigate } from 'react-router-dom'; // Step 1.2: Import navigation hooks from react-router-dom
+import { TextField, Button, Box, Typography, Paper, Alert } from '@mui/material'; // Step 1.3: Import components from Material-UI
+import { loginUser } from '../auth'; // Step 1.4: Import loginUser function from auth module
 
 const Login = () => {
-  // State for form inputs
-  const [username, setUsername] = useState(''); // State to store the username input
-  const [password, setPassword] = useState(''); // State to store the password input
-
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const [username, setUsername] = useState(''); // Step 2.1: Initialize state for username
+  const [password, setPassword] = useState(''); // Step 2.2: Initialize state for password
+  const [error, setError] = useState(''); // Step 2.3: Initialize state for error messages
+  const navigate = useNavigate(); // Step 2.4: Initialize useNavigate for navigation
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // Step 3.1: Prevent the default form submission behavior
 
-    // Step 3.2: Retrieve existing users from localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+    try {
+      if (!username || !password) {
+        setError('Username and password are required'); // Step 3.1.1: Set error message if inputs are empty
+        return;
+      }
 
-    // Step 3.3: Find the user in the users array
-    const user = users.find(user => user.username === username && user.password === password);
-
-    // Step 3.4: Check if user exists and password matches
-    if (user) {
-      localStorage.setItem('isAuthenticated', 'true'); // Step 3.4.1: Set authentication status in localStorage
-      localStorage.setItem('currentUser', username); // Step 3.4.2: Set current user in localStorage
-      navigate('/app'); // Step 3.4.3: Navigate to the main app
-    } else {
-      alert('Invalid username or password'); // Step 3.5: Show error if login fails
+      loginUser(username, password); // Step 3.2: Call loginUser function
+      navigate('/app'); // Step 3.3: Navigate to the main app page
+    } catch (err) {
+      setError(err.message); // Step 3.4: Set error message if login fails
     }
+  };
+
+  // Navigate to the registration page
+  const handleRegisterClick = () => {
+    navigate('/register'); // Step 4.1: Navigate to the registration page
   };
 
   return (
@@ -34,6 +36,7 @@ const Login = () => {
       <Typography variant="h4" component="h1" gutterBottom>
         Login
       </Typography>
+      {error && <Alert severity="error">{error}</Alert>} {/* Step 3.4: Display error message */}
       <form onSubmit={handleSubmit}>
         <Box mb={2}>
           <TextField
@@ -59,7 +62,9 @@ const Login = () => {
         </Button>
       </form>
       <Box mt={2} textAlign="center">
-        <Link to="/register">Don't have an account? Register</Link> {/* Step 2.4: Link to registration page */}
+        <Button variant="outlined" color="secondary" fullWidth onClick={handleRegisterClick}>
+          Don't have an account? Register {/* Step 4.2: User presses the register button */}
+        </Button>
       </Box>
     </Paper>
   );
@@ -77,11 +82,14 @@ export default Login;
  *    2.4. (Optional) User can navigate to the registration page.
  * 3. handleSubmit is called, which:
  *    3.1. Prevents the default form submission.
- *    3.2. Retrieves existing users from localStorage.
- *    3.3. Finds the user in the users array.
- *    3.4. If the user exists and the password matches:
- *         3.4.1. Sets authentication status in localStorage.
- *         3.4.2. Sets current user in localStorage.
- *         3.4.3. Navigates to the main app.
- *    3.5. If the login fails, an error message is shown.
+ *         e.preventDefault();
+ *    3.2. Calls loginUser function.
+ *         loginUser(username, password);
+ *    3.3. If successful, navigates to the main app.
+ *         navigate('/app');
+ *    3.4. If the login fails, an error message is shown.
+ *         setError(err.message);
+ * 4. handleRegisterClick is called, which:
+ *    4.1. Navigates to the registration page.
+ *         navigate('/register');
  */

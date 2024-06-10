@@ -164,3 +164,13 @@ body {
       font-size: 1rem; /* Adjust font size for smaller screens */
   }
 }
+.register-link {
+  text-decoration: none;
+  color: #1976d2;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: #004ba0;
+}

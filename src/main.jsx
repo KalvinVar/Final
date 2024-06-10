@@ -6,7 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 
 const Root = () => {
-  const isAuthenticated = localStorage.getItem('isAuthenticated');
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   return isAuthenticated ? <Navigate to="/app" /> : <Navigate to="/login" />;
 };
 
