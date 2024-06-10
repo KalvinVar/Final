@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Final/', // This should match your GitHub repository name
+  base: process.env.NODE_ENV === 'production' ? '/Final/' : '/',
 });
