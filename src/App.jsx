@@ -93,13 +93,15 @@ const App = () => {
     navigate('/login'); // Step 1.2.3: Redirect to login
   }
 
-  // If not authenticated, return null or a loading spinner
+  // If not authenticated, return null
   if (!isAuthenticated()) {
     return null;
   }
 
   return (
-    <div className="app-container" style={{ backgroundImage: "url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F5453427.jpg&f=1&nofb=1&ipt=23702cdc459d044e635b54e51ea5aed0444206cc1327f244e3643050f60a73f7&ipo=images')", backgroundSize: 'cover', height: '100vh' }}>
+    
+    <div className="app-container">
+      {/*----------------------------------------------------NAME, SCORE AND LOGOUT SECTION----------------------------------------------------------------------------------- */}
       <AppBar position="static" sx={{ borderRadius: '10px', marginBottom: '20px' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography variant="h6" component="div">
@@ -113,7 +115,9 @@ const App = () => {
           </Button>
         </Toolbar>
       </AppBar>
+      {/*----------------------------------------------------NAME, SCORE AND LOGOUT SECTION----------------------------------------------------------------------------------- */}
 
+      {/*----------------------------------------------------CATEGORY AND CARD # SECTION----------------------------------------------------------------------------------- */}
       <form className="header" onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
         <Box className="form-row" sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', gap: '20px' }}>
           <FormControl className="form-group" sx={{ minWidth: 120 }}>
@@ -147,11 +151,15 @@ const App = () => {
           </Button>
         </div>
       </form>
+      {/*----------------------------------------------------CATEGORY AND CARD # SECTION----------------------------------------------------------------------------------- */}
 
+      {/*----------------------------------------------------CARD GRID SECTION----------------------------------------------------------------------------------- */}
       <div className="app">
         <FlashcardList flashcards={flashcards} /> {/* Step 2.4: Display flashcards */}
       </div>
+      {/*----------------------------------------------------CARD GRID SECTION----------------------------------------------------------------------------------- */}
 
+      {/*----------------------------------------------------SCORE SECTION----------------------------------------------------------------------------------- */}
       <form className="header" onSubmit={handleScoreSubmit} style={{ marginTop: '20px' }}>
         <Box className="form-row" sx={{ display: 'flex', alignItems: 'center', width: '100%', gap: '20px' }}>
           <Button type="submit" variant="contained" color="primary" className="scorebtn" sx={{ flex: 1, height: '56px' }}>
@@ -174,6 +182,7 @@ const App = () => {
           </Button>
         </Box>
       </form>
+      {/*----------------------------------------------------SCORE SECTION----------------------------------------------------------------------------------- */}
     </div>
   );
 };

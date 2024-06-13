@@ -1,4 +1,4 @@
-/* Set background color and font for the entire body */
+/* Set background image for the entire body */
 body {
   background-color: skyblue;
   font-family: Arial, sans-serif; /* Set a consistent font for the entire app */
@@ -7,6 +7,10 @@ body {
   line-height: 1.5; /* Increase line height for better readability */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
+  background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp5134476.jpg&f=1&nofb=1&ipt=3c7b917098e69265b893c5dff429a4b1f8f979bd95146b18f15a011520cb2d78&ipo=images');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* Styling for the main container */
