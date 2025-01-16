@@ -4,6 +4,7 @@ Try to relearn the code
 (annoyance) Disable login screen for ease of coding
 
 (important)Get a lot PM related question and answers
+ - remove the old API (or maybe find a API that has PM questions and answers)
  - Turn it into Json try to aim for 12 question for each category
  - create categories try to aim for 4 categories
  - 48 question in total
