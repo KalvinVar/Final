@@ -1,0 +1,42 @@
+[
+    {
+        "id": "1",
+        "question": "What is the purpose of a risk register?",
+        "correct_answer": "To document all identified risks and their management strategies",
+        "incorrect_answers": [
+            "To track project progress",
+            "To manage project resources",
+            "To document project requirements"
+        ]
+    },
+    {
+        "id": "2",
+        "question": "What is the purpose of a stakeholder register?",
+        "correct_answer": "To identify all project stakeholders and their interests",
+        "incorrect_answers": [
+            "To track project progress",
+            "To manage project resources",
+            "To document project requirements"
+        ]
+    },
+    {
+        "id": "3",
+        "question": "What is the purpose of a communication plan?",
+        "correct_answer": "To outline how project information will be shared with stakeholders",
+        "incorrect_answers": [
+            "To track project progress",
+            "To manage project resources",
+            "To document project requirements"
+        ]
+    },
+    {
+        "id": "4",
+        "question": "What is the purpose of a project charter?",
+        "correct_answer": "To authorize the project and define its objectives",
+        "incorrect_answers": [
+            "To track project progress",
+            "To manage project resources",
+            "To document project requirements"
+        ]
+    }
+]

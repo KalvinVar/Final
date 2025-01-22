@@ -1,0 +1,13 @@
+[
+    {
+        "id": "1",
+        "question": "What is the main goal of quality management in a project?",
+        "correct_answer": "To ensure the project meets the required standards and satisfies the stakeholders",
+        "incorrect_answers": [
+            "To complete the project on time",
+            "To minimize project costs",
+            "To maximize project resources"
+        ]
+    }
+
+]

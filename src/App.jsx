@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'; // Import React and necessary hooks
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import FlashcardList from './components/FlashcardList'; // Import FlashcardList component
-import axios from 'axios'; // Import axios for API calls
 import './app.css'; // Import CSS file
 import InputLabel from '@mui/material/InputLabel'; // Import Material-UI components
 import MenuItem from '@mui/material/MenuItem';
@@ -9,11 +8,15 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Box, TextField, Button, Typography, AppBar, Toolbar } from '@mui/material';
 import { getCurrentUser, isAuthenticated, logoutUser } from './auth'; // Correct import path
+import eventsData from './questions/Events.json';
+import peopleData from './questions/People.json';
+import proceduresData from './questions/Procedures.json';
+import qualityData from './questions/Quality.json';
 
 const App = () => {
   // State variables
   const [flashcards, setFlashcards] = useState([]); // State for flashcards
-  const [categories, setCategories] = useState([]); // State for categories
+  const [categories, setCategories] = useState(['Events', 'People', 'Procedures', 'Quality']); // State for categories
   const [category, setCategory] = useState(''); // State for selected category
   const [amount, setAmount] = useState(12); // State for number of questions
   const [score, setScore] = useState(0); // State for score
@@ -23,11 +26,10 @@ const App = () => {
 
   // useEffect to run on component mount
   useEffect(() => {
-    // Step 1.1.1: Fetch categories from API
-    axios.get('https://opentdb.com/api_category.php')
-      .then(res => {
-        setCategories(res.data.trivia_categories); // Step 1.1.1: Set categories state
-      });
+    console.log('useEffect called');
+    const uniqueCategories = ['Events', 'People', 'Procedures', 'Quality'];
+    console.log('Categories:', uniqueCategories);
+    setCategories(uniqueCategories);
 
     // Step 1.1.2: Check if user is authenticated
     if (isAuthenticated() && username) {
@@ -49,27 +51,39 @@ const App = () => {
 
   // Handle form submission for generating flashcards
   function handleSubmit(e) {
-    e.preventDefault(); // Step 2.3.1: Prevent default form submission behavior
-    // Step 2.3.2: Fetch flashcards from API
-    axios.get('https://opentdb.com/api.php', {
-      params: {
-        amount: amount, // Step 2.3.3: Number of questions
-        category: category // Step 2.3.3: Selected category
-      }
-    })
-      .then(results => {
-        setFlashcards(results.data.results.map((qItem, index) => {
-          const a = htmldecoder(qItem.correct_answer);
-          const q = [...qItem.incorrect_answers.map(o => htmldecoder(o)), a];
-          return {
-            id: `${index}-${Date.now()}`,
-            question: htmldecoder(qItem.question),
-            ans: a,
-            option: q.sort(() => Math.random() - 0.5)
-          };
-        })); // Step 2.3.4: Set flashcards state
-        console.log(results.data);
+    e.preventDefault();
+    let selectedQuestions = [];
+    switch (category) {
+      case 'Events':
+        selectedQuestions = eventsData;
+        break;
+      case 'People':
+        selectedQuestions = peopleData;
+        break;
+      case 'Procedures':
+        selectedQuestions = proceduresData;
+        break;
+      case 'Quality':
+        selectedQuestions = qualityData;
+        break;
+      default:
+        break;
+    }
+
+    selectedQuestions = selectedQuestions
+      .slice(0, amount)
+      .map((qItem) => {
+        const correctAnswer = htmldecoder(qItem.correct_answer);
+        const options = [...qItem.incorrect_answers.map(o => htmldecoder(o)), correctAnswer];
+        return {
+          id: qItem.id,
+          question: htmldecoder(qItem.question),
+          ans: correctAnswer,
+          option: options.sort(() => Math.random() - 0.5) // Shuffle options
+        };
       });
+    console.log('Selected Questions:', selectedQuestions);
+    setFlashcards(selectedQuestions);
   }
 
   // Handle form submission for submitting score
@@ -129,8 +143,8 @@ const App = () => {
               onChange={(e) => setCategory(e.target.value)} // Step 2.1: User selects category
               label="Category"
             >
-              {categories.map(category => (
-                <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem>
+              {categories.map((category, index) => (
+                <MenuItem value={category} key={index}>{category}</MenuItem>
               ))}
             </Select>
           </FormControl>
