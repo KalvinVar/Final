@@ -1,56 +1,52 @@
-import React, { useState, useEffect } from 'react'; // Import React and necessary hooks
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import FlashcardList from './components/FlashcardList'; // Import FlashcardList component
-import './app.css'; // Import CSS file
-import InputLabel from '@mui/material/InputLabel'; // Import Material-UI components
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import FlashcardList from './components/FlashcardList';
+import FlashcardSlider from './components/FlashcardSlider';
+import './app.css';
+import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Box, TextField, Button, Typography, AppBar, Toolbar } from '@mui/material';
-import { getCurrentUser, isAuthenticated, logoutUser } from './auth'; // Correct import path
+import { getCurrentUser, isAuthenticated, logoutUser } from './auth';
 import eventsData from './questions/Events.json';
 import peopleData from './questions/People.json';
 import proceduresData from './questions/Procedures.json';
 import qualityData from './questions/Quality.json';
 
 const App = () => {
-  // State variables
-  const [flashcards, setFlashcards] = useState([]); // State for flashcards
-  const [categories, setCategories] = useState(['Events', 'People', 'Procedures', 'Quality']); // State for categories
-  const [category, setCategory] = useState(''); // State for selected category
-  const [amount, setAmount] = useState(12); // State for number of questions
-  const [score, setScore] = useState(0); // State for score
-  const [correctAnswers, setCorrectAnswers] = useState(''); // State for correct answers input
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
-  const username = getCurrentUser(); // Get current user from localStorage
+  const [flashcards, setFlashcards] = useState([]);
+  const [categories, setCategories] = useState(['Events', 'People', 'Procedures', 'Quality']);
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState(12);
+  const [score, setScore] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState('');
+  const [isSliderActive, setIsSliderActive] = useState(true); // Set default view to slider
+  const navigate = useNavigate();
+  const username = getCurrentUser();
 
-  // useEffect to run on component mount
   useEffect(() => {
-    console.log('useEffect called');
-    const uniqueCategories = ['Events', 'People', 'Procedures', 'Quality'];
-    console.log('Categories:', uniqueCategories);
-    setCategories(uniqueCategories);
-
-    // Step 1.1.2: Check if user is authenticated
     if (isAuthenticated() && username) {
-      const userScore = localStorage.getItem(`score_${username}`); // Step 1.1.3: Get user's score from localStorage
+      const userScore = localStorage.getItem(`score_${username}`);
       if (userScore) {
-        setScore(Number(userScore)); // Step 1.1.3: Set score state
+        setScore(Number(userScore));
       }
     } else {
-      navigate('/login'); // Step 1.1.4: Redirect to login if not authenticated
+      navigate('/login');
     }
-  }, [navigate, username]); // Dependencies for useEffect
+  }, [navigate, username]);
 
-  // Function to decode HTML entities
-  function htmldecoder(string) {
+  useEffect(() => {
+    document.body.classList.toggle('slider-active', isSliderActive);
+  }, [isSliderActive]);
+
+  const htmldecoder = (string) => {
     const textArea = document.createElement('textarea');
     textArea.innerHTML = string;
     return textArea.value;
-  }
+  };
 
-  // Handle form submission for generating flashcards
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let selectedQuestions = [];
     switch (category) {
@@ -82,38 +78,36 @@ const App = () => {
           option: options.sort(() => Math.random() - 0.5) // Shuffle options
         };
       });
-    console.log('Selected Questions:', selectedQuestions);
     setFlashcards(selectedQuestions);
-  }
+  };
 
-  // Handle form submission for submitting score
-  function handleScoreSubmit(e) {
-    e.preventDefault(); // Step 2.5.1: Prevent default form submission behavior
-    const newScore = score + Number(correctAnswers); // Step 2.5.2: Calculate new score
-    setScore(newScore); // Step 2.5.3: Set score state
-    setCorrectAnswers(''); // Step 2.5.4: Clear correct answers input
-    localStorage.setItem(`score_${username}`, newScore); // Step 2.5.5: Save new score to localStorage
-  }
+  const handleScoreSubmit = (e) => {
+    e.preventDefault();
+    const newScore = score + Number(correctAnswers);
+    setScore(newScore);
+    setCorrectAnswers('');
+    localStorage.setItem(`score_${username}`, newScore);
+  };
 
-  // Handle score reset
-  function handleScoreReset() {
-    setScore(0); // Step 2.7.1: Reset score state
-    localStorage.removeItem(`score_${username}`); // Step 2.7.2: Remove user's score from localStorage
-  }
+  const handleScoreReset = () => {
+    setScore(0);
+    localStorage.removeItem(`score_${username}`);
+  };
 
-  // Handle logout
-  function handleLogout() {
-    logoutUser(); // Step 1.2.3: Call logoutUser function
-    navigate('/login'); // Step 1.2.3: Redirect to login
-  }
+  const handleLogout = () => {
+    logoutUser();
+    navigate('/login');
+  };
 
-  // If not authenticated, return null
+  const handleSliderClick = () => {
+    setIsSliderActive(!isSliderActive);
+  };
+
   if (!isAuthenticated()) {
     return null;
   }
 
   return (
-    
     <div className="app-container">
       {/*----------------------------------------------------NAME, SCORE AND LOGOUT SECTION----------------------------------------------------------------------------------- */}
       <AppBar position="static" sx={{ borderRadius: '10px', marginBottom: '20px' }}>
@@ -124,9 +118,18 @@ const App = () => {
           <Typography variant="h6" component="div" sx={{ marginLeft: '20px' }}>
             Total Correct Answers: {score} {/* Step 1.2.2: Display total correct answers */}
           </Typography>
-          <Button variant="contained" color="secondary" onClick={handleLogout} sx={{ marginLeft: '20px' }}>
-            Logout {/* Step 1.2.3: Logout button */}
-          </Button>
+          <Box sx={{ display: 'flex', gap: '10px' }}>
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: isSliderActive ? 'whitesmoke' : 'secondary.main', color: isSliderActive ? 'black' : 'white' }}
+              onClick={handleSliderClick}
+            >
+              {isSliderActive ? 'Grid' : 'Slider'}
+            </Button>
+            <Button variant="contained" color="secondary" onClick={handleLogout}>
+              Logout {/* Step 1.2.3: Logout button */}
+            </Button>
+          </Box>
         </Toolbar>
       </AppBar>
       {/*----------------------------------------------------NAME, SCORE AND LOGOUT SECTION----------------------------------------------------------------------------------- */}
@@ -154,24 +157,28 @@ const App = () => {
               label="Number of Questions"
               type="number"
               value={amount}
-              onChange={(e) => setAmount(e.target.value)} // Step 2.2: User sets number of questions
+              onChange={(e) => setAmount(e.target.value)} // Step 2.2: User inputs number of questions
               InputProps={{ inputProps: { min: 1 } }}
             />
           </FormControl>
         </Box>
         <div className="form-group" style={{ marginTop: '20px', width: '100%' }}>
           <Button type="submit" variant="contained" color="primary" className="generatebtn" sx={{ height: '56px' }}>
-            Generate {/* Step 2.3: User generates flashcards */}
+            Generate {/* Step 2.3: Generate flashcards */}
           </Button>
         </div>
       </form>
       {/*----------------------------------------------------CATEGORY AND CARD # SECTION----------------------------------------------------------------------------------- */}
 
-      {/*----------------------------------------------------CARD GRID SECTION----------------------------------------------------------------------------------- */}
-      <div className="app">
-        <FlashcardList flashcards={flashcards} /> {/* Step 2.4: Display flashcards */}
-      </div>
-      {/*----------------------------------------------------CARD GRID SECTION----------------------------------------------------------------------------------- */}
+      {/*----------------------------------------------------FLASHCARD LIST SECTION----------------------------------------------------------------------------------- */}
+      {flashcards.length > 0 && (
+        isSliderActive ? (
+          <FlashcardSlider flashcards={flashcards} /> // Render FlashcardSlider when isSliderActive is true
+        ) : (
+          <FlashcardList flashcards={flashcards} /> // Render FlashcardList when isSliderActive is false
+        )
+      )}
+      {/*----------------------------------------------------FLASHCARD LIST SECTION----------------------------------------------------------------------------------- */}
 
       {/*----------------------------------------------------SCORE SECTION----------------------------------------------------------------------------------- */}
       <form className="header" onSubmit={handleScoreSubmit} style={{ marginTop: '20px' }}>
@@ -202,119 +209,3 @@ const App = () => {
 };
 
 export default App;
-
-/**
- * Main App Flow:
- * 1. Authentication and Initialization:
- *    1.1. On component mount:
- *         1.1.1. Fetch categories from the trivia API.
- *              axios.get('https://opentdb.com/api_category.php')
- *                .then(res => {
- *                  setCategories(res.data.trivia_categories);
- *                });
- *         1.1.2. Check if the user is authenticated.
- *              const auth = localStorage.getItem('isAuthenticated');
- *              const currentUser = localStorage.getItem('currentUser');
- *         1.1.3. If authenticated, set the user's username and score.
- *              setIsAuthenticated(true);
- *              setUsername(currentUser);
- *              const userScore = localStorage.getItem(`score_${currentUser}`);
- *              if (userScore) {
- *                setScore(Number(userScore));
- *              }
- *         1.1.4. If not authenticated, navigate to the login page.
- *              navigate('/login');
- *    1.2. Render the header:
- *         1.2.1. Display username.
- *              <Typography variant="h6" component="div">
- *                Welcome, {username}
- *              </Typography>
- *         1.2.2. Display total correct answers.
- *              <Typography variant="h6" component="div" sx={{ marginLeft: '20px' }}>
- *                Total Correct Answers: {score}
- *              </Typography>
- *         1.2.3. Logout button.
- *              <Button variant="contained" color="secondary" onClick={handleLogout} sx={{ marginLeft: '20px' }}>
- *                Logout
- *              </Button>
- * 2. Main Actions:
- *    2.1. User selects a category.
- *         <Select
- *           labelId="category-label"
- *           id="category"
- *           value={category}
- *           onChange={(e) => setCategory(e.target.value)}
- *           label="Category"
- *         >
- *           {categories.map(category => (
- *             <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem>
- *           ))}
- *         </Select>
- *    2.2. User sets the number of questions.
- *         <TextField
- *           id="amount"
- *           label="Number of Questions"
- *           type="number"
- *           value={amount}
- *           onChange={(e) => setAmount(e.target.value)}
- *           InputProps={{ inputProps: { min: 1 } }}
- *         />
- *    2.3. User generates flashcards.
- *         <Button type="submit" variant="contained" color="primary" className="generatebtn" sx={{ height: '56px' }}>
- *           Generate
- *         </Button>
- *         handleSubmit(e) {
- *           e.preventDefault();
- *           axios.get('https://opentdb.com/api.php', {
- *             params: {
- *               amount: amount,
- *               category: category
- *             }
- *           })
- *             .then(results => {
- *               setFlashcards(results.data.results.map((qItem, index) => {
- *                 const a = htmldecoder(qItem.correct_answer);
- *                 const q = [...qItem.incorrect_answers.map(o => htmldecoder(o)), a];
- *                 return {
- *                   id: `${index}-${Date.now()}`,
- *                   question: htmldecoder(qItem.question),
- *                   ans: a,
- *                   option: q.sort(() => Math.random() - 0.5)
- *                 };
- *               }));
- *               console.log(results.data);
- *             });
- *         }
- *    2.4. Flashcards are displayed.
- *         <FlashcardList flashcards={flashcards} />
- *    2.5. User submits the count of correct answers.
- *         <Button type="submit" variant="contained" color="primary" className="scorebtn" sx={{ flex: 1, height: '56px' }}>
- *           Submit
- *         </Button>
- *         handleScoreSubmit(e) {
- *           e.preventDefault();
- *           const newScore = score + Number(correctAnswers);
- *           setScore(newScore);
- *           setCorrectAnswers('');
- *           localStorage.setItem(`score_${username}`, newScore);
- *         }
- *    2.6. User inputs the correct answers count.
- *         <TextField
- *           id="correct"
- *           label="How many questions you answered correctly?"
- *           type="number"
- *           value={correctAnswers}
- *           onChange={(e) => setCorrectAnswers(e.target.value)}
- *           InputProps={{ inputProps: { min: 0 } }}
- *           fullWidth
- *           sx={{ height: '56px' }}
- *         />
- *    2.7. User resets the correct answers count.
- *         <Button type="button" variant="contained" color="secondary" onClick={handleScoreReset} className="resetbtn" sx={{ flex: 1, height: '56px' }}>
- *           Reset
- *         </Button>
- *         handleScoreReset() {
- *           setScore(0);
- *           localStorage.removeItem(`score_${username}`);
- *         }
- */

@@ -1,0 +1,74 @@
+#app {
+  height: 100%;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+.slider-container {
+  border-radius: 10px; /* Match border-radius */
+  background-color: whitesmoke; /* Match background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Match box-shadow */
+  padding: 20px; /* Add padding to match spacing */
+  margin-bottom: 20px; /* Add margin to match spacing */
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px; /* Add border-radius to round the edges */
+  overflow: hidden; /* Ensure content doesn't overflow the rounded corners */
+  background-color: whitesmoke; /* Match background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Match box-shadow */
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: whitesmoke; /* Match background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Match box-shadow */
+  border-radius: 10px; /* Add border-radius to round the edges */
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body.slider-active .swiper {
+  height: 700px !important; /* Increase the height of the slider when active */
+}
+
+body.slider-active .swiper .card {
+  width: 90% !important; /* Adjust width to prevent squishing */
+  height: 85% !important; /* Adjust height to prevent squishing */
+}
+
+body.slider-active .swiper .card .front,
+body.slider-active .swiper .card .back {
+  font-size: 2rem; /* Increase font size when in slider mode */
+}
+
+body.slider-active .swiper .card .option {
+  font-size: 1.5rem; /* Increase font size for options when in slider mode */
+}
