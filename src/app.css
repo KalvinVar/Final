@@ -99,7 +99,7 @@ body {
   background-color: whitesmoke; /* Set background color */
   outline: auto; /* Set outline */
   transform-style: preserve-3d; /* Preserve 3D transformations */
-  height: 300px; /* Increase height */
+  height: 550px; /* Default height */
   width: auto; /* Set width */
   transition: 300ms; /* Add transition */
   cursor: pointer; /* Set cursor to pointer */
@@ -108,6 +108,20 @@ body {
   font-size: 1.2rem; /* Increase font size */
   font-weight: 700; /* Make the font thicker */
 }
+
+/* Media queries for responsive card height */
+@media (max-width: 1200px) {
+  .card {
+    height: 400px; /* Adjust height for smaller screens */
+  }
+}
+
+@media (max-width: 1080px) {
+  .card {
+    height: 560px; /* Adjust height for smaller screens */
+  }
+}
+
 
 /* Styling for card on hover */
 .card:hover {

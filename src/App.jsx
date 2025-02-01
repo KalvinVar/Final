@@ -103,6 +103,10 @@ const App = () => {
     setIsSliderActive(!isSliderActive);
   };
 
+  const handleQuizClick = () => {
+    navigate('/quiz');
+  };
+
   if (!isAuthenticated()) {
     return null;
   }
@@ -125,6 +129,13 @@ const App = () => {
               onClick={handleSliderClick}
             >
               {isSliderActive ? 'Grid' : 'Slider'}
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleQuizClick}
+            >
+              Quiz
             </Button>
             <Button variant="contained" color="secondary" onClick={handleLogout}>
               Logout {/* Step 1.2.3: Logout button */}

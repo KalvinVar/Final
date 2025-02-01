@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../app.css'; // Import app.css
 
-export default function Flashcard({ flashcard }) {
+export default function Quizcard({ flashcard }) {
   const [flip, setFlip] = useState(false); // Initialize flip state to false
 
   return (
@@ -28,8 +28,8 @@ export default function Flashcard({ flashcard }) {
   );
 }
 
-// Define propTypes for Flashcard
-Flashcard.propTypes = {
+// Define propTypes for Quizcard
+Quizcard.propTypes = {
   flashcard: PropTypes.shape({
     id: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
