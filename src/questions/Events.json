@@ -1,134 +1,78 @@
 [
     {
-        "id": "1",
-        "question": "During project execution, a key supplier suddenly goes out of business, delaying critical components. What should you do first?",
-        "correct_answer": "Review the risk management plan and implement the contingency strategy.",
+        "id": "13",
+        "question": "The project management plan specifies that a predictive development approach has been selected to produce the project deliverables. Where in the project life cycle will the overall project risk be the lowest?",
+        "correct_answer": "D",
         "incorrect_answers": [
-            "Request additional budget to source new materials.",
-            "Immediately escalate the issue to the project sponsor.",
-            "Pause all project activities until a new supplier is found."
+            "A",
+            "B",
+            "C"
         ],
-        "reasoning": "The risk management plan should include strategies for supplier failure, allowing a structured response rather than an immediate budget increase or project halt."
+        "reasoning": "The correct answer is D (Closing the project) because, in a predictive development approach, project risk is highest at the beginning due to uncertainty in scope, requirements, and stakeholder expectations. As the project progresses through planning and execution, risks are identified, mitigated, and resolved, leading to a gradual decrease in overall risk. By the time the project reaches the closing phase, most uncertainties have been addressed, deliverables have been accepted, and outstanding risks have either been mitigated, transferred, or accepted. Since there are fewer unknowns and minimal remaining work, the overall project risk is at its lowest during project closure.",
+        "image_link": "https://www.project-management-prepcast.com/images/exam_sim_questions/6113151.jpg"
     },
     {
-        "id": "2",
-        "question": "A major stakeholder unexpectedly withdraws support for your project. How should you handle this situation?",
-        "correct_answer": "Engage with the stakeholder to understand their concerns and explore mitigation strategies.",
+        "id": "14",
+        "question": "Which of the following are key principles of Agile project management? (Select two or more)",
+        "correct_answers": ["Individuals and interactions over processes and tools", "Responding to change over following a plan"],
         "incorrect_answers": [
-            "Continue without the stakeholder since the project is already in execution.",
-            "Submit a change request to remove the stakeholder’s influence.",
-            "Escalate the issue to senior management immediately."
+            "Comprehensive documentation over working software",
+            "Contract negotiation over customer collaboration",
+            "Following a plan over responding to change"
         ],
-        "reasoning": "Stakeholder engagement is crucial, and directly addressing their concerns may resolve the issue before escalation or major project changes."
+        "reasoning": "Agile project management emphasizes individuals and interactions, working software, customer collaboration, and responding to change as key principles. These principles prioritize flexibility and adaptability over rigid processes and documentation."
     },
     {
-        "id": "3",
-        "question": "Your project team encounters a previously unidentified risk that significantly impacts the schedule. What should you do next?",
-        "correct_answer": "Perform a risk assessment and determine the appropriate risk response.",
-        "incorrect_answers": [
-            "Ignore the risk since it was not in the original risk register.",
-            "Immediately request additional time and resources.",
-            "Terminate the project and start over with a new plan."
+        "id": "15",
+        "question": "Rank the following project phases in the correct order.",
+        "correct_order": ["Initiation", "Planning", "Execution", "Monitoring and Controlling", "Closing"],
+        "answers": [
+            "Initiation",
+            "Planning",
+            "Execution",
+            "Monitoring and Controlling",
+            "Closing"
         ],
-        "reasoning": "New risks should be assessed and addressed within the risk management framework rather than reacting impulsively or ignoring them."
+        "reasoning": "The correct order of project phases in project management is Initiation, Planning, Execution, Monitoring and Controlling, and Closing. This sequence ensures a structured approach to project management, allowing for proper planning, execution, and closure.",
+        "type": "sorting"
     },
     {
-        "id": "4",
-        "question": "A sudden regulatory change affects compliance requirements for your project. What is the best course of action?",
-        "correct_answer": "Conduct an impact analysis and update the project plan accordingly.",
-        "incorrect_answers": [
-            "Ignore the new regulation and proceed as planned.",
-            "Immediately halt the project to assess legal consequences.",
-            "Transfer project ownership to the compliance department."
+        "id": "16",
+        "question": "Rank the following project phases in the correct order.",
+        "correct_order": ["Initiation", "Planning", "Execution", "Monitoring and Controlling", "Closing"],
+        "answers": [
+            "Initiation",
+            "Planning",
+            "Execution",
+            "Monitoring and Controlling",
+            "Closing"
         ],
-        "reasoning": "Understanding how the regulatory change impacts the project ensures compliance without unnecessary disruption."
+        "reasoning": "The correct order of project phases in project management is Initiation, Planning, Execution, Monitoring and Controlling, and Closing. This sequence ensures a structured approach to project management, allowing for proper planning, execution, and closure.",
+        "type": "sorting"
     },
     {
-        "id": "5",
-        "question": "Halfway through project execution, a critical team member resigns unexpectedly. What should you do first?",
-        "correct_answer": "Assess the impact on project deliverables and reassign responsibilities as needed.",
-        "incorrect_answers": [
-            "Immediately hire a replacement without reviewing project needs.",
-            "Increase workload for the remaining team members.",
-            "Pause the project until a new team member is onboarded."
+        "id": "17",
+        "question": "Match the project management terms with their correct definitions.",
+        "type": "matching",
+        "pairs": [
+            {
+                "term": "Scope",
+                "definition": "The work required to complete a project."
+            },
+            {
+                "term": "Risk",
+                "definition": "An uncertain event that could affect the project."
+            },
+            {
+                "term": "Stakeholder",
+                "definition": "An individual or group with an interest in the project."
+            },
+            {
+                "term": "Milestone",
+                "definition": "A significant point or event in a project."
+            }
         ],
-        "reasoning": "A structured approach ensures minimal disruption by assessing impact and adjusting responsibilities before considering replacements."
-    },
-    {
-        "id": "6",
-        "question": "A key technology used in your project becomes obsolete before deployment. How should you respond?",
-        "correct_answer": "Assess alternatives and determine if a change request is necessary.",
-        "incorrect_answers": [
-            "Proceed with the outdated technology to avoid delays.",
-            "Restart the project using the latest technology.",
-            "Blame the vendor for the technology’s obsolescence."
-        ],
-        "reasoning": "Evaluating alternatives and making informed decisions prevents unnecessary project restarts or technological risks."
-    },
-    {
-        "id": "7",
-        "question": "Your project is running over budget due to unforeseen material cost increases. What is the best response?",
-        "correct_answer": "Analyze cost variances and implement cost control measures.",
-        "incorrect_answers": [
-            "Request additional funding immediately.",
-            "Ignore the budget overrun and continue working.",
-            "Reduce quality to compensate for cost overruns."
-        ],
-        "reasoning": "Cost control measures allow adjustments before seeking additional funding or compromising quality."
-    },
-    {
-        "id": "8",
-        "question": "During testing, a critical defect is discovered that affects the project timeline. What is the first step?",
-        "correct_answer": "Evaluate the defect’s impact and determine the best corrective action.",
-        "incorrect_answers": [
-            "Delay the project indefinitely until a fix is found.",
-            "Ignore the defect and proceed to deployment.",
-            "Replace the entire development team."
-        ],
-        "reasoning": "Assessing the defect’s impact ensures the right corrective action without unnecessary delays or drastic decisions."
-    },
-    {
-        "id": "9",
-        "question": "A natural disaster disrupts supply chains and halts production for your project. How should you proceed?",
-        "correct_answer": "Activate the risk response plan and seek alternative suppliers.",
-        "incorrect_answers": [
-            "Cancel the project since production cannot continue.",
-            "Wait until supply chains recover without taking action.",
-            "Permanently change the project scope to exclude affected components."
-        ],
-        "reasoning": "A risk response plan provides contingencies for disruptions, allowing the project to adapt rather than halt or change scope unnecessarily."
-    },
-    {
-        "id": "10",
-        "question": "A project deliverable is rejected by the customer due to unmet requirements. What should you do?",
-        "correct_answer": "Review the requirements and identify gaps to correct the issue.",
-        "incorrect_answers": [
-            "Blame the customer for unclear requirements.",
-            "Deliver the product as-is, assuming they will accept it later.",
-            "Start the entire project over from scratch."
-        ],
-        "reasoning": "Understanding requirement gaps allows for corrections rather than placing blame or making drastic project changes."
-    },
-    {
-        "id": "11",
-        "question": "Midway through execution, a key executive announces budget cuts that affect your project. What should you do first?",
-        "correct_answer": "Reassess project priorities and adjust scope or resources as needed.",
-        "incorrect_answers": [
-            "Immediately stop all spending and freeze project work.",
-            "Continue working at full pace, expecting a later budget increase.",
-            "Submit a formal complaint about the budget cuts."
-        ],
-        "reasoning": "Adjusting scope or resources ensures the project aligns with the new budget constraints while still delivering value."
-    },
-    {
-        "id": "12",
-        "question": "Your team reports a major technical risk that could cause significant delays. How should you respond?",
-        "correct_answer": "Evaluate risk severity and implement mitigation strategies.",
-        "incorrect_answers": [
-            "Ignore the risk and proceed as planned.",
-            "Shift all focus to this risk, delaying other project work.",
-            "Increase project budget to solve the risk immediately."
-        ],
-        "reasoning": "Analyzing and mitigating risks proactively prevents unnecessary budget increases or work stoppages."
+        "reasoning": "Matching the project management terms with their correct definitions is vital for ensuring that all team members and stakeholders share a common understanding of project essentials. This exercise reinforces the importance of clearly defining project scope, recognizing and managing risks, engaging the right stakeholders, and setting milestones to track project progress."
     }
 ]
+
