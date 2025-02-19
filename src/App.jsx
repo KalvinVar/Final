@@ -66,18 +66,71 @@ const App = () => {
         break;
     }
 
-    selectedQuestions = selectedQuestions
-      .slice(0, amount)
-      .map((qItem) => {
-        const correctAnswer = htmldecoder(qItem.correct_answer);
-        const options = [...qItem.incorrect_answers.map(o => htmldecoder(o)), correctAnswer];
+    selectedQuestions = selectedQuestions.slice(0, amount).map((qItem) => {
+      const question = htmldecoder(qItem.question);
+      // Special types: Create an option property from available data
+      if (qItem.type === 'sorting') {
         return {
           id: qItem.id,
-          question: htmldecoder(qItem.question),
-          ans: correctAnswer,
-          option: options.sort(() => Math.random() - 0.5) // Shuffle options
+          question,
+          ans: qItem.correct_order ? qItem.correct_order.join(', ') : '',
+          correct_order: qItem.correct_order,
+          answers: qItem.answers || [],
+          // Provide an option property for text-only review (could be the same as answers or correct_order)
+          option: qItem.answers && qItem.answers.length > 0 ? qItem.answers : (qItem.correct_order || []),
+          reasoning: qItem.reasoning || '',
+          type: 'sorting'
         };
-      });
+      } else if (qItem.type === 'matching') {
+        return {
+          id: qItem.id,
+          question,
+          ans: qItem.pairs
+            ? qItem.pairs.map(pair => `${pair.term}: ${pair.definition}`).join('; ')
+            : '',
+          pairs: qItem.pairs,
+          // Provide an option property for matching questions as a formatted array of strings
+          option: qItem.pairs ? qItem.pairs.map(pair => `${pair.term}: ${pair.definition}`) : [],
+          reasoning: qItem.reasoning || '',
+          type: 'matching'
+        };
+      } else {
+        // Multiple-choice or multi-select questions
+        // If a correct_answers array exists, handle multi-select questions using it.
+        if (qItem.correct_answers) {
+          const correctAnswersArray = qItem.correct_answers.map(ans => htmldecoder(ans));
+          const options = [
+            ...qItem.incorrect_answers.map(o => htmldecoder(o)),
+            ...correctAnswersArray
+          ];
+          return {
+            id: qItem.id,
+            question,
+            ans: correctAnswersArray.join(', '),
+            option: options.sort(() => Math.random() - 0.5),
+            reasoning: qItem.reasoning || '',
+            type: 'multiple-choice',
+            image_link: qItem.image_link || null  // <-- This gives each flashcard an image_link property if present
+          };
+        } else {
+          // Normal multiple-choice questions with a single correct answer
+          const correctAnswer = htmldecoder(qItem.correct_answer);
+          const options = [
+            ...qItem.incorrect_answers.map(o => htmldecoder(o)),
+            correctAnswer
+          ];
+          return {
+            id: qItem.id,
+            question,
+            ans: correctAnswer,
+            option: options.sort(() => Math.random() - 0.5),
+            reasoning: qItem.reasoning || '',
+            type: 'multiple-choice',
+            image_link: qItem.image_link || null  // <-- This gives each flashcard an image_link property if present
+          };
+        }
+      }
+    });
     setFlashcards(selectedQuestions);
   };
 

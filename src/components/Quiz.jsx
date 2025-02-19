@@ -16,10 +16,12 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import MatchingQuestion from './MatchingQuestion'; // Adjust the import path as necessary
 import { DndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable'; // install if needed: npm install @dnd-kit/sortable
+import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
+import PerformanceBreakdown from './PerformanceBreakdown';
 
 const Quiz = () => {
   const [flashcards, setFlashcards] = useState([]);
-  const [categories, setCategories] = useState(['Events', 'People', 'Procedures', 'Quality']);
+  const [categories, setCategories] = useState(['Events', 'People', 'Procedures', 'Quality', 'Random']);
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState(12);
   const [score, setScore] = useState(0);
@@ -32,8 +34,19 @@ const Quiz = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [incompleteAnswer, setIncompleteAnswer] = useState(false);
+  const [bestScore, setBestScore] = useState(null);
+  const [bestAttemptCount, setBestAttemptCount] = useState(null);
+  const [prevBestRaw, setPrevBestRaw] = useState(null);
+  const [prevBestAttempt, setPrevBestAttempt] = useState(null);
   const navigate = useNavigate();
   const username = getCurrentUser();
+
+  const topicColors = {
+    Events: '#1976d2',     // blue
+    People: '#388e3c',     // green
+    Procedures: '#f57c00', // orange
+    Quality: '#7b1fa2'     // purple
+  };
 
   useEffect(() => {
     if (isAuthenticated() && username) {
@@ -45,6 +58,48 @@ const Quiz = () => {
       navigate('/login');
     }
   }, [navigate, username]);
+
+  useEffect(() => {
+    if (flashcards.length > 0 && currentQuestionIndex >= flashcards.length) {
+      const currentPercentage = Math.round((score / flashcards.length) * 100);
+      const currentAttemptCount = flashcards.length;
+      let storedBest = localStorage.getItem(`bestScore_${username}`);
+      storedBest = storedBest ? Number(storedBest) : 0;
+      let storedAttemptCount = localStorage.getItem(`bestAttemptCount_${username}`);
+      storedAttemptCount = storedAttemptCount ? Number(storedAttemptCount) : 0;
+      
+      // Update stored best if current percentage is higher or if equal but with more questions attempted.
+      if (currentPercentage > storedBest || (currentPercentage === storedBest && currentAttemptCount > storedAttemptCount)) {
+        localStorage.setItem(`bestScore_${username}`, currentPercentage);
+        localStorage.setItem(`bestAttemptCount_${username}`, currentAttemptCount);
+        storedBest = currentPercentage;
+        storedAttemptCount = currentAttemptCount;
+      }
+      setBestScore(storedBest);
+      setBestAttemptCount(storedAttemptCount);
+    }
+  }, [flashcards, currentQuestionIndex, score, username]);
+
+  useEffect(() => {
+    if (flashcards.length > 0 && currentQuestionIndex >= flashcards.length) {
+      const currentRaw = score; // current number of correct answers
+      const currentAttempt = flashcards.length;
+      let storedBestRaw = localStorage.getItem(`bestRawScore_${username}`);
+      storedBestRaw = storedBestRaw ? Number(storedBestRaw) : 0;
+      let storedAttempt = localStorage.getItem(`bestAttemptCountRaw_${username}`);
+      storedAttempt = storedAttempt ? Number(storedAttempt) : 0;
+      
+      if (currentRaw > storedBestRaw) {
+        localStorage.setItem(`bestRawScore_${username}`, currentRaw);
+        localStorage.setItem(`bestAttemptCountRaw_${username}`, currentAttempt);
+        storedBestRaw = currentRaw;
+        storedAttempt = currentAttempt;
+      }
+      
+      setPrevBestRaw(storedBestRaw);
+      setPrevBestAttempt(storedAttempt);
+    }
+  }, [flashcards, currentQuestionIndex, score, username]);
 
   const htmldecoder = (string) => {
     const textArea = document.createElement('textarea');
@@ -62,29 +117,53 @@ const Quiz = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Reset state for a fresh quiz
+    setScore(0);
+    setUserAnswers([]);
+    setSelectedAnswers([]);
+    setShowReasoning(false);
+    setIsCorrect(null);
+    setHasSubmitted(false);
+    setIncompleteAnswer(false);
+
     let selectedQuestions = [];
-    switch (category) {
-      case 'Events':
-        selectedQuestions = eventsData;
-        break;
-      case 'People':
-        selectedQuestions = peopleData;
-        break;
-      case 'Procedures':
-        selectedQuestions = proceduresData;
-        break;
-      case 'Quality':
-        selectedQuestions = qualityData;
-        break;
-      default:
-        break;
+    if (category === 'Random') {
+      // Combine all questions and tag them with their category.
+      selectedQuestions = [
+        ...eventsData.map((q) => ({ ...q, category: 'Events' })),
+        ...peopleData.map((q) => ({ ...q, category: 'People' })),
+        ...proceduresData.map((q) => ({ ...q, category: 'Procedures' })),
+        ...qualityData.map((q) => ({ ...q, category: 'Quality' })),
+      ];
+    } else {
+      switch (category) {
+        case 'Events':
+          selectedQuestions = eventsData.map((q) => ({ ...q, category: 'Events' }));
+          break;
+        case 'People':
+          selectedQuestions = peopleData.map((q) => ({ ...q, category: 'People' }));
+          break;
+        case 'Procedures':
+          selectedQuestions = proceduresData.map((q) => ({ ...q, category: 'Procedures' }));
+          break;
+        case 'Quality':
+          selectedQuestions = qualityData.map((q) => ({ ...q, category: 'Quality' }));
+          break;
+        default:
+          break;
+      }
     }
 
     selectedQuestions = shuffleArray(selectedQuestions)
       .slice(0, amount)
       .map((qItem) => {
-        const correctAnswers = Array.isArray(qItem.correct_answers) ? qItem.correct_answers.map(htmldecoder) : [htmldecoder(qItem.correct_answer)];
-        const incorrectAnswers = qItem.incorrect_answers ? qItem.incorrect_answers.map(o => htmldecoder(o)) : [];
+        const correctAnswers = Array.isArray(qItem.correct_answers)
+          ? qItem.correct_answers.map(htmldecoder)
+          : [htmldecoder(qItem.correct_answer)];
+        const incorrectAnswers = qItem.incorrect_answers
+          ? qItem.incorrect_answers.map(o => htmldecoder(o))
+          : [];
         const options = [...incorrectAnswers, ...correctAnswers];
         return {
           id: qItem.id,
@@ -94,20 +173,19 @@ const Quiz = () => {
           reasoning: qItem.reasoning || '',
           image_link: qItem.image_link || null,
           correct_order: qItem.correct_order || [],
-          answers: qItem.answers || [], // Ensure answers property is populated
-          type: qItem.type || 'multiple-choice', // Add type property
-          pairs: qItem.pairs || [] // Add pairs property for matching questions
+          answers: qItem.answers || [],
+          type: qItem.type || 'multiple-choice',
+          pairs: qItem.pairs || [],
+          category: qItem.category // Added category field
         };
       });
     setFlashcards(selectedQuestions);
     setCurrentQuestionIndex(0);
-    setUserAnswers([]);
-    setSelectedAnswers([]);
-    setUnsortedOptions(shuffleArray(selectedQuestions[0].answers)); // Initialize unsortedOptions with the shuffled answers of the first question
-    setShowReasoning(false);
-    setIsCorrect(null);
-    setHasSubmitted(false);
-    setIncompleteAnswer(false);
+    if (selectedQuestions[0] && selectedQuestions[0].answers) {
+      setUnsortedOptions(shuffleArray(selectedQuestions[0].answers));
+    } else {
+      setUnsortedOptions([]);
+    }
   };
 
   const handleAnswerSelect = (option) => {
@@ -168,13 +246,22 @@ const Quiz = () => {
   };
 
   const handleNextQuestion = () => {
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
-    setSelectedAnswers([]);
-    setUnsortedOptions(shuffleArray(flashcards[currentQuestionIndex + 1].answers)); // Initialize unsortedOptions with the shuffled answers of the next question
-    setShowReasoning(false);
-    setIsCorrect(null);
-    setHasSubmitted(false);
-    setIncompleteAnswer(false);
+    if (currentQuestionIndex + 1 < flashcards.length) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedAnswers([]);
+      if (flashcards[currentQuestionIndex + 1] && flashcards[currentQuestionIndex + 1].answers) {
+        setUnsortedOptions(shuffleArray(flashcards[currentQuestionIndex + 1].answers));
+      } else {
+        setUnsortedOptions([]);
+      }
+      setShowReasoning(false);
+      setIsCorrect(null);
+      setHasSubmitted(false);
+      setIncompleteAnswer(false);
+    } else {
+      // On final question, increment index to show the final screen (with the gauge)
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
   };
 
   const handleLogout = () => {
@@ -295,7 +382,7 @@ const Quiz = () => {
       <DndProvider backend={HTML5Backend}>
         <div
           className="app-container"
-          style={{ overflowX: 'hidden', overflowY: 'hidden', height: '100vh' }}
+          style={{ overflowX: 'hidden', overflowY: 'auto', minHeight: '100vh' }}
         >
           <AppBar position="static" sx={{ borderRadius: '10px', marginBottom: '20px' }}>
             <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -441,21 +528,87 @@ const Quiz = () => {
                 )}
               </form>
             )}
-            {showReasoning && (
+            {showReasoning && flashcards[currentQuestionIndex] && (
               <Box sx={{ marginTop: '20px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f9f9f9' }}>
                 <Typography variant="body1" sx={{ marginBottom: '10px' }}>
                   {isCorrect ? 'Correct!' : 'Incorrect!'}
                 </Typography>
                 <Typography variant="body1">
-                  {flashcards[currentQuestionIndex].reasoning}
+                  {flashcards[currentQuestionIndex].reasoning || ''}
                 </Typography>
               </Box>
             )}
             {flashcards.length > 0 && currentQuestionIndex >= flashcards.length && (
-              <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                <Typography variant="h6" component="div">
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
+                <Typography variant="h6">
                   Quiz Completed! Your score is {score}/{flashcards.length}.
                 </Typography>
+                <Gauge
+                  value={Math.round((score / flashcards.length) * 100)}
+                  startAngle={-110}
+                  endAngle={110}
+                  sx={{
+                    [`& .${gaugeClasses.valueText}`]: {
+                      fontSize: 40,
+                      transform: 'translate(0px, 0px)',
+                    },
+                  }}
+                  style={{ width: '200px', height: '200px' }}
+                  text={({ value }) => `${value}%`}
+                />
+                {prevBestRaw !== null && prevBestAttempt !== null && (() => {
+                  const currentRaw = score;
+                  const bestRaw = prevBestRaw;
+                  // Here we also compute the previous best percentage for reference.
+                  const bestPercent = Math.round((bestRaw / prevBestAttempt) * 100);
+                  
+                  if (currentRaw > bestRaw) {
+                    const improvementPercent = Math.round(((currentRaw - bestRaw) / bestRaw) * 100);
+                    return (
+                      <Box sx={{ mt: 2, textAlign: 'center' }}>
+                        <Typography variant="subtitle1">
+                          Previously you got {bestRaw} out of {prevBestAttempt} correct ({bestPercent}%).
+                        </Typography>
+                        <Typography variant="subtitle2" color="primary">
+                          Your score improved by {improvementPercent}% since your last attempt based on your raw scores.
+                        </Typography>
+                      </Box>
+                    );
+                  } else if (currentRaw === bestRaw) {
+                    return (
+                      <Box sx={{ mt: 2, textAlign: 'center' }}>
+                        <Typography variant="subtitle1">
+                          Your best performance so far was {bestRaw} correct answers (on {prevBestAttempt} questions).
+                        </Typography>
+                        <Typography variant="subtitle2" color="textSecondary">
+                          You got the same raw score as your previous best.
+                        </Typography>
+                      </Box>
+                    );
+                  } else {
+                    const decreasePercent = Math.round(((bestRaw - currentRaw) / bestRaw) * 100);
+                    return (
+                      <Box sx={{ mt: 2, textAlign: 'center' }}>
+                        <Typography variant="subtitle1">
+                          Your best performance so far was {bestRaw} correct answers (on {prevBestAttempt} questions).
+                        </Typography>
+                        <Typography variant="subtitle2" color="secondary">
+                          Your score decreased by {decreasePercent}% since your last attempt based on your raw scores.
+                        </Typography>
+                      </Box>
+                    );
+                  }
+                })()}
+                {/* Use the new PerformanceBreakdown component */}
+                <PerformanceBreakdown
+                  flashcards={flashcards}
+                  userAnswers={userAnswers}
+                  topicColors={topicColors}
+                  category={category}
+                  score={score}
+                  bestScore={bestScore}
+                  bestAttemptCount={bestAttemptCount}
+                />
               </Box>
             )}
           </Paper>

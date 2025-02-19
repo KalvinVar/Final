@@ -34,7 +34,7 @@ export default function FlashcardSlider({ flashcards }) {
       onSlideChange={handleSlideChange}
     >
       {flashcards.map((flashcard, index) => (
-        <SwiperSlide key={flashcard.id}>
+        <SwiperSlide key={flashcard.id} style={{ height: '100%' }}>
           <Flashcard
             flashcard={flashcard}
             flip={flipStates[index]}

@@ -1,39 +1,67 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../app.css'; // Import app.css
+import { Typography, Box } from '@mui/material';
+import '../app.css';
 
-export default function Flashcard({ flashcard }) {
-  const [flip, setFlip] = useState(false); // Initialize flip state to false
+const Flashcard = ({ flashcard }) => {
+  const [flip, setFlip] = useState(false);
 
   return (
-    <div
-      className={`card ${flip ? 'flip' : ''}`} // Conditionally apply 'flip' class if flip is true
-      // This applies the 'flip' class to activate the flip animation defined in app.css (see app.css line: 25)
-      onClick={() => setFlip(!flip)} // Toggle flip state on click
+    <Box
+      className={`card ${flip ? 'flip' : ''}`}
+      onClick={() => setFlip(!flip)}
+      sx={{
+        cursor: 'pointer',
+        padding: 2,
+        margin: 1,
+        border: '1px solid #ccc',
+        height: '50% !important'  // Changed from 90% to 95%
+      }}
     >
-      <div className='front'> {/* Apply CSS for the front side of the card (question side) */}
-        {flashcard.question}
-        <div className='options'> {/* Apply CSS to the container holding the options */}
-          {flashcard.option.map(option => (
-            <div className='option' key={option}> {/* Apply CSS to individual options */}
-              {option}
-            </div>
+      <Box className='front'>
+        <Typography variant="h6" component="div" sx={{ mb: 1 }} className="flashcard-text">
+          {flashcard.question}
+        </Typography>
+        {flashcard.image_link && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
+            <img
+              src={flashcard.image_link}
+              alt="Related to question"
+              style={{
+                maxWidth: '600px',     // Change this value to adjust max width
+                maxHeight: '600px',    // Change this value to adjust max height
+                width: '100%',
+                height: 'auto',
+                margin: '0 auto'
+              }}
+            />
+          </Box>
+        )}
+        <Box className='options' sx={{ mt: 1 }}>
+          {flashcard.option && flashcard.option.map(option => (
+            <Box key={option} className='option' sx={{ mb: 0.5 }}>
+              <Typography variant="body2" className="flashcard-option">{option}</Typography>
+            </Box>
           ))}
-        </div>
-      </div>
-      <div className='back'> {/* Apply CSS for the back side of the card (answer side) */}
-        {flashcard.ans}
-      </div>
-    </div>
+        </Box>
+      </Box>
+      <Box className='back' sx={{ mt: 1 }}>
+        <Typography variant="body1" className="flashcard-text-back">
+          <strong>Answer:</strong> {flashcard.ans}
+        </Typography>
+      </Box>
+    </Box>
   );
-}
+};
 
-// Define propTypes for Flashcard
 Flashcard.propTypes = {
   flashcard: PropTypes.shape({
     id: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
-    ans: PropTypes.string.isRequired,
+    ans: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
     option: PropTypes.arrayOf(PropTypes.string).isRequired,
+    image_link: PropTypes.string,
   }).isRequired,
 };
+
+export default Flashcard;

@@ -106,15 +106,34 @@ body {
 }
 
 body.slider-active .swiper .card {
-  width: 90% !important; /* Adjust width to prevent squishing */
-  height: 90% !important; /* Adjust height to prevent squishing */
+  width: 88% !important; /* Adjust width to prevent squishing */
+  height: 85% !important; /* Adjust height to prevent squishing */
 }
 
+/* New font sizes for slider flashcards */
 body.slider-active .swiper .card .front,
 body.slider-active .swiper .card .back {
-  font-size: 2rem; /* Increase font size when in slider mode */
+  font-size: 2rem !important; /* Adjust this value as needed */
 }
 
 body.slider-active .swiper .card .option {
-  font-size: 1.5rem; /* Increase font size for options when in slider mode */
+  font-size: 1.5rem !important; /* Adjust this value as needed */
+}
+
+/* Custom overrides for flashcard text */
+.flashcard-text {
+  font-size: 2rem !important;
+}
+
+.flashcard-text-back {
+  font-size: 2rem !important;
+}
+
+body.slider-active .swiper .card .option {
+  font-size: 1.5rem !important;
+}
+
+/* Custom override for flashcard option text */
+.flashcard-option {
+  font-size: 1.5rem !important;
 }
