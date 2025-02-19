@@ -1,0 +1,136 @@
+
+    [
+        {
+            "id": "1",
+            "question": "You are managing a project and want to ensure that quality standards are met. What should you do first?",
+            "correct_answer": "Develop a quality management plan to define quality standards and how they will be achieved.",
+            "incorrect_answers": [
+                "Conduct product testing at the end of the project to check for defects.",
+                "Increase the number of inspections to catch more defects.",
+                "Wait for customer feedback to determine if the product meets quality standards."
+            ],
+            "reasoning": "Quality management starts with planning, where quality requirements, standards, and control measures are defined. Inspections and testing are reactive measures, while a quality management plan is proactive."
+        },
+        {
+            "id": "2",
+            "question": "A project team is conducting a process audit to ensure adherence to quality standards. What process are they performing?",
+            "correct_answer": "Quality assurance",
+            "incorrect_answers": [
+                "Quality control",
+                "Scope validation",
+                "Risk management"
+            ],
+            "reasoning": "Quality assurance is focused on process improvements and ensuring the correct procedures are being followed. Quality control is about detecting defects in deliverables."
+        },
+        {
+            "id": "3",
+            "question": "Which of the following best describes the purpose of a quality audit?",
+            "correct_answer": "To identify process improvements and ensure compliance with best practices.",
+            "incorrect_answers": [
+                "To inspect deliverables for defects before customer acceptance.",
+                "To check team performance against the project schedule.",
+                "To assess project costs and compare them to the budget."
+            ],
+            "reasoning": "Quality audits focus on improving processes, not inspecting deliverables. Inspections are part of quality control, while audits assess adherence to processes and standards."
+        },
+        {
+            "id": "4",
+            "question": "A project team decides to use statistical sampling instead of inspecting every deliverable. What is the main reason for this approach?",
+            "correct_answer": "It reduces time and cost while still ensuring acceptable quality levels.",
+            "incorrect_answers": [
+                "It guarantees that all defects will be identified.",
+                "It is the only acceptable method for quality control.",
+                "It eliminates the need for further quality assurance activities."
+            ],
+            "reasoning": "Statistical sampling is a cost-effective way to check quality without inspecting every item. While it improves efficiency, it does not guarantee that all defects will be caught."
+        },
+        {
+            "id": "5",
+            "question": "Which of the following is a key objective of continuous process improvement in quality management?",
+            "correct_answer": "To reduce defects and enhance efficiency over time.",
+            "incorrect_answers": [
+                "To eliminate the need for quality inspections.",
+                "To reduce project costs regardless of quality impact.",
+                "To ensure all work is completed ahead of schedule."
+            ],
+            "reasoning": "Continuous process improvement aims to enhance quality by minimizing defects and inefficiencies. It does not replace inspections or prioritize cost and schedule over quality."
+        },
+        {
+            "id": "6",
+            "question": "Which tool is commonly used to analyze the root causes of defects in a project?",
+            "correct_answer": "Fishbone diagram",
+            "incorrect_answers": [
+                "Gantt chart",
+                "RACI matrix",
+                "Project charter"
+            ],
+            "reasoning": "A fishbone diagram (Ishikawa diagram) helps identify the root causes of defects. Gantt charts are used for scheduling, RACI matrices define roles, and project charters establish project objectives."
+        },
+        {
+            "id": "7",
+            "question": "A project team is analyzing trends in defects over time to identify patterns. Which quality tool are they using?",
+            "correct_answer": "Control chart",
+            "incorrect_answers": [
+                "Work breakdown structure",
+                "Risk register",
+                "Project scope statement"
+            ],
+            "reasoning": "Control charts track variations in processes over time, helping teams identify trends in defects. Other options focus on different aspects of project management."
+        },
+        {
+            "id": "8",
+            "question": "Which quality management process ensures that deliverables meet the project requirements?",
+            "correct_answer": "Quality control",
+            "incorrect_answers": [
+                "Quality planning",
+                "Risk management",
+                "Schedule management"
+            ],
+            "reasoning": "Quality control involves inspecting deliverables to ensure they meet requirements. Quality planning defines standards, while risk and schedule management focus on other project aspects."
+        },
+        {
+            "id": "9",
+            "question": "You notice a high defect rate in a project's deliverables. What is the best way to address this issue?",
+            "correct_answer": "Conduct a root cause analysis and implement corrective actions.",
+            "incorrect_answers": [
+                "Increase the frequency of inspections without analyzing the cause.",
+                "Replace the entire project team.",
+                "Ignore minor defects to stay on schedule."
+            ],
+            "reasoning": "Identifying and addressing the root cause of defects improves quality. Simply increasing inspections or ignoring defects does not solve the underlying problem."
+        },
+        {
+            "id": "10",
+            "question": "Which quality management concept focuses on reducing waste and improving efficiency?",
+            "correct_answer": "Lean quality management",
+            "incorrect_answers": [
+                "Cost variance analysis",
+                "Critical path method",
+                "Work performance tracking"
+            ],
+            "reasoning": "Lean quality management emphasizes minimizing waste and optimizing processes to enhance efficiency. The other options are related to cost, scheduling, and performance tracking."
+        },
+        {
+            "id": "11",
+            "question": "Your project team is using Pareto analysis to prioritize quality improvements. What is the main principle behind this approach?",
+            "correct_answer": "A small number of causes are responsible for most defects.",
+            "incorrect_answers": [
+                "All defects should be treated equally.",
+                "Every defect must be individually addressed before moving forward.",
+                "Quality improvements should focus on the most expensive processes."
+            ],
+            "reasoning": "Pareto analysis follows the 80/20 rule, meaning most defects come from a few root causes. Addressing these key issues leads to the greatest improvement."
+        },
+        {
+            "id": "12",
+            "question": "You are managing a project with strict quality requirements. Which document outlines the specific quality standards that must be met?",
+            "correct_answer": "Quality management plan",
+            "incorrect_answers": [
+                "Project charter",
+                "Risk register",
+                "Stakeholder engagement plan"
+            ],
+            "reasoning": "The quality management plan defines the standards, processes, and activities needed to meet quality requirements. Other documents focus on project authorization, risks, and stakeholder engagement."
+        }
+    ]
+    

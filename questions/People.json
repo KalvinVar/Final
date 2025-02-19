@@ -1,0 +1,136 @@
+
+    [
+        {
+            "id": "1",
+            "question": "Which process group involves coordinating people and resources, as well as integrating and performing the activities of the project in accordance with the project management plan?",
+            "correct_answer": "Executing",
+            "incorrect_answers": [
+                "Initiating",
+                "Planning",
+                "Monitoring and Controlling"
+            ],
+            "reasoning": "The Executing process group focuses on carrying out the project management plan by performing the activities included therein."
+        },
+        {
+            "id": "2",
+            "question": "What is the primary purpose of the Work Breakdown Structure (WBS) in project management?",
+            "correct_answer": "To subdivide project deliverables and project work into smaller, more manageable components.",
+            "incorrect_answers": [
+                "To define the project's scope statement.",
+                "To establish project timelines.",
+                "To allocate resources to project tasks."
+            ],
+            "reasoning": "The WBS is a hierarchical decomposition of the total scope of work to accomplish the project objectives and create the deliverables."
+        },
+        {
+            "id": "3",
+            "question": "Which document formally authorizes a project or a phase and provides the project manager with the authority to apply organizational resources to project activities?",
+            "correct_answer": "Project Charter",
+            "incorrect_answers": [
+                "Project Management Plan",
+                "Statement of Work",
+                "Business Case"
+            ],
+            "reasoning": "The Project Charter is issued by the project sponsor and formally authorizes the existence of a project."
+        },
+        {
+            "id": "4",
+            "question": "In which process is the risk register created?",
+            "correct_answer": "Identify Risks",
+            "incorrect_answers": [
+                "Plan Risk Management",
+                "Perform Qualitative Risk Analysis",
+                "Monitor Risks"
+            ],
+            "reasoning": "The risk register is first created during the Identify Risks process and is updated throughout the project."
+        },
+        {
+            "id": "5",
+            "question": "Which technique is used to determine the early start and early finish dates, as well as the late start and late finish dates, for the uncompleted portions of project activities?",
+            "correct_answer": "Critical Path Method",
+            "incorrect_answers": [
+                "Earned Value Management",
+                "Monte Carlo Simulation",
+                "Resource Leveling"
+            ],
+            "reasoning": "The Critical Path Method calculates the longest path of planned activities to the end of the project, determining the shortest possible project duration."
+        },
+        {
+            "id": "6",
+            "question": "What is the primary output of the Define Activities process?",
+            "correct_answer": "Activity List",
+            "incorrect_answers": [
+                "Project Schedule",
+                "Milestone List",
+                "Work Breakdown Structure"
+            ],
+            "reasoning": "The Define Activities process results in the Activity List, which includes all activities required to complete the project."
+        },
+        {
+            "id": "7",
+            "question": "Which process involves monitoring the status of the project to update project costs and managing changes to the cost baseline?",
+            "correct_answer": "Control Costs",
+            "incorrect_answers": [
+                "Estimate Costs",
+                "Determine Budget",
+                "Plan Cost Management"
+            ],
+            "reasoning": "Control Costs is the process of monitoring the project's financial performance and managing changes to the cost baseline."
+        },
+        {
+            "id": "8",
+            "question": "Which type of contract involves setting a fixed total price for a well-defined product or service?",
+            "correct_answer": "Fixed-Price Contract",
+            "incorrect_answers": [
+                "Cost-Reimbursable Contract",
+                "Time and Materials Contract",
+                "Unit Price Contract"
+            ],
+            "reasoning": "Fixed-Price Contracts are used when the scope of work is clearly defined and the seller agrees to deliver the product or service at a set price."
+        },
+        {
+            "id": "9",
+            "question": "What is the primary purpose of the Perform Integrated Change Control process?",
+            "correct_answer": "To review all change requests, approve or reject changes, and manage changes to deliverables, organizational process assets, project documents, and the project management plan.",
+            "incorrect_answers": [
+                "To identify and document project changes.",
+                "To implement approved changes.",
+                "To control the project schedule."
+            ],
+            "reasoning": "Perform Integrated Change Control ensures that all changes are properly reviewed and managed throughout the project."
+        },
+        {
+            "id": "10",
+            "question": "Which process involves developing an approximation of the monetary resources needed to complete project activities?",
+            "correct_answer": "Estimate Costs",
+            "incorrect_answers": [
+                "Determine Budget",
+                "Control Costs",
+                "Plan Cost Management"
+            ],
+            "reasoning": "Estimate Costs is the process of developing an approximation of the costs of the resources needed to complete project work."
+        },
+        {
+            "id": "11",
+            "question": "Which quality management tool is used to identify the vital few sources that are responsible for causing most of a problem's effects?",
+            "correct_answer": "Pareto Diagram",
+            "incorrect_answers": [
+                "Control Chart",
+                "Cause-and-Effect Diagram",
+                "Flowchart"
+            ],
+            "reasoning": "A Pareto Diagram is a bar chart that identifies the few sources that are responsible for most of the problem's effects, following the 80/20 rule."
+        },
+        {
+            "id": "12",
+            "question": "Which process involves tracking team member performance, providing feedback, resolving issues, and managing team changes to optimize project performance?",
+            "correct_answer": "Manage Team",
+            "incorrect_answers": [
+                "Develop Team",
+                "Control Resources",
+                "Acquire Resources"
+            ],
+            "reasoning": "Manage Team is the process of tracking team performance, providing feedback, and managing changes to enhance project performance."
+        }
+    ]
+    
