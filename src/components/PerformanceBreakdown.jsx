@@ -35,7 +35,8 @@ const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, 
             return acc;
           }, 0);
           const percentage = topicQuestions.length > 0 ? Math.round((topicCorrect / topicQuestions.length) * 100) : 0;
-          const topicColor = topicColors[topic];
+          // Change gauge color for Events to red, otherwise use the provided topicColor.
+          const topicColor = topic === 'Events' ? '#FF0000' : topicColors[topic];
           return (
             <Box
               key={topic}

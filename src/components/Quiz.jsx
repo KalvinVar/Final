@@ -38,6 +38,9 @@ const Quiz = () => {
   const [bestAttemptCount, setBestAttemptCount] = useState(null);
   const [prevBestRaw, setPrevBestRaw] = useState(null);
   const [prevBestAttempt, setPrevBestAttempt] = useState(null);
+  const [prevBestRawBeforeUpdate, setPrevBestRawBeforeUpdate] = useState(null);
+  const [prevBestAttemptBeforeUpdate, setPrevBestAttemptBeforeUpdate] = useState(null);
+  const [confirmAction, setConfirmAction] = useState(''); // new state
   const navigate = useNavigate();
   const username = getCurrentUser();
 
@@ -89,6 +92,11 @@ const Quiz = () => {
       let storedAttempt = localStorage.getItem(`bestAttemptCountRaw_${username}`);
       storedAttempt = storedAttempt ? Number(storedAttempt) : 0;
       
+      // Save previous best values before any potential update.
+      setPrevBestRawBeforeUpdate(storedBestRaw);
+      setPrevBestAttemptBeforeUpdate(storedAttempt);
+      
+      // Update stored best if current raw score is higher.
       if (currentRaw > storedBestRaw) {
         localStorage.setItem(`bestRawScore_${username}`, currentRaw);
         localStorage.setItem(`bestAttemptCountRaw_${username}`, currentAttempt);
@@ -96,6 +104,7 @@ const Quiz = () => {
         storedAttempt = currentAttempt;
       }
       
+      // Set current best values (this will show current test value if improved)
       setPrevBestRaw(storedBestRaw);
       setPrevBestAttempt(storedAttempt);
     }
@@ -269,6 +278,7 @@ const Quiz = () => {
       logoutUser();
       navigate('/login');
     } else {
+      setConfirmAction('logout');
       setOpenDialog(true);
     }
   };
@@ -277,6 +287,7 @@ const Quiz = () => {
     if (currentQuestionIndex >= flashcards.length) {
       navigate('/app');
     } else {
+      setConfirmAction('flashcards');
       setOpenDialog(true);
     }
   };
@@ -284,8 +295,12 @@ const Quiz = () => {
   const handleDialogClose = (confirm) => {
     setOpenDialog(false);
     if (confirm) {
-      logoutUser();
-      navigate('/login');
+      if (confirmAction === 'logout') {
+        logoutUser();
+        navigate('/login');
+      } else if (confirmAction === 'flashcards') {
+        navigate('/app');
+      }
     }
   };
 
@@ -558,27 +573,33 @@ const Quiz = () => {
                 />
                 {prevBestRaw !== null && prevBestAttempt !== null && (() => {
                   const currentRaw = score;
-                  const bestRaw = prevBestRaw;
-                  // Here we also compute the previous best percentage for reference.
-                  const bestPercent = Math.round((bestRaw / prevBestAttempt) * 100);
-                  
-                  if (currentRaw > bestRaw) {
-                    const improvementPercent = Math.round(((currentRaw - bestRaw) / bestRaw) * 100);
+                  // Use the stored values from before update for determining improvement.
+                  const oldBest = prevBestRawBeforeUpdate !== null ? prevBestRawBeforeUpdate : currentRaw;
+                  if (oldBest === 0 && currentRaw > 0) {
                     return (
                       <Box sx={{ mt: 2, textAlign: 'center' }}>
                         <Typography variant="subtitle1">
-                          Previously you got {bestRaw} out of {prevBestAttempt} correct ({bestPercent}%).
-                        </Typography>
-                        <Typography variant="subtitle2" color="primary">
-                          Your score improved by {improvementPercent}% since your last attempt based on your raw scores.
+                          This is your first recorded score.
                         </Typography>
                       </Box>
                     );
-                  } else if (currentRaw === bestRaw) {
+                  } else if (currentRaw > oldBest) {
+                    const improvementPercent = Math.round(((currentRaw - oldBest) / oldBest) * 100);
                     return (
                       <Box sx={{ mt: 2, textAlign: 'center' }}>
                         <Typography variant="subtitle1">
-                          Your best performance so far was {bestRaw} correct answers (on {prevBestAttempt} questions).
+                          Previously you got {oldBest} out of {prevBestAttemptBeforeUpdate || currentRaw} correct.
+                        </Typography>
+                        <Typography variant="subtitle2" color="primary">
+                          Your score improved by {improvementPercent}% since your last attempt.
+                        </Typography>
+                      </Box>
+                    );
+                  } else if (currentRaw === oldBest) {
+                    return (
+                      <Box sx={{ mt: 2, textAlign: 'center' }}>
+                        <Typography variant="subtitle1">
+                          Your best performance so far was {oldBest} correct answers (on {prevBestAttemptBeforeUpdate || currentRaw} questions).
                         </Typography>
                         <Typography variant="subtitle2" color="textSecondary">
                           You got the same raw score as your previous best.
@@ -586,14 +607,14 @@ const Quiz = () => {
                       </Box>
                     );
                   } else {
-                    const decreasePercent = Math.round(((bestRaw - currentRaw) / bestRaw) * 100);
+                    const decreasePercent = Math.round(((oldBest - currentRaw) / oldBest) * 100);
                     return (
                       <Box sx={{ mt: 2, textAlign: 'center' }}>
                         <Typography variant="subtitle1">
-                          Your best performance so far was {bestRaw} correct answers (on {prevBestAttempt} questions).
+                          Your best performance so far was {oldBest} correct answers (on {prevBestAttemptBeforeUpdate || currentRaw} questions).
                         </Typography>
                         <Typography variant="subtitle2" color="secondary">
-                          Your score decreased by {decreasePercent}% since your last attempt based on your raw scores.
+                          Your score decreased by {decreasePercent}% since your last attempt.
                         </Typography>
                       </Box>
                     );
