@@ -1,211 +1,693 @@
 [
     {
-        "id": "1",
-        "question": "During project execution, a key supplier suddenly goes out of business, delaying critical components. What should you do first?",
-        "correct_answer": "Review the risk management plan and implement the contingency strategy.",
-        "incorrect_answers": [
-            "Request additional budget to source new materials.",
-            "Immediately escalate the issue to the project sponsor.",
-            "Pause all project activities until a new supplier is found."
-        ],
-        "reasoning": "The risk management plan should include strategies for supplier failure, allowing a structured response rather than an immediate budget increase or project halt.",
-        "type": "multiple-choice"
+      "id": "1",
+      "question": "During project execution, a key supplier suddenly goes out of business, delaying critical components. What should you do first?",
+      "correct_answer": "Review the risk management plan and implement the contingency strategy.",
+      "incorrect_answers": [
+        "Request additional budget to source new materials.",
+        "Immediately escalate the issue to the project sponsor.",
+        "Pause all project activities until a new supplier is found."
+      ],
+      "reasoning": "The risk management plan should include strategies for supplier failure, allowing a structured response rather than a knee-jerk reaction.",
+      "type": "multiple-choice"
     },
     {
-        "id": "2",
-        "question": "A major stakeholder unexpectedly withdraws support for your project. How should you handle this situation?",
-        "correct_answer": "Engage with the stakeholder to understand their concerns and explore mitigation strategies.",
-        "incorrect_answers": [
-            "Continue without the stakeholder since the project is already in execution.",
-            "Submit a change request to remove the stakeholder’s influence.",
-            "Escalate the issue to senior management immediately."
-        ],
-        "reasoning": "Stakeholder engagement is crucial, and directly addressing their concerns may resolve the issue before escalation or major project changes."
+      "id": "2",
+      "question": "A major stakeholder unexpectedly withdraws support for your project. How should you handle this situation?",
+      "correct_answer": "Engage with the stakeholder to understand their concerns and explore mitigation strategies.",
+      "incorrect_answers": [
+        "Continue without the stakeholder since the project is already in execution.",
+        "Submit a change request to remove the stakeholder’s influence.",
+        "Immediately escalate the issue to senior management."
+      ],
+      "reasoning": "Direct engagement with the stakeholder can help resolve concerns before drastic actions are taken.",
+      "type": "multiple-choice"
     },
     {
-        "id": "3",
-        "question": "Your project team encounters a previously unidentified risk that significantly impacts the schedule. What should you do next?",
-        "correct_answer": "Perform a risk assessment and determine the appropriate risk response.",
-        "incorrect_answers": [
-            "Ignore the risk since it was not in the original risk register.",
-            "Immediately request additional time and resources.",
-            "Terminate the project and start over with a new plan."
-        ],
-        "reasoning": "New risks should be assessed and addressed within the risk management framework rather than reacting impulsively or ignoring them."
+      "id": "3",
+      "question": "Your project team encounters a previously unidentified risk that significantly impacts the schedule. What should you do next?",
+      "correct_answer": "Perform a risk assessment and determine the appropriate risk response.",
+      "incorrect_answers": [
+        "Ignore the risk since it was not in the original risk register.",
+        "Immediately request additional time and resources.",
+        "Terminate the project and start over with a new plan."
+      ],
+      "reasoning": "A structured risk assessment ensures that new risks are properly addressed within the risk management framework.",
+      "type": "multiple-choice"
     },
     {
-        "id": "4",
-        "question": "A sudden regulatory change affects compliance requirements for your project. What is the best course of action?",
-        "correct_answer": "Conduct an impact analysis and update the project plan accordingly.",
-        "incorrect_answers": [
-            "Ignore the new regulation and proceed as planned.",
-            "Immediately halt the project to assess legal consequences.",
-            "Transfer project ownership to the compliance department."
-        ],
-        "reasoning": "Understanding how the regulatory change impacts the project ensures compliance without unnecessary disruption."
+      "id": "4",
+      "question": "A sudden regulatory change affects compliance requirements for your project. What is the best course of action?",
+      "correct_answer": "Conduct an impact analysis and update the project plan accordingly.",
+      "incorrect_answers": [
+        "Ignore the new regulation and proceed as planned.",
+        "Immediately halt the project to assess legal consequences.",
+        "Transfer project ownership to the compliance department."
+      ],
+      "reasoning": "Understanding the impact on the project allows for proper adjustments without causing unnecessary disruption.",
+      "type": "multiple-choice"
     },
     {
-        "id": "5",
-        "question": "Halfway through project execution, a critical team member resigns unexpectedly. What should you do first?",
-        "correct_answer": "Assess the impact on project deliverables and reassign responsibilities as needed.",
-        "incorrect_answers": [
-            "Immediately hire a replacement without reviewing project needs.",
-            "Increase workload for the remaining team members.",
-            "Pause the project until a new team member is onboarded."
-        ],
-        "reasoning": "A structured approach ensures minimal disruption by assessing impact and adjusting responsibilities before considering replacements."
+      "id": "5",
+      "question": "Halfway through project execution, a critical team member resigns unexpectedly. What should you do first?",
+      "correct_answer": "Assess the impact on project deliverables and reassign responsibilities as needed.",
+      "incorrect_answers": [
+        "Immediately hire a replacement without reviewing project needs.",
+        "Increase workload for the remaining team members.",
+        "Pause the project until a new team member is onboarded."
+      ],
+      "reasoning": "Assessing the impact and redistributing tasks minimizes disruption while maintaining project momentum.",
+      "type": "multiple-choice"
     },
     {
-        "id": "6",
-        "question": "A key technology used in your project becomes obsolete before deployment. How should you respond?",
-        "correct_answer": "Assess alternatives and determine if a change request is necessary.",
-        "incorrect_answers": [
-            "Proceed with the outdated technology to avoid delays.",
-            "Restart the project using the latest technology.",
-            "Blame the vendor for the technology’s obsolescence."
-        ],
-        "reasoning": "Evaluating alternatives and making informed decisions prevents unnecessary project restarts or technological risks."
+      "id": "6",
+      "question": "A key technology used in your project becomes obsolete before deployment. How should you respond?",
+      "correct_answer": "Assess alternatives and determine if a change request is necessary.",
+      "incorrect_answers": [
+        "Proceed with the outdated technology to avoid delays.",
+        "Restart the project using the latest technology.",
+        "Blame the vendor for the technology’s obsolescence."
+      ],
+      "reasoning": "Evaluating alternatives allows you to make an informed decision without unnecessary disruptions or blame.",
+      "type": "multiple-choice"
     },
     {
-        "id": "7",
-        "question": "Your project is running over budget due to unforeseen material cost increases. What is the best response?",
-        "correct_answer": "Analyze cost variances and implement cost control measures.",
-        "incorrect_answers": [
-            "Request additional funding immediately.",
-            "Ignore the budget overrun and continue working.",
-            "Reduce quality to compensate for cost overruns."
-        ],
-        "reasoning": "Cost control measures allow adjustments before seeking additional funding or compromising quality."
+      "id": "7",
+      "question": "Your project is running over budget due to unforeseen material cost increases. What is the best response?",
+      "correct_answer": "Analyze cost variances and implement cost control measures.",
+      "incorrect_answers": [
+        "Request additional funding immediately.",
+        "Ignore the budget overrun and continue working.",
+        "Reduce quality to compensate for cost overruns."
+      ],
+      "reasoning": "Addressing cost variances with control measures is a proactive approach before seeking extra funds or compromising quality.",
+      "type": "multiple-choice"
     },
     {
-        "id": "8",
-        "question": "During testing, a critical defect is discovered that affects the project timeline. What is the first step?",
-        "correct_answer": "Evaluate the defect’s impact and determine the best corrective action.",
-        "incorrect_answers": [
-            "Delay the project indefinitely until a fix is found.",
-            "Ignore the defect and proceed to deployment.",
-            "Replace the entire development team."
-        ],
-        "reasoning": "Assessing the defect’s impact ensures the right corrective action without unnecessary delays or drastic decisions."
+      "id": "8",
+      "question": "During testing, a critical defect is discovered that affects the project timeline. What is the first step?",
+      "correct_answer": "Evaluate the defect’s impact and determine the best corrective action.",
+      "incorrect_answers": [
+        "Delay the project indefinitely until a fix is found.",
+        "Ignore the defect and proceed to deployment.",
+        "Replace the entire development team."
+      ],
+      "reasoning": "Assessing the impact of a defect ensures that corrective actions are properly planned rather than resorting to extreme measures.",
+      "type": "multiple-choice"
     },
     {
-        "id": "9",
-        "question": "A natural disaster disrupts supply chains and halts production for your project. How should you proceed?",
-        "correct_answer": "Activate the risk response plan and seek alternative suppliers.",
-        "incorrect_answers": [
-            "Cancel the project since production cannot continue.",
-            "Wait until supply chains recover without taking action.",
-            "Permanently change the project scope to exclude affected components."
-        ],
-        "reasoning": "A risk response plan provides contingencies for disruptions, allowing the project to adapt rather than halt or change scope unnecessarily."
+      "id": "9",
+      "question": "A natural disaster disrupts supply chains and halts production for your project. How should you proceed?",
+      "correct_answer": "Activate the risk response plan and seek alternative suppliers.",
+      "incorrect_answers": [
+        "Cancel the project since production cannot continue.",
+        "Wait until supply chains recover without taking action.",
+        "Permanently change the project scope to exclude affected components."
+      ],
+      "reasoning": "A risk response plan provides the necessary contingencies to adapt to disruptions while maintaining project objectives.",
+      "type": "multiple-choice"
     },
     {
-        "id": "10",
-        "question": "A project deliverable is rejected by the customer due to unmet requirements. What should you do?",
-        "correct_answer": "Review the requirements and identify gaps to correct the issue.",
-        "incorrect_answers": [
-            "Blame the customer for unclear requirements.",
-            "Deliver the product as-is, assuming they will accept it later.",
-            "Start the entire project over from scratch."
-        ],
-        "reasoning": "Understanding requirement gaps allows for corrections rather than placing blame or making drastic project changes."
+      "id": "10",
+      "question": "A project deliverable is rejected by the customer due to unmet requirements. What should you do?",
+      "correct_answer": "Review the requirements and identify gaps to correct the issue.",
+      "incorrect_answers": [
+        "Blame the customer for unclear requirements.",
+        "Deliver the product as-is, assuming they will accept it later.",
+        "Start the entire project over from scratch."
+      ],
+      "reasoning": "Identifying gaps in requirements allows for targeted corrections instead of drastic or blame-oriented actions.",
+      "type": "multiple-choice"
     },
     {
-        "id": "11",
-        "question": "Midway through execution, a key executive announces budget cuts that affect your project. What should you do first?",
-        "correct_answer": "Reassess project priorities and adjust scope or resources as needed.",
-        "incorrect_answers": [
-            "Immediately stop all spending and freeze project work.",
-            "Continue working at full pace, expecting a later budget increase.",
-            "Submit a formal complaint about the budget cuts."
-        ],
-        "reasoning": "Adjusting scope or resources ensures the project aligns with the new budget constraints while still delivering value."
+      "id": "11",
+      "question": "Midway through execution, a key executive announces budget cuts that affect your project. What should you do first?",
+      "correct_answer": "Reassess project priorities and adjust scope or resources as needed.",
+      "incorrect_answers": [
+        "Immediately stop all spending and freeze project work.",
+        "Continue working at full pace, expecting a later budget increase.",
+        "Submit a formal complaint about the budget cuts."
+      ],
+      "reasoning": "Reassessing priorities allows you to realign the project with the new budget constraints while still delivering value.",
+      "type": "multiple-choice"
     },
     {
-        "id": "12",
-        "question": "Your team reports a major technical risk that could cause significant delays. How should you respond?",
-        "correct_answer": "Evaluate risk severity and implement mitigation strategies.",
-        "incorrect_answers": [
-            "Ignore the risk and proceed as planned.",
-            "Shift all focus to this risk, delaying other project work.",
-            "Increase project budget to solve the risk immediately."
-        ],
-        "reasoning": "Analyzing and mitigating risks proactively prevents unnecessary budget increases or work stoppages."
+      "id": "12",
+      "question": "Your team reports a major technical risk that could cause significant delays. How should you respond?",
+      "correct_answer": "Evaluate risk severity and implement mitigation strategies.",
+      "incorrect_answers": [
+        "Ignore the risk and proceed as planned.",
+        "Shift all focus to this risk, delaying other project work.",
+        "Increase project budget to solve the risk immediately."
+      ],
+      "reasoning": "A balanced risk evaluation ensures proper mitigation without overreacting or neglecting other project areas.",
+      "type": "multiple-choice"
     },
     {
-        "id": "13",
-        "question": "The project management plan specifies that a predictive development approach has been selected to produce the project deliverables. Where in the project life cycle will the overall project risk be the lowest?",
-        "correct_answer": "D",
-        "incorrect_answers": [
-            "A",
-            "B",
-            "C"
-        ],
-        "reasoning": "The correct answer is D (Closing the project) because, in a predictive development approach, project risk is highest at the beginning due to uncertainty in scope, requirements, and stakeholder expectations. As the project progresses through planning and execution, risks are identified, mitigated, and resolved, leading to a gradual decrease in overall risk. By the time the project reaches the closing phase, most uncertainties have been addressed, deliverables have been accepted, and outstanding risks have either been mitigated, transferred, or accepted. Since there are fewer unknowns and minimal remaining work, the overall project risk is at its lowest during project closure.",
-        "image_link": "https://www.project-management-prepcast.com/images/exam_sim_questions/6113151.jpg"
+      "id": "13",
+      "question": "The project management plan specifies that a predictive development approach has been selected to produce the project deliverables. Where in the project life cycle will the overall project risk be the lowest?",
+      "correct_answer": "Closing",
+      "incorrect_answers": [
+        "Initiation",
+        "Planning",
+        "Execution"
+      ],
+      "reasoning": "In a predictive approach, risks are highest at the beginning and decrease as the project progresses; by closing, most uncertainties have been resolved.",
+      "type": "multiple-choice",
+      "image_link": "https://www.project-management-prepcast.com/images/exam_sim_questions/6113151.jpg"
     },
     {
-        "id": "14",
-        "question": "Which of the following are key principles of Agile project management? (Select two or more)",
-        "correct_answers": ["Individuals and interactions over processes and tools", "Responding to change over following a plan"],
-        "incorrect_answers": [
-            "Comprehensive documentation over working software",
-            "Contract negotiation over customer collaboration",
-            "Following a plan over responding to change"
-        ],
-        "reasoning": "Agile project management emphasizes individuals and interactions, working software, customer collaboration, and responding to change as key principles. These principles prioritize flexibility and adaptability over rigid processes and documentation."
+      "id": "14",
+      "question": "Which of the following are key principles of Agile project management? (Select two or more)",
+      "correct_answers": [
+        "Individuals and interactions over processes and tools",
+        "Responding to change over following a plan"
+      ],
+      "incorrect_answers": [
+        "Comprehensive documentation over working software",
+        "Contract negotiation over customer collaboration",
+        "Following a plan over responding to change"
+      ],
+      "reasoning": "Agile principles prioritize flexibility, collaboration, and responsiveness rather than rigid adherence to processes or excessive documentation.",
+      "type": "multiple-answer"
     },
     {
-        "id": "15",
-        "question": "Rank the following project phases in the correct order.",
-        "correct_order": ["Initiation", "Planning", "Execution", "Monitoring and Controlling", "Closing"],
-        "answers": [
-            "Initiation",
-            "Planning",
-            "Execution",
-            "Monitoring and Controlling",
-            "Closing"
-        ],
-        "reasoning": "The correct order of project phases in project management is Initiation, Planning, Execution, Monitoring and Controlling, and Closing. This sequence ensures a structured approach to project management, allowing for proper planning, execution, and closure.",
-        "type": "sorting"
+      "id": "15",
+      "question": "Rank the following project phases in the correct order.",
+      "correct_order": [
+        "Initiation",
+        "Planning",
+        "Execution",
+        "Monitoring and Controlling",
+        "Closing"
+      ],
+      "answers": [
+        "Initiation",
+        "Planning",
+        "Execution",
+        "Monitoring and Controlling",
+        "Closing"
+      ],
+      "reasoning": "This is the standard project lifecycle, ensuring a structured approach from start to finish.",
+      "type": "sorting"
     },
     {
-        "id": "16",
-        "question": "Rank the following project phases in the correct order.",
-        "correct_order": ["Initiation", "Planning", "Execution", "Monitoring and Controlling", "Closing"],
-        "answers": [
-            "Initiation",
-            "Planning",
-            "Execution",
-            "Monitoring and Controlling",
-            "Closing"
-        ],
-        "reasoning": "The correct order of project phases in project management is Initiation, Planning, Execution, Monitoring and Controlling, and Closing. This sequence ensures a structured approach to project management, allowing for proper planning, execution, and closure.",
-        "type": "sorting"
+      "id": "16",
+      "question": "Rank the following project phases in the correct order.",
+      "correct_order": [
+        "Initiation",
+        "Planning",
+        "Execution",
+        "Monitoring and Controlling",
+        "Closing"
+      ],
+      "answers": [
+        "Initiation",
+        "Planning",
+        "Execution",
+        "Monitoring and Controlling",
+        "Closing"
+      ],
+      "reasoning": "Repeating the ordering exercise reinforces understanding of the sequential flow of project phases.",
+      "type": "sorting"
     },
     {
-        "id": "17",
-        "question": "Match the project management terms with their correct definitions.",
-        "type": "matching",
-        "pairs": [
-            {
-                "term": "Scope",
-                "definition": "The work required to complete a project."
-            },
-            {
-                "term": "Risk",
-                "definition": "An uncertain event that could affect the project."
-            },
-            {
-                "term": "Stakeholder",
-                "definition": "An individual or group with an interest in the project."
-            },
-            {
-                "term": "Milestone",
-                "definition": "A significant point or event in a project."
-            }
-        ],
-        "reasoning": "Matching the project management terms with their correct definitions is vital for ensuring that all team members and stakeholders share a common understanding of project essentials. This exercise reinforces the importance of clearly defining project scope, recognizing and managing risks, engaging the right stakeholders, and setting milestones to track project progress."
+      "id": "17",
+      "question": "Match the project management terms with their correct definitions.",
+      "pairs": [
+        {
+          "term": "Scope",
+          "definition": "The work required to complete a project."
+        },
+        {
+          "term": "Risk",
+          "definition": "An uncertain event that could affect the project."
+        },
+        {
+          "term": "Stakeholder",
+          "definition": "An individual or group with an interest in the project."
+        },
+        {
+          "term": "Milestone",
+          "definition": "A significant point or event in a project."
+        }
+      ],
+      "reasoning": "Matching these terms with their definitions ensures clarity on core project management concepts.",
+      "type": "matching"
+    },
+    {
+      "id": "18",
+      "question": "Your project is 4 weeks behind schedule and you have been asked to crash the project to make up lost time. Which of the following tasks would you choose to crash?",
+      "correct_answer": "Tasks C & E",
+      "incorrect_answers": [
+        "Tasks B & D",
+        "Task A",
+        "Tasks D & E & F"
+      ],
+      "reasoning": "Crashing is best applied to tasks with the highest float savings at the lowest cost per day; in this scenario, Tasks C and E are the most cost-effective choices.",
+      "image_link": "https://www.pmppracticeexam.org/wp-content/uploads/2021/07/Task-Chart.png",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "19",
+      "question": "You are the project manager and after a schedule update, your scheduler proposes to change the sequence by performing Activity H concurrently with Activity G instead of sequentially. What is your reaction?",
+      "correct_answer": "This does not affect the critical path, so reject the proposal.",
+      "incorrect_answers": [
+        "This will recover the delay, so accept the proposal.",
+        "This will reduce resource usage, so accept the proposal.",
+        "It might affect Activity I, so reject the proposal."
+      ],
+      "reasoning": "Since Activity H has float and is not on the critical path, changing its sequence will not recover the delay.",
+      "type": "multiple-choice",
+      "image_link": "https://www.pmppracticeexam.org/wp-content/uploads/2021/07/Float-Chart.png"
+    },
+    {
+      "id": "20",
+      "question": "During a critical phase, your key vendor misses a delivery deadline due to unforeseen circumstances. What is your best initial action?",
+      "correct_answer": "Review the contract and contact the vendor to understand the cause of the delay.",
+      "incorrect_answers": [
+        "Immediately impose penalty clauses from the contract.",
+        "Replace the vendor immediately.",
+        "Ignore the delay and hope it is resolved soon."
+      ],
+      "reasoning": "Understanding the vendor’s issue through the contract provides a basis for an informed response rather than immediate drastic measures.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "21",
+      "question": "Your project manager is noticing recurring quality issues in deliverables. Which proactive measure should be implemented first?",
+      "correct_answer": "Conduct a quality planning session with the team to review processes and define quality standards.",
+      "incorrect_answers": [
+        "Increase the number of inspections after deliverables are completed.",
+        "Request additional quality assurance staff immediately.",
+        "Delay the project to fix the issues in later stages."
+      ],
+      "reasoning": "A proactive planning session helps identify the root causes and prevent future defects instead of reacting after issues occur.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "22",
+      "question": "Real-life scenario: A construction project faces unexpected changes in local building regulations midway through execution. What should you do first?",
+      "correct_answer": "Consult with regulatory experts and assess the impact on the project plan.",
+      "incorrect_answers": [
+        "Immediately halt construction until further notice.",
+        "Ignore the changes to avoid delays.",
+        "Blame the project team for not anticipating the change."
+      ],
+      "reasoning": "Expert consultation provides clarity on regulatory changes, enabling a controlled adjustment of the project plan.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "23",
+      "question": "Select all that apply: Which of the following are benefits of using Agile methodologies in real-life software development projects?",
+      "correct_answers": [
+        "Enhanced flexibility",
+        "Improved stakeholder engagement",
+        "Faster time to market"
+      ],
+      "incorrect_answers": [
+        "Fixed scope",
+        "Longer release cycles"
+      ],
+      "reasoning": "Agile approaches emphasize adaptability, continuous feedback, and quicker delivery compared to traditional methodologies.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "24",
+      "question": "Sort the following risk management steps in the proper order for a real-life project:",
+      "correct_order": [
+        "Identify risks",
+        "Analyze risks",
+        "Plan risk responses",
+        "Monitor and control risks"
+      ],
+      "answers": [
+        "Identify risks",
+        "Analyze risks",
+        "Plan risk responses",
+        "Monitor and control risks"
+      ],
+      "reasoning": "This sequence reflects the logical progression of risk management from initial identification to ongoing control.",
+      "type": "sorting"
+    },
+    {
+      "id": "25",
+      "question": "Match the following project roles with their typical responsibilities.",
+      "pairs": [
+        {
+          "term": "Project Manager",
+          "definition": "Oversees project execution and coordinates team activities."
+        },
+        {
+          "term": "Scrum Master",
+          "definition": "Facilitates Agile practices and removes team impediments."
+        },
+        {
+          "term": "Product Owner",
+          "definition": "Defines the product backlog and prioritizes features."
+        },
+        {
+          "term": "Stakeholder",
+          "definition": "Provides input, feedback, and resources for the project."
+        }
+      ],
+      "reasoning": "Matching these roles reinforces the distinct responsibilities each role plays in project execution.",
+      "type": "matching"
+    },
+    {
+      "id": "26",
+      "question": "Real-life scenario: Your project suddenly goes over budget due to unexpected expenses. What should be your first course of action?",
+      "correct_answer": "Analyze the cost variances to identify the underlying issues.",
+      "incorrect_answers": [
+        "Immediately request additional funding from senior management.",
+        "Cut project scope drastically to reduce costs.",
+        "Blame the finance team for poor budgeting."
+      ],
+      "reasoning": "A detailed analysis helps pinpoint the causes of overruns and forms the basis for corrective actions.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "27",
+      "question": "Real-life scenario: A critical team member falls ill unexpectedly during a major project phase. What should you do first?",
+      "correct_answer": "Reassess the project schedule and redistribute tasks among the remaining team members.",
+      "incorrect_answers": [
+        "Hire a temporary replacement immediately.",
+        "Delay the project until the team member recovers.",
+        "Ignore the absence and push the team to cover the work."
+      ],
+      "reasoning": "Reallocating tasks and adjusting the schedule is a practical approach to mitigate the impact of the unexpected absence.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "28",
+      "question": "Real-life scenario: You are managing a marketing campaign project and one of your key influencers posts negative feedback that could harm the brand. What should you do first?",
+      "correct_answer": "Engage with the influencer to understand their concerns and work on a resolution.",
+      "incorrect_answers": [
+        "Immediately issue a public apology.",
+        "Ignore the feedback as a one-off incident.",
+        "Remove the influencer from future campaigns."
+      ],
+      "reasoning": "Direct engagement helps address concerns and can mitigate potential reputational damage.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "29",
+      "question": "Your project has complex interdependencies with other projects. What is the best way to manage these dependencies?",
+      "correct_answer": "Establish regular coordination meetings and integrate schedules across projects.",
+      "incorrect_answers": [
+        "Manage each project independently.",
+        "Rely solely on email updates.",
+        "Delay one project until the others are completed."
+      ],
+      "reasoning": "Regular coordination ensures that interdependencies are managed proactively, reducing the risk of cascading delays.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "30",
+      "question": "Real-life scenario: During user acceptance testing for a software project, a major bug is discovered. What should be your immediate response?",
+      "correct_answer": "Analyze the bug’s impact and schedule a remediation plan with the team.",
+      "incorrect_answers": [
+        "Delay the entire project indefinitely.",
+        "Ignore the bug since it's only a minor issue.",
+        "Blame the development team without further analysis."
+      ],
+      "reasoning": "Prompt analysis and planning for remediation help address the defect without overreacting or neglecting the issue.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "31",
+      "question": "Select all that apply: Which tools can help track project performance in real-life scenarios?",
+      "correct_answers": [
+        "Gantt charts",
+        "Earned Value Management",
+        "Dashboard reports"
+      ],
+      "incorrect_answers": [
+        "Informal emails",
+        "Ad-hoc phone calls"
+      ],
+      "reasoning": "Structured tools provide consistent performance tracking compared to informal methods.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "32",
+      "question": "Sort the phases of a typical project lifecycle in the correct order for a real-life project:",
+      "correct_order": [
+        "Initiation",
+        "Planning",
+        "Execution",
+        "Monitoring and Controlling",
+        "Closing"
+      ],
+      "answers": [
+        "Initiation",
+        "Planning",
+        "Execution",
+        "Monitoring and Controlling",
+        "Closing"
+      ],
+      "reasoning": "This ordering reflects the standard sequential phases of a project.",
+      "type": "sorting"
+    },
+    {
+      "id": "33",
+      "question": "Real-life scenario: Your client requests a significant change in scope that might delay the project. What is your first course of action?",
+      "correct_answer": "Evaluate the impact on schedule and cost and discuss the change with the client.",
+      "incorrect_answers": [
+        "Immediately implement the change to satisfy the client.",
+        "Reject the change to avoid delays.",
+        "Delay the project without informing the client."
+      ],
+      "reasoning": "Assessing impact and discussing with the client ensures that any scope changes are managed transparently.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "34",
+      "question": "Real-life scenario: Your team is handling multiple projects with conflicting priorities. What should you do?",
+      "correct_answer": "Communicate with stakeholders to re-prioritize tasks and resolve conflicts.",
+      "incorrect_answers": [
+        "Let each team handle their own priorities independently.",
+        "Delay all projects until priorities are clear.",
+        "Randomly assign tasks without stakeholder input."
+      ],
+      "reasoning": "Effective stakeholder communication helps balance priorities and manage resource allocation across projects.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "35",
+      "question": "During project execution, you receive customer feedback that the deliverable does not meet expectations. What is your first step?",
+      "correct_answer": "Review the project requirements and arrange a meeting with the customer to clarify expectations.",
+      "incorrect_answers": [
+        "Blame the project team for the oversight.",
+        "Ignore the feedback and proceed as planned.",
+        "Restart the project from scratch."
+      ],
+      "reasoning": "Clarifying requirements directly with the customer is key to identifying and addressing gaps without resorting to blame.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "36",
+      "question": "Real-life scenario: In a supply chain project, transportation strikes threaten timely delivery. What is your best immediate action?",
+      "correct_answer": "Activate alternate transportation plans as outlined in your risk management plan.",
+      "incorrect_answers": [
+        "Wait for the strike to end naturally.",
+        "Cancel the shipment and inform the client.",
+        "Shift the project deadline without analysis."
+      ],
+      "reasoning": "Contingency plans help maintain schedules in the face of disruptions without making abrupt changes.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "37",
+      "question": "Real-life scenario: An IT project is falling behind because team roles are unclear. What should you do?",
+      "correct_answer": "Clarify roles and responsibilities through a team meeting and update the RACI matrix.",
+      "incorrect_answers": [
+        "Ignore the confusion and hope it resolves itself.",
+        "Reassign all tasks without discussion.",
+        "Wait until the next phase to address the issue."
+      ],
+      "reasoning": "Updating the RACI matrix and clarifying roles minimizes confusion and ensures accountability.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "38",
+      "question": "Real-life scenario: A new competitor launches a similar product during your project execution. What should you do?",
+      "correct_answer": "Assess the market impact and adjust your project strategy if necessary.",
+      "incorrect_answers": [
+        "Halt your project immediately.",
+        "Ignore the competitor and continue as planned.",
+        "Scrap your current product and start over."
+      ],
+      "reasoning": "Evaluating the competitive landscape allows you to decide if strategic adjustments are needed rather than overreacting.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "39",
+      "question": "Select all that apply: Which communication channels are effective in a real-life remote project environment?",
+      "correct_answers": [
+        "Video conferencing",
+        "Email updates",
+        "Instant messaging"
+      ],
+      "incorrect_answers": [
+        "Physical meetings",
+        "Handwritten memos"
+      ],
+      "reasoning": "Digital communication methods are essential for real-time collaboration in remote teams.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "40",
+      "question": "Your project involves developing a new product and several minor defects are detected during production. What is your first step?",
+      "correct_answer": "Conduct a root cause analysis to determine if process improvements are needed.",
+      "incorrect_answers": [
+        "Delay the product launch until all defects are fixed.",
+        "Ignore the defects if they are minor.",
+        "Immediately reassign the entire production team."
+      ],
+      "reasoning": "A systematic root cause analysis allows for targeted improvements rather than sweeping changes.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "41",
+      "question": "Sort the following steps for effective stakeholder management in a real-life project:",
+      "correct_order": [
+        "Identify stakeholders",
+        "Analyze stakeholder needs",
+        "Develop an engagement strategy",
+        "Communicate regularly"
+      ],
+      "answers": [
+        "Identify stakeholders",
+        "Analyze stakeholder needs",
+        "Develop an engagement strategy",
+        "Communicate regularly"
+      ],
+      "reasoning": "This sequence represents a structured approach to ensuring stakeholder expectations are managed throughout the project.",
+      "type": "sorting"
+    },
+    {
+      "id": "42",
+      "question": "Match the following project documents with their purposes:",
+      "pairs": [
+        {
+          "term": "Project Charter",
+          "definition": "Authorizes the project and assigns the project manager."
+        },
+        {
+          "term": "Project Plan",
+          "definition": "Guides project execution and control."
+        },
+        {
+          "term": "Risk Register",
+          "definition": "Tracks identified risks and their mitigation plans."
+        },
+        {
+          "term": "Change Log",
+          "definition": "Records all approved changes to the project."
+        }
+      ],
+      "reasoning": "Each document serves a distinct purpose, and matching them correctly reinforces their roles in project management.",
+      "type": "matching"
+    },
+    {
+      "id": "43",
+      "question": "Real-life scenario: Your project is delayed by severe weather conditions. What is your best response?",
+      "correct_answer": "Update the project schedule and communicate the delay to all stakeholders.",
+      "incorrect_answers": [
+        "Ignore the delays caused by weather.",
+        "Blame the weather without making adjustments.",
+        "Immediately cancel the project."
+      ],
+      "reasoning": "Timely updates and clear communication help manage stakeholder expectations and allow for plan adjustments in response to uncontrollable events.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "44",
+      "question": "Real-life scenario: You are managing an event planning project and the booked venue cancels at the last minute. What should be your immediate action?",
+      "correct_answer": "Contact alternative venues and update the event plan accordingly.",
+      "incorrect_answers": [
+        "Delay the event indefinitely.",
+        "Proceed without a venue.",
+        "Blame the original venue and cancel the event."
+      ],
+      "reasoning": "Securing an alternative venue quickly minimizes disruption and keeps the event on track.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "45",
+      "question": "Real-life scenario: A team member suggests a new tool that could improve project efficiency. What should you do?",
+      "correct_answer": "Evaluate the tool's potential impact and pilot it if feasible.",
+      "incorrect_answers": [
+        "Reject the suggestion without evaluation.",
+        "Implement the tool immediately without testing.",
+        "Ignore the suggestion and continue with existing methods."
+      ],
+      "reasoning": "A careful evaluation and pilot test helps determine the benefits and risks before full-scale adoption.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "46",
+      "question": "Real-life scenario: Your project involves multiple international teams facing language barriers. What is your best course of action?",
+      "correct_answer": "Implement standardized communication protocols and consider translation services.",
+      "incorrect_answers": [
+        "Allow each team to use its native language without standardization.",
+        "Rely solely on written communication in one language.",
+        "Avoid communication until language issues resolve themselves."
+      ],
+      "reasoning": "Standardizing communication and using translation services help bridge language gaps and ensure clarity among diverse teams.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "47",
+      "question": "Real-life scenario: A new software rollout is facing resistance from end-users due to usability issues. What is your first step?",
+      "correct_answer": "Gather user feedback to identify the usability problems and plan a redesign if necessary.",
+      "incorrect_answers": [
+        "Ignore the feedback and proceed with the rollout.",
+        "Blame the development team without investigation.",
+        "Cancel the rollout immediately."
+      ],
+      "reasoning": "Engaging with end-users to gather feedback ensures that usability issues are properly addressed before final release.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "48",
+      "question": "Select all that apply: Which strategies can help mitigate risks in real-life project scenarios?",
+      "correct_answers": [
+        "Regular risk reviews",
+        "Contingency planning",
+        "Stakeholder engagement"
+      ],
+      "incorrect_answers": [
+        "Avoiding any risk planning",
+        "Ignoring minor risks"
+      ],
+      "reasoning": "Proactive risk reviews, having contingency plans, and engaging stakeholders are key to managing risks effectively.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "49",
+      "question": "Real-life scenario: Your project's success heavily relies on customer satisfaction. What is the best measure to track this?",
+      "correct_answer": "Customer satisfaction surveys and feedback mechanisms.",
+      "incorrect_answers": [
+        "Internal team performance metrics",
+        "Budget variance reports",
+        "Schedule adherence metrics"
+      ],
+      "reasoning": "Direct customer feedback is the most reliable indicator of whether the project meets customer needs.",
+      "type": "multiple-choice"
+    },
+    {
+      "id": "50",
+      "question": "Real-life scenario: You are managing a retail expansion project and one of the new store locations is underperforming. What is your first action?",
+      "correct_answer": "Conduct a market analysis to understand the factors behind the underperformance.",
+      "incorrect_answers": [
+        "Immediately close the underperforming store.",
+        "Reallocate the budget without further investigation.",
+        "Ignore the performance issue and continue operations as planned."
+      ],
+      "reasoning": "A market analysis helps identify underlying issues and informs appropriate corrective actions rather than making hasty decisions.",
+      "type": "multiple-choice"
     }
-]
-
+  ]
+  

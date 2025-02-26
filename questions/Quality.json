@@ -1,136 +1,609 @@
-
-    [
-        {
-            "id": "1",
-            "question": "You are managing a project and want to ensure that quality standards are met. What should you do first?",
-            "correct_answer": "Develop a quality management plan to define quality standards and how they will be achieved.",
-            "incorrect_answers": [
-                "Conduct product testing at the end of the project to check for defects.",
-                "Increase the number of inspections to catch more defects.",
-                "Wait for customer feedback to determine if the product meets quality standards."
-            ],
-            "reasoning": "Quality management starts with planning, where quality requirements, standards, and control measures are defined. Inspections and testing are reactive measures, while a quality management plan is proactive."
-        },
-        {
-            "id": "2",
-            "question": "A project team is conducting a process audit to ensure adherence to quality standards. What process are they performing?",
-            "correct_answer": "Quality assurance",
-            "incorrect_answers": [
-                "Quality control",
-                "Scope validation",
-                "Risk management"
-            ],
-            "reasoning": "Quality assurance is focused on process improvements and ensuring the correct procedures are being followed. Quality control is about detecting defects in deliverables."
-        },
-        {
-            "id": "3",
-            "question": "Which of the following best describes the purpose of a quality audit?",
-            "correct_answer": "To identify process improvements and ensure compliance with best practices.",
-            "incorrect_answers": [
-                "To inspect deliverables for defects before customer acceptance.",
-                "To check team performance against the project schedule.",
-                "To assess project costs and compare them to the budget."
-            ],
-            "reasoning": "Quality audits focus on improving processes, not inspecting deliverables. Inspections are part of quality control, while audits assess adherence to processes and standards."
-        },
-        {
-            "id": "4",
-            "question": "A project team decides to use statistical sampling instead of inspecting every deliverable. What is the main reason for this approach?",
-            "correct_answer": "It reduces time and cost while still ensuring acceptable quality levels.",
-            "incorrect_answers": [
-                "It guarantees that all defects will be identified.",
-                "It is the only acceptable method for quality control.",
-                "It eliminates the need for further quality assurance activities."
-            ],
-            "reasoning": "Statistical sampling is a cost-effective way to check quality without inspecting every item. While it improves efficiency, it does not guarantee that all defects will be caught."
-        },
-        {
-            "id": "5",
-            "question": "Which of the following is a key objective of continuous process improvement in quality management?",
-            "correct_answer": "To reduce defects and enhance efficiency over time.",
-            "incorrect_answers": [
-                "To eliminate the need for quality inspections.",
-                "To reduce project costs regardless of quality impact.",
-                "To ensure all work is completed ahead of schedule."
-            ],
-            "reasoning": "Continuous process improvement aims to enhance quality by minimizing defects and inefficiencies. It does not replace inspections or prioritize cost and schedule over quality."
-        },
-        {
-            "id": "6",
-            "question": "Which tool is commonly used to analyze the root causes of defects in a project?",
-            "correct_answer": "Fishbone diagram",
-            "incorrect_answers": [
-                "Gantt chart",
-                "RACI matrix",
-                "Project charter"
-            ],
-            "reasoning": "A fishbone diagram (Ishikawa diagram) helps identify the root causes of defects. Gantt charts are used for scheduling, RACI matrices define roles, and project charters establish project objectives."
-        },
-        {
-            "id": "7",
-            "question": "A project team is analyzing trends in defects over time to identify patterns. Which quality tool are they using?",
-            "correct_answer": "Control chart",
-            "incorrect_answers": [
-                "Work breakdown structure",
-                "Risk register",
-                "Project scope statement"
-            ],
-            "reasoning": "Control charts track variations in processes over time, helping teams identify trends in defects. Other options focus on different aspects of project management."
-        },
-        {
-            "id": "8",
-            "question": "Which quality management process ensures that deliverables meet the project requirements?",
-            "correct_answer": "Quality control",
-            "incorrect_answers": [
-                "Quality planning",
-                "Risk management",
-                "Schedule management"
-            ],
-            "reasoning": "Quality control involves inspecting deliverables to ensure they meet requirements. Quality planning defines standards, while risk and schedule management focus on other project aspects."
-        },
-        {
-            "id": "9",
-            "question": "You notice a high defect rate in a project's deliverables. What is the best way to address this issue?",
-            "correct_answer": "Conduct a root cause analysis and implement corrective actions.",
-            "incorrect_answers": [
-                "Increase the frequency of inspections without analyzing the cause.",
-                "Replace the entire project team.",
-                "Ignore minor defects to stay on schedule."
-            ],
-            "reasoning": "Identifying and addressing the root cause of defects improves quality. Simply increasing inspections or ignoring defects does not solve the underlying problem."
-        },
-        {
-            "id": "10",
-            "question": "Which quality management concept focuses on reducing waste and improving efficiency?",
-            "correct_answer": "Lean quality management",
-            "incorrect_answers": [
-                "Cost variance analysis",
-                "Critical path method",
-                "Work performance tracking"
-            ],
-            "reasoning": "Lean quality management emphasizes minimizing waste and optimizing processes to enhance efficiency. The other options are related to cost, scheduling, and performance tracking."
-        },
-        {
-            "id": "11",
-            "question": "Your project team is using Pareto analysis to prioritize quality improvements. What is the main principle behind this approach?",
-            "correct_answer": "A small number of causes are responsible for most defects.",
-            "incorrect_answers": [
-                "All defects should be treated equally.",
-                "Every defect must be individually addressed before moving forward.",
-                "Quality improvements should focus on the most expensive processes."
-            ],
-            "reasoning": "Pareto analysis follows the 80/20 rule, meaning most defects come from a few root causes. Addressing these key issues leads to the greatest improvement."
-        },
-        {
-            "id": "12",
-            "question": "You are managing a project with strict quality requirements. Which document outlines the specific quality standards that must be met?",
-            "correct_answer": "Quality management plan",
-            "incorrect_answers": [
-                "Project charter",
-                "Risk register",
-                "Stakeholder engagement plan"
-            ],
-            "reasoning": "The quality management plan defines the standards, processes, and activities needed to meet quality requirements. Other documents focus on project authorization, risks, and stakeholder engagement."
-        }
-    ]
-    
+[
+    {
+      "id": "1",
+      "question": "You are managing a project and want to ensure that quality standards are met. What should you do first?",
+      "correct_answer": "Develop a quality management plan to define quality standards and how they will be achieved.",
+      "incorrect_answers": [
+        "Conduct product testing at the end of the project to check for defects.",
+        "Increase the number of inspections to catch more defects.",
+        "Wait for customer feedback to determine if the product meets quality standards."
+      ],
+      "reasoning": "Quality management starts with planning—defining requirements and standards—before reactive measures like inspections or testing are employed."
+    },
+    {
+      "id": "2",
+      "question": "A project team is conducting a process audit to ensure adherence to quality standards. What process are they performing?",
+      "correct_answer": "Quality assurance",
+      "incorrect_answers": [
+        "Quality control",
+        "Scope validation",
+        "Risk management"
+      ],
+      "reasoning": "Quality assurance is focused on process improvements and ensuring procedures are followed, whereas quality control is about detecting defects."
+    },
+    {
+      "id": "3",
+      "question": "Which of the following best describes the purpose of a quality audit?",
+      "correct_answer": "To identify process improvements and ensure compliance with best practices.",
+      "incorrect_answers": [
+        "To inspect deliverables for defects before customer acceptance.",
+        "To check team performance against the project schedule.",
+        "To assess project costs and compare them to the budget."
+      ],
+      "reasoning": "Quality audits focus on reviewing processes for compliance and improvement—not merely inspecting deliverables."
+    },
+    {
+      "id": "4",
+      "question": "A project team decides to use statistical sampling instead of inspecting every deliverable. What is the main reason for this approach?",
+      "correct_answer": "It reduces time and cost while still ensuring acceptable quality levels.",
+      "incorrect_answers": [
+        "It guarantees that all defects will be identified.",
+        "It is the only acceptable method for quality control.",
+        "It eliminates the need for further quality assurance activities."
+      ],
+      "reasoning": "Statistical sampling is a cost-effective technique that provides a reasonable assurance of quality without inspecting every item."
+    },
+    {
+      "id": "5",
+      "question": "Which of the following is a key objective of continuous process improvement in quality management?",
+      "correct_answer": "To reduce defects and enhance efficiency over time.",
+      "incorrect_answers": [
+        "To eliminate the need for quality inspections.",
+        "To reduce project costs regardless of quality impact.",
+        "To ensure all work is completed ahead of schedule."
+      ],
+      "reasoning": "Continuous process improvement targets the reduction of defects and inefficiencies without compromising the need for inspections or other quality controls."
+    },
+    {
+      "id": "6",
+      "question": "Which tool is commonly used to analyze the root causes of defects in a project?",
+      "correct_answer": "Fishbone diagram",
+      "incorrect_answers": [
+        "Gantt chart",
+        "RACI matrix",
+        "Project charter"
+      ],
+      "reasoning": "A fishbone (Ishikawa) diagram helps teams visually map out potential causes of defects, unlike scheduling or role-assignment tools."
+    },
+    {
+      "id": "7",
+      "question": "A project team is analyzing trends in defects over time to identify patterns. Which quality tool are they using?",
+      "correct_answer": "Control chart",
+      "incorrect_answers": [
+        "Work breakdown structure",
+        "Risk register",
+        "Project scope statement"
+      ],
+      "reasoning": "Control charts are used to track process variations over time, thereby identifying trends in defect occurrence."
+    },
+    {
+      "id": "8",
+      "question": "Which quality management process ensures that deliverables meet the project requirements?",
+      "correct_answer": "Quality control",
+      "incorrect_answers": [
+        "Quality planning",
+        "Risk management",
+        "Schedule management"
+      ],
+      "reasoning": "Quality control is responsible for inspecting deliverables to ensure they conform to the defined requirements."
+    },
+    {
+      "id": "9",
+      "question": "You notice a high defect rate in a project's deliverables. What is the best way to address this issue?",
+      "correct_answer": "Conduct a root cause analysis and implement corrective actions.",
+      "incorrect_answers": [
+        "Increase the frequency of inspections without analyzing the cause.",
+        "Replace the entire project team.",
+        "Ignore minor defects to stay on schedule."
+      ],
+      "reasoning": "Identifying and addressing the root cause of defects is crucial to resolving underlying quality issues."
+    },
+    {
+      "id": "10",
+      "question": "Which quality management concept focuses on reducing waste and improving efficiency?",
+      "correct_answer": "Lean quality management",
+      "incorrect_answers": [
+        "Cost variance analysis",
+        "Critical path method",
+        "Work performance tracking"
+      ],
+      "reasoning": "Lean quality management emphasizes minimizing waste and streamlining processes, unlike cost or scheduling techniques."
+    },
+    {
+      "id": "11",
+      "question": "Your project team is using Pareto analysis to prioritize quality improvements. What is the main principle behind this approach?",
+      "correct_answer": "A small number of causes are responsible for most defects.",
+      "incorrect_answers": [
+        "All defects should be treated equally.",
+        "Every defect must be individually addressed before moving forward.",
+        "Quality improvements should focus on the most expensive processes."
+      ],
+      "reasoning": "Pareto analysis is based on the 80/20 rule, where most problems arise from a few key causes."
+    },
+    {
+      "id": "12",
+      "question": "You are managing a project with strict quality requirements. Which document outlines the specific quality standards that must be met?",
+      "correct_answer": "Quality management plan",
+      "incorrect_answers": [
+        "Project charter",
+        "Risk register",
+        "Stakeholder engagement plan"
+      ],
+      "reasoning": "The quality management plan details quality standards, processes, and control measures to be followed throughout the project."
+    },
+    {
+      "id": "13",
+      "question": "A large network hardware upgrade project faced unexpected additional expenses due to unidentified dependencies. How should the project manager handle this situation?",
+      "correct_answer": "Notify the project stakeholders immediately of the additional expenses incurred and follow company procedures for budget variances.",
+      "incorrect_answers": [
+        "Ask the IT Director to cover those expenses from his budget.",
+        "Advise the staff to categorize the expenses as miscellaneous.",
+        "Do nothing since project reserves are available."
+      ],
+      "reasoning": "Transparent communication and adherence to established procedures are key when dealing with budget variances."
+    },
+    {
+      "id": "14",
+      "question": "Which Earned Value Management metric represents the difference between the earned value and the actual cost?",
+      "correct_answer": "Cost Variance (CV)",
+      "incorrect_answers": [
+        "Schedule Variance (SV)",
+        "Budget at Completion (BAC)",
+        "Estimate at Completion (EAC)"
+      ],
+      "reasoning": "Cost Variance (CV) is calculated by subtracting the actual cost from the earned value (CV = EV - AC), indicating cost performance."
+    },
+    {
+      "id": "15",
+      "question": "A project manager uses a control chart to monitor process performance. What does this tool primarily help identify?",
+      "correct_answer": "Variations in process performance over time.",
+      "incorrect_answers": [
+        "The total cost of quality activities.",
+        "The detailed project schedule.",
+        "The efficiency of resource allocation."
+      ],
+      "reasoning": "Control charts are designed to show variations and trends in process performance, helping identify when a process may be out of control."
+    },
+    {
+      "id": "16",
+      "question": "Which of the following is a key objective of monitoring and controlling quality?",
+      "correct_answer": "Ensure that deliverables meet predetermined quality standards.",
+      "incorrect_answers": [
+        "Increase the project budget significantly.",
+        "Eliminate all project risks entirely.",
+        "Reduce communication among team members."
+      ],
+      "reasoning": "The primary objective of monitoring and controlling quality is to ensure that project outputs meet the established standards."
+    },
+    {
+      "id": "17",
+      "question": "During project execution, performance data is collected to compare planned progress with actual progress. This activity is part of which process?",
+      "correct_answer": "Performance Reporting",
+      "incorrect_answers": [
+        "Project Initiation",
+        "Risk Management",
+        "Procurement Management"
+      ],
+      "reasoning": "Performance reporting involves collecting and comparing performance data against planned baselines."
+    },
+    {
+      "id": "18",
+      "question": "Real-life scenario: A quality audit in a manufacturing process reveals that standard procedures are not being consistently followed. What is your first course of action?",
+      "correct_answer": "Document the non-conformities and initiate corrective actions.",
+      "incorrect_answers": [
+        "Immediately halt production entirely.",
+        "Ignore the non-conformities if they seem minor.",
+        "Increase production speed to compensate for delays."
+      ],
+      "reasoning": "Documenting issues and initiating corrective actions is the standard response when audits reveal process deviations."
+    },
+    {
+      "id": "19",
+      "question": "Which quality management concept focuses on continuously analyzing and improving processes to achieve incremental improvements?",
+      "correct_answer": "Continuous Process Improvement",
+      "incorrect_answers": [
+        "Radical reengineering",
+        "Fixed quality control",
+        "Cost reduction analysis"
+      ],
+      "reasoning": "Continuous process improvement is about making incremental changes that reduce defects and inefficiencies over time."
+    },
+    {
+      "id": "20",
+      "question": "Which of the following best describes the purpose of a quality management plan in the context of project monitoring and controlling?",
+      "correct_answer": "It defines quality standards and outlines how quality will be measured, monitored, and controlled.",
+      "incorrect_answers": [
+        "It serves as a contract with suppliers for product delivery.",
+        "It determines the project's overall cost baseline.",
+        "It schedules resource assignments for the project."
+      ],
+      "reasoning": "The quality management plan establishes the criteria for quality and details the processes for maintaining it throughout the project."
+    },
+    {
+      "id": "21",
+      "question": "Real-life scenario: A control chart shows that the process is out of statistical control. What should the project manager do next?",
+      "correct_answer": "Investigate the root causes of the variation and implement corrective measures.",
+      "incorrect_answers": [
+        "Ignore the signal and continue production as planned.",
+        "Assume the variation is acceptable without further review.",
+        "Immediately revise the entire project budget."
+      ],
+      "reasoning": "An out-of-control process requires investigation and corrective action to return to acceptable performance levels."
+    },
+    {
+      "id": "22",
+      "question": "In Earned Value Management, which metric indicates whether the project is ahead or behind schedule?",
+      "correct_answer": "Schedule Variance (SV)",
+      "incorrect_answers": [
+        "Cost Variance (CV)",
+        "Estimate at Completion (EAC)",
+        "Variance at Completion (VAC)"
+      ],
+      "reasoning": "Schedule Variance (SV) is calculated by comparing earned value to planned value (SV = EV - PV) and indicates schedule performance."
+    },
+    {
+      "id": "23",
+      "question": "Which tool is commonly used to forecast future project performance based on current trends?",
+      "correct_answer": "Trend analysis",
+      "incorrect_answers": [
+        "SWOT analysis",
+        "Pareto analysis",
+        "Fishbone diagram"
+      ],
+      "reasoning": "Trend analysis helps predict future performance by extrapolating from historical data, while the other tools serve different functions."
+    },
+    {
+      "id": "24",
+      "question": "Which of the following is a primary output of the monitoring and controlling processes?",
+      "correct_answer": "Performance reports",
+      "incorrect_answers": [
+        "Project charters",
+        "Risk register updates",
+        "Procurement contracts"
+      ],
+      "reasoning": "Performance reports summarize progress and performance, providing critical information to stakeholders."
+    },
+    {
+      "id": "25",
+      "question": "Real-life scenario: A project is consistently missing its performance targets. Which quality process should be re-examined first?",
+      "correct_answer": "Quality control",
+      "incorrect_answers": [
+        "Project closing",
+        "Risk management",
+        "Stakeholder engagement"
+      ],
+      "reasoning": "Quality control is the process that directly monitors deliverable quality and would be the first focus if performance targets are not met."
+    },
+    {
+      "id": "26",
+      "question": "Which of the following is a key benefit of using a project dashboard for monitoring?",
+      "correct_answer": "Real-time visibility into project performance.",
+      "incorrect_answers": [
+        "Guaranteeing the project will finish on time.",
+        "Automatically resolving all project issues.",
+        "Eliminating the need for formal performance reports."
+      ],
+      "reasoning": "Dashboards provide real-time data and insights, though they do not guarantee success or replace formal reporting entirely."
+    },
+    {
+      "id": "27",
+      "question": "Which tool is used to identify the root causes of quality issues and facilitate corrective action?",
+      "correct_answer": "Fishbone diagram",
+      "incorrect_answers": [
+        "Gantt chart",
+        "PERT chart",
+        "Resource histogram"
+      ],
+      "reasoning": "A fishbone diagram visually maps potential causes of a quality problem, aiding in root cause analysis."
+    },
+    {
+      "id": "28",
+      "question": "Select all that apply: Which of the following are Earned Value Management performance metrics?",
+      "correct_answers": [
+        "Cost Variance (CV)",
+        "Schedule Variance (SV)",
+        "Cost Performance Index (CPI)",
+        "Schedule Performance Index (SPI)"
+      ],
+      "incorrect_answers": [
+        "Budget at Completion (BAC)",
+        "Estimate at Completion (EAC)"
+      ],
+      "reasoning": "CV, SV, CPI, and SPI are standard EVM metrics used to evaluate project performance.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "29",
+      "question": "Arrange the steps of the performance reporting process in the correct order.",
+      "correct_order": [
+        "Collect Performance Data",
+        "Analyze Performance Data",
+        "Prepare Performance Reports",
+        "Distribute Reports to Stakeholders"
+      ],
+      "answers": [
+        "Collect Performance Data",
+        "Analyze Performance Data",
+        "Prepare Performance Reports",
+        "Distribute Reports to Stakeholders"
+      ],
+      "reasoning": "This sequence represents the logical flow from data collection to stakeholder communication.",
+      "type": "sorting"
+    },
+    {
+      "id": "30",
+      "question": "Which quality management concept is primarily associated with minimizing waste and streamlining processes?",
+      "correct_answer": "Lean quality management",
+      "incorrect_answers": [
+        "Six Sigma",
+        "Total Quality Management",
+        "ISO 9001"
+      ],
+      "reasoning": "Lean quality management focuses specifically on waste reduction and process streamlining."
+    },
+    {
+      "id": "31",
+      "question": "Real-life scenario: A quality control check reveals that a deliverable does not meet the specifications. What is the most appropriate corrective action?",
+      "correct_answer": "Conduct a root cause analysis and rework the deliverable as necessary.",
+      "incorrect_answers": [
+        "Reject the deliverable without further investigation.",
+        "Immediately scrap the deliverable and restart production.",
+        "Increase production speed to compensate for the defect."
+      ],
+      "reasoning": "A thorough root cause analysis ensures that the underlying quality issues are addressed before reworking the deliverable."
+    },
+    {
+      "id": "32",
+      "question": "Which approach is used to verify that corrective actions have been successfully implemented?",
+      "correct_answer": "Re-inspection after corrective action",
+      "incorrect_answers": [
+        "Initiating a new quality audit",
+        "Immediately updating the project schedule",
+        "Requesting additional stakeholder feedback"
+      ],
+      "reasoning": "A re-inspection verifies that the corrective actions have resolved the defect and that the quality issue is addressed."
+    },
+    {
+      "id": "33",
+      "question": "Which tool helps visualize project performance metrics over time?",
+      "correct_answer": "Trend analysis chart",
+      "incorrect_answers": [
+        "Gantt chart",
+        "Work breakdown structure",
+        "RACI matrix"
+      ],
+      "reasoning": "Trend analysis charts graphically display performance data over time to help predict future performance."
+    },
+    {
+      "id": "34",
+      "question": "Select all that apply: Which of the following are key objectives of quality audits?",
+      "correct_answers": [
+        "Identify process non-conformities",
+        "Recommend process improvements",
+        "Ensure compliance with established standards"
+      ],
+      "incorrect_answers": [
+        "Reduce overall project costs",
+        "Expand the project scope"
+      ],
+      "reasoning": "Quality audits aim to identify deviations, drive process improvements, and ensure adherence to standards.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "35",
+      "question": "Arrange the phases of a quality control process in the correct order.",
+      "correct_order": [
+        "Define Quality Standards",
+        "Inspect Deliverables",
+        "Identify Defects",
+        "Implement Corrective Actions",
+        "Verify Improvements"
+      ],
+      "answers": [
+        "Define Quality Standards",
+        "Inspect Deliverables",
+        "Identify Defects",
+        "Implement Corrective Actions",
+        "Verify Improvements"
+      ],
+      "reasoning": "This order represents the logical sequence from establishing standards to verifying that corrective actions have worked.",
+      "type": "sorting"
+    },
+    {
+      "id": "36",
+      "question": "Which quality management tool is used to compare process performance data against quality standards in a graphical format?",
+      "correct_answer": "Control chart",
+      "incorrect_answers": [
+        "Pareto chart",
+        "Fishbone diagram",
+        "Histogram"
+      ],
+      "reasoning": "Control charts are used to monitor process stability and compare performance data against control limits."
+    },
+    {
+      "id": "37",
+      "question": "Real-life scenario: A client reports inconsistent product quality during a project. Which process should the project manager focus on?",
+      "correct_answer": "Quality assurance",
+      "incorrect_answers": [
+        "Quality control",
+        "Risk management",
+        "Scope verification"
+      ],
+      "reasoning": "Quality assurance focuses on improving processes to prevent quality issues, which is essential when product quality is inconsistent."
+    },
+    {
+      "id": "38",
+      "question": "Which metric is used to measure the efficiency of a process in quality management?",
+      "correct_answer": "Process Capability Index (Cpk)",
+      "incorrect_answers": [
+        "Cost Performance Index (CPI)",
+        "Schedule Performance Index (SPI)",
+        "Defect Density"
+      ],
+      "reasoning": "The Process Capability Index (Cpk) measures how well a process produces output within specification limits."
+    },
+    {
+      "id": "39",
+      "question": "Select all that apply: Which of the following are benefits of implementing a robust quality management system?",
+      "correct_answers": [
+        "Enhanced customer satisfaction",
+        "Reduced rework",
+        "Improved process consistency"
+      ],
+      "incorrect_answers": [
+        "Increased project costs",
+        "Longer project durations"
+      ],
+      "reasoning": "A robust quality management system leads to higher customer satisfaction, fewer defects, and consistent processes.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "40",
+      "question": "Arrange the steps of a root cause analysis in the correct order.",
+      "correct_order": [
+        "Define the Problem",
+        "Collect Data",
+        "Identify Possible Causes",
+        "Analyze Causes",
+        "Implement Solutions"
+      ],
+      "answers": [
+        "Define the Problem",
+        "Collect Data",
+        "Identify Possible Causes",
+        "Analyze Causes",
+        "Implement Solutions"
+      ],
+      "reasoning": "This sequence represents a logical approach to root cause analysis from problem definition to solution implementation.",
+      "type": "sorting"
+    },
+    {
+      "id": "41",
+      "question": "Which quality management process is primarily concerned with auditing and reviewing processes for continuous improvement?",
+      "correct_answer": "Quality assurance",
+      "incorrect_answers": [
+        "Quality control",
+        "Quality planning",
+        "Risk management"
+      ],
+      "reasoning": "Quality assurance involves ongoing evaluations of processes to ensure they are effective and continually improved."
+    },
+    {
+      "id": "42",
+      "question": "Real-life scenario: During the monitoring phase, your team notices a slight deviation in the defect rate from the planned standard. What is the best approach?",
+      "correct_answer": "Investigate the deviation and adjust processes if necessary.",
+      "incorrect_answers": [
+        "Ignore the deviation if it's minor.",
+        "Immediately halt production.",
+        "Reassign quality control responsibilities without analysis."
+      ],
+      "reasoning": "Even minor deviations should be investigated to determine if adjustments are required to maintain quality standards."
+    },
+    {
+      "id": "43",
+      "question": "Which quality management tool is useful for prioritizing improvement efforts based on the frequency of issues?",
+      "correct_answer": "Pareto diagram",
+      "incorrect_answers": [
+        "Control chart",
+        "Fishbone diagram",
+        "Scatter plot"
+      ],
+      "reasoning": "Pareto diagrams help identify the few issues that contribute to the majority of defects, following the 80/20 principle."
+    },
+    {
+      "id": "44",
+      "question": "Select all that apply: Which of the following are key activities in the process of quality control?",
+      "correct_answers": [
+        "Inspection of deliverables",
+        "Testing for defects",
+        "Verification against quality standards"
+      ],
+      "incorrect_answers": [
+        "Budget monitoring",
+        "Stakeholder management",
+        "Resource allocation"
+      ],
+      "reasoning": "Quality control focuses on inspecting and testing deliverables to ensure they meet predefined quality standards.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "45",
+      "question": "Arrange the key steps of the project monitoring process in the correct order.",
+      "correct_order": [
+        "Define Baselines",
+        "Measure Actual Performance",
+        "Compare Performance Against Baselines",
+        "Identify Variances",
+        "Implement Corrective Actions"
+      ],
+      "answers": [
+        "Define Baselines",
+        "Measure Actual Performance",
+        "Compare Performance Against Baselines",
+        "Identify Variances",
+        "Implement Corrective Actions"
+      ],
+      "reasoning": "This sequence outlines the logical flow of monitoring from baseline establishment to corrective action.",
+      "type": "sorting"
+    },
+    {
+      "id": "46",
+      "question": "Which quality management process involves planning the quality standards and procedures for a project?",
+      "correct_answer": "Quality planning",
+      "incorrect_answers": [
+        "Quality assurance",
+        "Quality control",
+        "Risk management"
+      ],
+      "reasoning": "Quality planning defines the quality standards, procedures, and processes to be followed throughout the project."
+    },
+    {
+      "id": "47",
+      "question": "Real-life scenario: After a series of inspections, your team discovers a recurring defect in the final product. What quality tool should you use to determine the cause?",
+      "correct_answer": "Fishbone diagram",
+      "incorrect_answers": [
+        "Histogram",
+        "Control chart",
+        "Pareto chart"
+      ],
+      "reasoning": "A fishbone diagram is ideal for exploring and identifying potential root causes of recurring defects."
+    },
+    {
+      "id": "48",
+      "question": "Which of the following best describes Lean quality management?",
+      "correct_answer": "It focuses on reducing waste and streamlining processes to improve overall efficiency.",
+      "incorrect_answers": [
+        "It primarily increases product testing to catch defects.",
+        "It emphasizes detailed documentation of every process step.",
+        "It relies on rigid procedures to maintain quality."
+      ],
+      "reasoning": "Lean quality management is centered on eliminating waste and optimizing processes rather than relying solely on testing or extensive documentation."
+    },
+    {
+      "id": "49",
+      "question": "Select all that apply: Which performance indicators are important in monitoring project quality?",
+      "correct_answers": [
+        "Defect Density",
+        "Process Capability",
+        "Customer Satisfaction Score"
+      ],
+      "incorrect_answers": [
+        "Employee Turnover",
+        "Budget Variance"
+      ],
+      "reasoning": "Defect Density, Process Capability, and Customer Satisfaction are direct measures of quality, whereas Employee Turnover and Budget Variance relate to other aspects of project performance.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "50",
+      "question": "Real-life scenario: A supplier's quality issues are affecting the final product. Which quality management process should the project manager use to address this issue?",
+      "correct_answer": "Quality assurance",
+      "incorrect_answers": [
+        "Quality control",
+        "Risk management",
+        "Procurement management"
+      ],
+      "reasoning": "Quality assurance focuses on improving processes—including those of suppliers—to prevent quality issues from occurring."
+    }
+  ]
+  
