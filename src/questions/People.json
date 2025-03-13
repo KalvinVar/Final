@@ -1,136 +1,568 @@
-
-    [
-        {
-            "id": "1",
-            "question": "Which process group involves coordinating people and resources, as well as integrating and performing the activities of the project in accordance with the project management plan?",
-            "correct_answer": "Executing",
-            "incorrect_answers": [
-                "Initiating",
-                "Planning",
-                "Monitoring and Controlling"
-            ],
-            "reasoning": "The Executing process group focuses on carrying out the project management plan by performing the activities included therein."
-        },
-        {
-            "id": "2",
-            "question": "What is the primary purpose of the Work Breakdown Structure (WBS) in project management?",
-            "correct_answer": "To subdivide project deliverables and project work into smaller, more manageable components.",
-            "incorrect_answers": [
-                "To define the project's scope statement.",
-                "To establish project timelines.",
-                "To allocate resources to project tasks."
-            ],
-            "reasoning": "The WBS is a hierarchical decomposition of the total scope of work to accomplish the project objectives and create the deliverables."
-        },
-        {
-            "id": "3",
-            "question": "Which document formally authorizes a project or a phase and provides the project manager with the authority to apply organizational resources to project activities?",
-            "correct_answer": "Project Charter",
-            "incorrect_answers": [
-                "Project Management Plan",
-                "Statement of Work",
-                "Business Case"
-            ],
-            "reasoning": "The Project Charter is issued by the project sponsor and formally authorizes the existence of a project."
-        },
-        {
-            "id": "4",
-            "question": "In which process is the risk register created?",
-            "correct_answer": "Identify Risks",
-            "incorrect_answers": [
-                "Plan Risk Management",
-                "Perform Qualitative Risk Analysis",
-                "Monitor Risks"
-            ],
-            "reasoning": "The risk register is first created during the Identify Risks process and is updated throughout the project."
-        },
-        {
-            "id": "5",
-            "question": "Which technique is used to determine the early start and early finish dates, as well as the late start and late finish dates, for the uncompleted portions of project activities?",
-            "correct_answer": "Critical Path Method",
-            "incorrect_answers": [
-                "Earned Value Management",
-                "Monte Carlo Simulation",
-                "Resource Leveling"
-            ],
-            "reasoning": "The Critical Path Method calculates the longest path of planned activities to the end of the project, determining the shortest possible project duration."
-        },
-        {
-            "id": "6",
-            "question": "What is the primary output of the Define Activities process?",
-            "correct_answer": "Activity List",
-            "incorrect_answers": [
-                "Project Schedule",
-                "Milestone List",
-                "Work Breakdown Structure"
-            ],
-            "reasoning": "The Define Activities process results in the Activity List, which includes all activities required to complete the project."
-        },
-        {
-            "id": "7",
-            "question": "Which process involves monitoring the status of the project to update project costs and managing changes to the cost baseline?",
-            "correct_answer": "Control Costs",
-            "incorrect_answers": [
-                "Estimate Costs",
-                "Determine Budget",
-                "Plan Cost Management"
-            ],
-            "reasoning": "Control Costs is the process of monitoring the project's financial performance and managing changes to the cost baseline."
-        },
-        {
-            "id": "8",
-            "question": "Which type of contract involves setting a fixed total price for a well-defined product or service?",
-            "correct_answer": "Fixed-Price Contract",
-            "incorrect_answers": [
-                "Cost-Reimbursable Contract",
-                "Time and Materials Contract",
-                "Unit Price Contract"
-            ],
-            "reasoning": "Fixed-Price Contracts are used when the scope of work is clearly defined and the seller agrees to deliver the product or service at a set price."
-        },
-        {
-            "id": "9",
-            "question": "What is the primary purpose of the Perform Integrated Change Control process?",
-            "correct_answer": "To review all change requests, approve or reject changes, and manage changes to deliverables, organizational process assets, project documents, and the project management plan.",
-            "incorrect_answers": [
-                "To identify and document project changes.",
-                "To implement approved changes.",
-                "To control the project schedule."
-            ],
-            "reasoning": "Perform Integrated Change Control ensures that all changes are properly reviewed and managed throughout the project."
-        },
-        {
-            "id": "10",
-            "question": "Which process involves developing an approximation of the monetary resources needed to complete project activities?",
-            "correct_answer": "Estimate Costs",
-            "incorrect_answers": [
-                "Determine Budget",
-                "Control Costs",
-                "Plan Cost Management"
-            ],
-            "reasoning": "Estimate Costs is the process of developing an approximation of the costs of the resources needed to complete project work."
-        },
-        {
-            "id": "11",
-            "question": "Which quality management tool is used to identify the vital few sources that are responsible for causing most of a problem's effects?",
-            "correct_answer": "Pareto Diagram",
-            "incorrect_answers": [
-                "Control Chart",
-                "Cause-and-Effect Diagram",
-                "Flowchart"
-            ],
-            "reasoning": "A Pareto Diagram is a bar chart that identifies the few sources that are responsible for most of the problem's effects, following the 80/20 rule."
-        },
-        {
-            "id": "12",
-            "question": "Which process involves tracking team member performance, providing feedback, resolving issues, and managing team changes to optimize project performance?",
-            "correct_answer": "Manage Team",
-            "incorrect_answers": [
-                "Develop Team",
-                "Control Resources",
-                "Acquire Resources"
-            ],
-            "reasoning": "Manage Team is the process of tracking team performance, providing feedback, and managing changes to enhance project performance."
-        }
-    ]
-    
+[
+    {
+      "id": "1",
+      "question": "Which process group involves coordinating people and resources, as well as integrating and performing the activities of the project in accordance with the project management plan?",
+      "correct_answer": "Executing",
+      "incorrect_answers": [
+        "Initiating",
+        "Planning",
+        "Monitoring and Controlling"
+      ],
+      "reasoning": "The Executing process group is responsible for carrying out the project management plan by performing the planned activities."
+    },
+    {
+      "id": "2",
+      "question": "What is the primary purpose of the Work Breakdown Structure (WBS) in project management?",
+      "correct_answer": "To subdivide project deliverables and project work into smaller, more manageable components.",
+      "incorrect_answers": [
+        "To define the project's scope statement",
+        "To establish project timelines",
+        "To allocate resources to project tasks"
+      ],
+      "reasoning": "The WBS breaks down the total work into manageable pieces, making it easier to plan and assign tasks."
+    },
+    {
+      "id": "3",
+      "question": "Which document formally authorizes a project or a phase and provides the project manager with the authority to apply organizational resources to project activities?",
+      "correct_answer": "Project Charter",
+      "incorrect_answers": [
+        "Project Management Plan",
+        "Statement of Work",
+        "Business Case"
+      ],
+      "reasoning": "The Project Charter, issued by the project sponsor, formally authorizes the project and grants the project manager authority."
+    },
+    {
+      "id": "4",
+      "question": "In which process is the risk register created?",
+      "correct_answer": "Identify Risks",
+      "incorrect_answers": [
+        "Plan Risk Management",
+        "Perform Qualitative Risk Analysis",
+        "Monitor Risks"
+      ],
+      "reasoning": "The risk register is initially created during the Identify Risks process and is updated as the project progresses."
+    },
+    {
+      "id": "5",
+      "question": "Which technique is used to determine the early start and early finish dates, as well as the late start and late finish dates, for the uncompleted portions of project activities?",
+      "correct_answer": "Critical Path Method",
+      "incorrect_answers": [
+        "Earned Value Management",
+        "Monte Carlo Simulation",
+        "Resource Leveling"
+      ],
+      "reasoning": "The Critical Path Method calculates the longest sequence of activities, establishing the minimum project duration."
+    },
+    {
+      "id": "6",
+      "question": "What is the primary output of the Define Activities process?",
+      "correct_answer": "Activity List",
+      "incorrect_answers": [
+        "Project Schedule",
+        "Milestone List",
+        "Work Breakdown Structure"
+      ],
+      "reasoning": "The activity list details all tasks required to complete the project and is the key output of Define Activities."
+    },
+    {
+      "id": "7",
+      "question": "Which process involves monitoring the status of the project to update project costs and managing changes to the cost baseline?",
+      "correct_answer": "Control Costs",
+      "incorrect_answers": [
+        "Estimate Costs",
+        "Determine Budget",
+        "Plan Cost Management"
+      ],
+      "reasoning": "Control Costs is focused on tracking financial performance and managing any changes to the cost baseline."
+    },
+    {
+      "id": "8",
+      "question": "Which type of contract involves setting a fixed total price for a well-defined product or service?",
+      "correct_answer": "Fixed-Price Contract",
+      "incorrect_answers": [
+        "Cost-Reimbursable Contract",
+        "Time and Materials Contract",
+        "Unit Price Contract"
+      ],
+      "reasoning": "A Fixed-Price Contract establishes a set price, which is ideal when the scope is clearly defined."
+    },
+    {
+      "id": "9",
+      "question": "What is the primary purpose of the Perform Integrated Change Control process?",
+      "correct_answer": "To review all change requests, approve or reject changes, and manage changes to deliverables, organizational process assets, project documents, and the project management plan.",
+      "incorrect_answers": [
+        "To identify and document project changes",
+        "To implement approved changes",
+        "To control the project schedule"
+      ],
+      "reasoning": "This process ensures that all changes are systematically evaluated and managed, maintaining project integrity."
+    },
+    {
+      "id": "10",
+      "question": "Which process involves developing an approximation of the monetary resources needed to complete project activities?",
+      "correct_answer": "Estimate Costs",
+      "incorrect_answers": [
+        "Determine Budget",
+        "Control Costs",
+        "Plan Cost Management"
+      ],
+      "reasoning": "Estimate Costs focuses on approximating the financial resources required for the project work."
+    },
+    {
+      "id": "11",
+      "question": "Which quality management tool is used to identify the vital few sources that are responsible for causing most of a problem's effects?",
+      "correct_answer": "Pareto Diagram",
+      "incorrect_answers": [
+        "Control Chart",
+        "Cause-and-Effect Diagram",
+        "Flowchart"
+      ],
+      "reasoning": "The Pareto Diagram helps pinpoint the few factors that cause the majority of problems, based on the 80/20 principle."
+    },
+    {
+      "id": "12",
+      "question": "Which process involves tracking team member performance, providing feedback, resolving issues, and managing team changes to optimize project performance?",
+      "correct_answer": "Manage Team",
+      "incorrect_answers": [
+        "Develop Team",
+        "Control Resources",
+        "Acquire Resources"
+      ],
+      "reasoning": "Manage Team is dedicated to monitoring and enhancing the performance of the project team."
+    },
+    {
+      "id": "13",
+      "question":  "You have been requested to fill in for a project manager who has called in sick midway into project execution. As you get yourself familiar with the project team, you are impressed to see how well the team members collaborate and work through issues smoothly and effectively. Based on your observations, where is the team on the Tuckman ladder?",
+      "correct_answer": "D",
+      "incorrect_answers": [
+        "A",
+        "B",
+        "C"
+      ],
+      "reasoning": "A team that collaborates effectively and handles issues smoothly is considered to be in the Performing stage (D) of the Tuckman ladder.",
+      "image_link": "https://www.project-management-prepcast.com/images/exam_sim_questions/6113170.jpg"
+    },
+    {
+      "id": "14",
+      "question": "Tom, as the project manager, is in the middle of project execution when his boss tells him that he should release one of his team members for another project. Assuming that all of his project resources have similar capabilities and each resource is working on only one activity at a time, which activity would be impacted the least if that resource were released?",
+      "correct_answer": "Activity F",
+      "incorrect_answers": [
+        "Activity C",
+        "Activity B",
+        "Activity H"
+      ],
+      "reasoning": "Activity F, having the highest float, can be delayed without affecting the critical path, making it the least impacted by a resource change.",
+      "image_link": "https://www.pmppracticeexam.org/wp-content/uploads/2021/07/Duration-Chart.png"
+    },
+    {
+      "id": "15",
+      "question": "What is the primary focus of human resource management in project management?",
+      "correct_answer": "To ensure effective team performance by recruiting, developing, and managing personnel.",
+      "incorrect_answers": [
+        "To create detailed project schedules",
+        "To manage project risks",
+        "To control project costs"
+      ],
+      "reasoning": "Human resource management is centered on building and maintaining an effective project team."
+    },
+    {
+      "id": "16",
+      "question": "Which leadership style emphasizes empowerment and facilitating team growth?",
+      "correct_answer": "Servant Leadership",
+      "incorrect_answers": [
+        "Autocratic Leadership",
+        "Transactional Leadership",
+        "Laissez-Faire Leadership"
+      ],
+      "reasoning": "Servant Leadership prioritizes supporting and empowering team members rather than directing every decision."
+    },
+    {
+      "id": "17",
+      "question": "Real-life scenario: A team member consistently shows low motivation. What should you do first?",
+      "correct_answer": "Conduct a one-on-one meeting to understand underlying issues.",
+      "incorrect_answers": [
+        "Immediately reprimand the team member",
+        "Ignore the behavior",
+        "Reassign tasks without discussion"
+      ],
+      "reasoning": "A personal discussion can help uncover underlying issues and address low motivation constructively."
+    },
+    {
+      "id": "18",
+      "question": "What is the purpose of a RACI matrix in project management?",
+      "correct_answer": "To clarify roles and responsibilities for project tasks.",
+      "incorrect_answers": [
+        "To track project costs",
+        "To develop the project schedule",
+        "To manage stakeholder communications"
+      ],
+      "reasoning": "A RACI matrix assigns who is Responsible, Accountable, Consulted, and Informed, ensuring clear role delineation."
+    },
+    {
+      "id": "19",
+      "question": "Real-life scenario: Two team members are in conflict, which is affecting collaboration. What should you do first?",
+      "correct_answer": "Mediate a discussion to address the conflict.",
+      "incorrect_answers": [
+        "Immediately discipline both team members",
+        "Ignore the conflict",
+        "Permanently separate the team members"
+      ],
+      "reasoning": "Mediating a discussion is the most constructive initial step to resolve conflict and restore collaboration."
+    },
+    {
+      "id": "20",
+      "question": "Which technique is used to evaluate team performance and identify areas for improvement?",
+      "correct_answer": "Performance appraisals and team retrospectives.",
+      "incorrect_answers": [
+        "Risk analysis",
+        "Budget variance reports",
+        "Resource leveling"
+      ],
+      "reasoning": "Regular performance reviews and retrospectives help assess team effectiveness and pinpoint improvement areas."
+    },
+    {
+      "id": "21",
+      "question": "Real-life scenario: Communication issues arise in a multicultural team. What should you do?",
+      "correct_answer": "Implement cultural awareness training and establish clear communication protocols.",
+      "incorrect_answers": [
+        "Mandate one language only",
+        "Ignore cultural differences",
+        "Restructure the team immediately"
+      ],
+      "reasoning": "Training and clear protocols help bridge cultural gaps and improve communication without drastic team changes."
+    },
+    {
+      "id": "22",
+      "question": "Which process focuses on improving team capabilities and cohesion?",
+      "correct_answer": "Develop Team",
+      "incorrect_answers": [
+        "Acquire Resources",
+        "Control Resources",
+        "Manage Team"
+      ],
+      "reasoning": "Develop Team is specifically aimed at enhancing the skills and cohesion of the project team."
+    },
+    {
+      "id": "23",
+      "question": "Which interpersonal skill is most important for a project manager when resolving conflicts?",
+      "correct_answer": "Active Listening",
+      "incorrect_answers": [
+        "Technical Proficiency",
+        "Decisiveness",
+        "Authoritative Decision-Making"
+      ],
+      "reasoning": "Active listening allows a project manager to fully understand different perspectives and resolve conflicts effectively."
+    },
+    {
+      "id": "24",
+      "question": "Real-life scenario: In a team meeting, an innovative idea is proposed but is quickly dismissed by others. What should you do?",
+      "correct_answer": "Encourage open discussion to evaluate the idea objectively.",
+      "incorrect_answers": [
+        "Dismiss the idea immediately",
+        "Implement it without discussion",
+        "Schedule a separate meeting for the idea"
+      ],
+      "reasoning": "Facilitating an open discussion helps ensure that all ideas are given fair consideration, fostering innovation."
+    },
+    {
+      "id": "25",
+      "question": "What is the primary purpose of holding regular team meetings in project management?",
+      "correct_answer": "To ensure alignment, track progress, and address issues promptly.",
+      "incorrect_answers": [
+        "To micromanage every task",
+        "To solely report to senior management",
+        "To assign blame for delays"
+      ],
+      "reasoning": "Regular meetings help keep the team aligned and allow for timely resolution of issues."
+    },
+    {
+      "id": "26",
+      "question": "Which leadership quality is essential for motivating a project team during challenging phases?",
+      "correct_answer": "Empathy",
+      "incorrect_answers": [
+        "Strictness",
+        "Indifference",
+        "Over-controlling behavior"
+      ],
+      "reasoning": "Empathy enables leaders to understand and address team challenges, fostering motivation even during tough times."
+    },
+    {
+      "id": "27",
+      "question": "Real-life scenario: A team member consistently exceeds expectations and mentors others. What recognition is most appropriate?",
+      "correct_answer": "Formal acknowledgment and consideration for leadership opportunities.",
+      "incorrect_answers": [
+        "Ignore their contributions",
+        "Punish them for overshadowing others",
+        "Immediately promote without review"
+      ],
+      "reasoning": "Recognizing exceptional performance through formal acknowledgment encourages continued excellence and leadership growth."
+    },
+    {
+      "id": "28",
+      "question": "Which approach best fosters creativity within a project team?",
+      "correct_answer": "Encouraging brainstorming sessions and open dialogue.",
+      "incorrect_answers": [
+        "Strict adherence to routine tasks",
+        "Avoiding risk by sticking to established methods",
+        "Limiting team interactions to formal meetings"
+      ],
+      "reasoning": "Brainstorming and open dialogue create an environment where creative ideas can flourish."
+    },
+    {
+      "id": "29",
+      "question": "Real-life scenario: Communication among remote team members is lacking, leading to misunderstandings. What should you do?",
+      "correct_answer": "Implement regular video conferences and standardized communication protocols.",
+      "incorrect_answers": [
+        "Rely solely on email communication",
+        "Limit interactions to text messages",
+        "Assume the issue will resolve on its own"
+      ],
+      "reasoning": "Structured communication methods help ensure clarity and reduce misunderstandings in remote teams."
+    },
+    {
+      "id": "30",
+      "question": "Which document outlines the skills, experience, and roles required for project team members?",
+      "correct_answer": "Resource Breakdown Structure",
+      "incorrect_answers": [
+        "Project Charter",
+        "Work Breakdown Structure",
+        "Risk Register"
+      ],
+      "reasoning": "The Resource Breakdown Structure details the specific human resource requirements needed for the project."
+    },
+    {
+      "id": "31",
+      "question": "Real-life scenario: A prolonged high workload leads to team burnout. What should you do first?",
+      "correct_answer": "Review workload distribution and adjust deadlines or reassign tasks as needed.",
+      "incorrect_answers": [
+        "Ignore the signs of burnout",
+        "Increase the workload to push through",
+        "Immediately replace team members"
+      ],
+      "reasoning": "Adjusting workload early helps prevent burnout and sustains team productivity."
+    },
+    {
+      "id": "32",
+      "question": "Select all that apply: Which of the following are key benefits of effective conflict resolution in a project team?",
+      "correct_answers": [
+        "Improved collaboration",
+        "Enhanced trust",
+        "Better problem-solving"
+      ],
+      "incorrect_answers": [
+        "Increased tension",
+        "Reduced productivity"
+      ],
+      "reasoning": "Effective conflict resolution strengthens team collaboration, builds trust, and leads to better solutions.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "33",
+      "question": "What is the primary objective of performance appraisals in project team management?",
+      "correct_answer": "To evaluate individual contributions and identify areas for improvement.",
+      "incorrect_answers": [
+        "To solely determine salary increases",
+        "To micromanage daily tasks",
+        "To assign project roles"
+      ],
+      "reasoning": "Performance appraisals are designed to provide constructive feedback and support continuous team development."
+    },
+    {
+      "id": "34",
+      "question": "Real-life scenario: New team members are having difficulty integrating with experienced members. What should you do?",
+      "correct_answer": "Organize team-building activities that promote collaboration and mentorship.",
+      "incorrect_answers": [
+        "Assign new members to separate tasks",
+        "Ignore the integration issues",
+        "Place new members in solitary roles"
+      ],
+      "reasoning": "Team-building activities facilitate better integration and help bridge the gap between new and experienced members."
+    },
+    {
+      "id": "35",
+      "question": "Which of the following best describes emotional intelligence in project management?",
+      "correct_answer": "The ability to understand and manage one’s own emotions and those of others.",
+      "incorrect_answers": [
+        "The ability to control others’ emotions",
+        "A measure of technical expertise",
+        "Strict adherence to project schedules"
+      ],
+      "reasoning": "Emotional intelligence involves awareness and management of emotions, which is crucial for effective leadership."
+    },
+    {
+      "id": "36",
+      "question": "Real-life scenario: A team member is reluctant to share ideas during meetings. What should you do?",
+      "correct_answer": "Encourage one-on-one discussions to build their confidence.",
+      "incorrect_answers": [
+        "Publicly reprimand the individual",
+        "Ignore the silence",
+        "Force them to speak up during the meeting"
+      ],
+      "reasoning": "A one-on-one conversation can help understand and overcome the reluctance in a supportive manner."
+    },
+    {
+      "id": "37",
+      "question": "Which tool is commonly used to assess individual skills and assign team roles in a project?",
+      "correct_answer": "Skills Matrix",
+      "incorrect_answers": [
+        "Gantt Chart",
+        "Risk Register",
+        "Project Charter"
+      ],
+      "reasoning": "A Skills Matrix helps identify the capabilities of team members and align them with project needs."
+    },
+    {
+      "id": "38",
+      "question": "Real-life scenario: A conflict arises over overlapping responsibilities between departments. What is your first step?",
+      "correct_answer": "Review and clarify roles using tools like the RACI matrix.",
+      "incorrect_answers": [
+        "Ignore the overlap",
+        "Reassign roles without discussion",
+        "Hold separate meetings with each department independently"
+      ],
+      "reasoning": "Clarifying roles with a RACI matrix helps resolve conflicts and ensures accountability across departments."
+    },
+    {
+      "id": "39",
+      "question": "Select all that apply: Which of the following are key components of effective team communication?",
+      "correct_answers": [
+        "Clear messaging",
+        "Regular updates",
+        "Active listening"
+      ],
+      "incorrect_answers": [
+        "Ambiguous instructions",
+        "Infrequent meetings"
+      ],
+      "reasoning": "Effective communication relies on clarity, consistency, and active engagement among team members.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "40",
+      "question": "What is the primary benefit of implementing mentoring programs within project teams?",
+      "correct_answer": "To develop skills and facilitate knowledge transfer among team members.",
+      "incorrect_answers": [
+        "To increase competition within the team",
+        "To strictly monitor performance",
+        "To enforce standardized procedures"
+      ],
+      "reasoning": "Mentoring programs foster professional growth and help disseminate critical knowledge throughout the team."
+    },
+    {
+      "id": "41",
+      "question": "Real-life scenario: During a virtual onboarding session, a new hire appears disengaged. What should you do first?",
+      "correct_answer": "Follow up individually to understand and address their concerns.",
+      "incorrect_answers": [
+        "Immediately reassign them to a different role",
+        "Ignore the behavior",
+        "Send a generic welcome email"
+      ],
+      "reasoning": "Individual follow-up ensures the new hire feels supported and any issues are addressed promptly."
+    },
+    {
+      "id": "42",
+      "question": "Which process in project management focuses on acquiring the necessary human resources?",
+      "correct_answer": "Acquire Resources",
+      "incorrect_answers": [
+        "Develop Team",
+        "Control Resources",
+        "Plan Resource Management"
+      ],
+      "reasoning": "Acquire Resources is dedicated to obtaining the human resources needed for project execution."
+    },
+    {
+      "id": "43",
+      "question": "Real-life scenario: A team survey indicates low morale. What is your first course of action?",
+      "correct_answer": "Analyze the survey results and hold a team meeting to discuss improvements.",
+      "incorrect_answers": [
+        "Ignore the survey results",
+        "Immediately fire underperforming team members",
+        "Increase work hours without further investigation"
+      ],
+      "reasoning": "Analyzing feedback and discussing improvements helps address morale issues effectively."
+    },
+    {
+      "id": "44",
+      "question": "Which of the following is a key benefit of cross-functional teams in project management?",
+      "correct_answer": "They bring diverse perspectives and skills to solve complex problems.",
+      "incorrect_answers": [
+        "They create departmental silos",
+        "They slow down decision-making",
+        "They reduce overall communication"
+      ],
+      "reasoning": "Cross-functional teams leverage varied expertise, which enhances innovation and problem solving."
+    },
+    {
+      "id": "45",
+      "question": "Real-life scenario: Informal communication is causing misunderstandings in a remote team. What should you do?",
+      "correct_answer": "Establish standardized communication protocols and use a centralized collaboration tool.",
+      "incorrect_answers": [
+        "Rely solely on email communication",
+        "Discourage all informal chats",
+        "Mandate phone calls for every update"
+      ],
+      "reasoning": "Standardizing communication methods ensures clarity and consistency among remote team members."
+    },
+    {
+      "id": "46",
+      "question": "Which leadership style is characterized by minimal interference, granting high autonomy to team members?",
+      "correct_answer": "Laissez-faire Leadership",
+      "incorrect_answers": [
+        "Autocratic Leadership",
+        "Servant Leadership",
+        "Transactional Leadership"
+      ],
+      "reasoning": "Laissez-faire leadership offers significant freedom, allowing team members to work independently."
+    },
+    {
+      "id": "47",
+      "question": "Real-life scenario: A team is paralyzed by indecision during meetings. What should you implement?",
+      "correct_answer": "A clear decision-making framework, such as consensus or majority voting.",
+      "incorrect_answers": [
+        "Let each member decide independently",
+        "Ignore the problem and continue as is",
+        "Delegate all decisions to one individual"
+      ],
+      "reasoning": "A structured decision-making framework streamlines the process and helps overcome meeting paralysis."
+    },
+    {
+      "id": "48",
+      "question": "Select all that apply: Which soft skills are essential for effective project leadership?",
+      "correct_answers": [
+        "Communication",
+        "Empathy",
+        "Conflict resolution"
+      ],
+      "incorrect_answers": [
+        "Technical expertise only",
+        "Micromanagement",
+        "Rigid decision-making"
+      ],
+      "reasoning": "Effective leadership depends on soft skills such as communication, empathy, and the ability to resolve conflicts.",
+      "type": "multiple-answer"
+    },
+    {
+      "id": "49",
+      "question": "What is the primary objective of a team retrospective in project management?",
+      "correct_answer": "To reflect on past performance and identify areas for improvement.",
+      "incorrect_answers": [
+        "To assign blame for failures",
+        "To celebrate success exclusively",
+        "To finalize the project schedule"
+      ],
+      "reasoning": "Retrospectives provide an opportunity for the team to learn from experiences and continuously improve."
+    },
+    {
+      "id": "50",
+      "question": "Real-life scenario: Emotions run high during a team meeting due to a conflict. What is your best course of action as the facilitator?",
+      "correct_answer": "Pause the meeting to allow for cooling off and then mediate the discussion calmly.",
+      "incorrect_answers": [
+        "Continue the meeting without addressing the conflict",
+        "Immediately reprimand the individuals involved",
+        "Cancel the meeting entirely"
+      ],
+      "reasoning": "A pause helps de-escalate the situation, enabling a more constructive, mediated discussion afterward."
+    }
+  ]
+  

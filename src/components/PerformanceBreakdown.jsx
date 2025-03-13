@@ -1,33 +1,101 @@
-//// filepath: /c:/Users/kalvi/OneDrive/Desktop/Main/src/components/PerformanceBreakdown.jsx
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 
-const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, score, bestScore, bestAttemptCount }) => {
-  // Render the topic breakdown section (only for random quizzes)
+// New subcomponent for overall performance message
+const OverallPerformanceMessage = ({
+  score,
+  prevBestRawBeforeUpdate,
+  prevBestAttemptBeforeUpdate
+}) => {
+  const currentRaw = score;
+  const oldBest = prevBestRawBeforeUpdate !== null ? prevBestRawBeforeUpdate : currentRaw;
+
+  if (oldBest === 0 && currentRaw > 0) {
+    return (
+      <Box sx={{ mt: 2, textAlign: 'center' }}>
+        <Typography variant="subtitle1">
+          This is your first recorded score.
+        </Typography>
+      </Box>
+    );
+  } else if (currentRaw > oldBest) {
+    const improvementPercent = Math.round(((currentRaw - oldBest) / oldBest) * 100);
+    return (
+      <Box sx={{ mt: 2, textAlign: 'center' }}>
+        <Typography variant="subtitle1">
+          Previously you got {oldBest} out of {prevBestAttemptBeforeUpdate || currentRaw} correct.
+        </Typography>
+        <Typography variant="subtitle2" color="primary">
+          Your score improved by {improvementPercent}% based on your last raw score.
+        </Typography>
+      </Box>
+    );
+  } else if (currentRaw === oldBest) {
+    return (
+      <Box sx={{ mt: 2, textAlign: 'center' }}>
+        <Typography variant="subtitle1">
+          Your best performance so far was {oldBest} correct answers (on {prevBestAttemptBeforeUpdate || currentRaw} questions).
+        </Typography>
+        <Typography variant="subtitle2" color="textSecondary">
+          You got the same raw score as your previous best.
+        </Typography>
+      </Box>
+    );
+  } else {
+    const decreasePercent = Math.round(((oldBest - currentRaw) / oldBest) * 100);
+    return (
+      <Box sx={{ mt: 2, textAlign: 'center' }}>
+        <Typography variant="subtitle1">
+          Your best performance so far was {oldBest} correct answers (on {prevBestAttemptBeforeUpdate || currentRaw} questions).
+        </Typography>
+        <Typography variant="subtitle2" color="secondary">
+          Your score decreased by {decreasePercent}% based on your last raw score.
+        </Typography>
+      </Box>
+    );
+  }
+};
+
+const PerformanceBreakdown = ({
+  flashcards,
+  userAnswers,
+  topicColors,
+  category,
+  score,
+  prevBestRawBeforeUpdate,      
+  prevBestAttemptBeforeUpdate
+}) => {
+  // Use Object.keys for determining if userAnswers has any content
+  const hasUserAnswers = Object.keys(userAnswers).length > 0;
+  
   const topicBreakdown =
-    category === 'Random' && flashcards.length > 0 && userAnswers.length > 0 && (
+    category === 'Random' &&
+    flashcards.length > 0 &&
+    hasUserAnswers && (
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
         <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
           Topic Breakdown:
         </Typography>
         {['Events', 'People', 'Procedures', 'Quality'].map((topic) => {
-          const topicQuestions = flashcards.filter(q => q.category === topic);
+          const topicQuestions = flashcards.filter((q) => q.category === topic);
           if (topicQuestions.length === 0) return null;
-          const topicCorrect = flashcards.reduce((acc, q, i) => {
+          const topicCorrect = flashcards.reduce((acc, q) => {
             if (q.category === topic) {
               let corr = false;
-              if (userAnswers[i]) {
+              if (userAnswers[q.id]) {
                 if (q.correct_order.length > 0) {
-                  corr = JSON.stringify(userAnswers[i]) === JSON.stringify(q.correct_order);
+                  corr = JSON.stringify(userAnswers[q.id]) === JSON.stringify(q.correct_order);
                 } else if (q.pairs.length > 0) {
-                  corr = q.pairs.every(pair =>
-                    userAnswers[i].some(answer => answer.term === pair.term && answer.definition === pair.definition)
+                  corr = q.pairs.every((pair) =>
+                    userAnswers[q.id].some(
+                      (answer) => answer.term === pair.term && answer.definition === pair.definition
+                    )
                   );
                 } else {
                   corr =
-                    q.ans.every(ans => userAnswers[i].includes(ans)) &&
-                    userAnswers[i].length === q.ans.length;
+                    q.ans.every((ans) => userAnswers[q.id].includes(ans)) &&
+                    userAnswers[q.id].length === q.ans.length;
                 }
               }
               return acc + (corr ? 1 : 0);
@@ -35,7 +103,6 @@ const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, 
             return acc;
           }, 0);
           const percentage = topicQuestions.length > 0 ? Math.round((topicCorrect / topicQuestions.length) * 100) : 0;
-          // Change gauge color for Events to red, otherwise use the provided topicColor.
           const topicColor = topic === 'Events' ? '#FF0000' : topicColors[topic];
           return (
             <Box
@@ -47,7 +114,7 @@ const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, 
                 gap: 2,
                 mb: 2,
                 height: '100px',
-                width: '100%', // ensures full container width for centering
+                width: '100%',
               }}
             >
               <Typography
@@ -99,34 +166,30 @@ const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, 
       </Box>
     );
 
-  // Render the detailed breakdown for each flashcard.
-  const detailedBreakdown = flashcards.map((q, i) => {
+  const detailedBreakdown = flashcards.map((q) => {
     let correct = false;
-    if (userAnswers[i]) {
+    const userAnswer = userAnswers[q.id] || [];
+    if (userAnswer.length) {
       if (q.correct_order.length > 0) {
-        correct = JSON.stringify(userAnswers[i]) === JSON.stringify(q.correct_order);
+        correct = arraysEqual(userAnswer, q.correct_order);
       } else if (q.pairs.length > 0) {
-        correct = q.pairs.every(pair =>
-          userAnswers[i].some(answer => answer.term === pair.term && answer.definition === pair.definition)
+        correct = q.pairs.every((pair) =>
+          userAnswer.some(
+            (answer) => answer.term === pair.term && answer.definition === pair.definition
+          )
         );
       } else {
-        correct =
-          q.ans.every(answer => userAnswers[i].includes(answer)) &&
-          userAnswers[i].length === q.ans.length;
+        correct = arraysEqual(userAnswer, q.ans);
       }
     }
     return (
-      <Box key={i} sx={{ mt: 2, p: 1, border: '1px solid #eee', borderRadius: '4px' }}>
+      <Box key={q.id} sx={{ mt: 2, p: 1, border: '1px solid #eee', borderRadius: '4px' }}>
         <Typography variant="subtitle1">
-          <strong>Question {i + 1}:</strong> {q.question}
+          <strong>Question:</strong> {q.question}
         </Typography>
         {q.image_link && (
           <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
-            <img
-              src={q.image_link}
-              alt={`Question ${i + 1}`}
-              style={{ maxWidth: '100%', maxHeight: '200px' }}
-            />
+            <img src={q.image_link} alt={`Question ${q.id}`} style={{ maxWidth: '100%', maxHeight: '200px' }} />
           </Box>
         )}
         <Typography variant="body2" color={correct ? 'green' : 'red'}>
@@ -134,10 +197,10 @@ const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, 
         </Typography>
         <Typography variant="body2">
           <strong>Your answer:</strong>{' '}
-          {userAnswers[i]
+          {userAnswer.length
             ? q.type === 'matching'
-              ? userAnswers[i].map(answer => `${answer.term}: ${answer.definition}`).join('; ')
-              : userAnswers[i].join(', ')
+              ? userAnswer.map((answer) => `${answer.term}: ${answer.definition}`).join('; ')
+              : userAnswer.join(', ')
             : 'No answer provided'}
         </Typography>
         {!correct && (
@@ -145,10 +208,10 @@ const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, 
             <Typography variant="body2">
               <strong>Correct answer:</strong>{' '}
               {q.type === 'matching'
-                ? q.pairs.map(pair => `${pair.term}: ${pair.definition}`).join('; ')
+                ? q.pairs.map((pair) => `${pair.term}: ${pair.definition}`).join('; ')
                 : q.type === 'sorting'
-                  ? q.correct_order.join(', ')
-                  : q.ans.join(', ')}
+                ? q.correct_order.join(', ')
+                : q.ans.join(', ')}
             </Typography>
             {q.reasoning && (
               <Typography variant="body2">
@@ -164,12 +227,25 @@ const PerformanceBreakdown = ({ flashcards, userAnswers, topicColors, category, 
   return (
     <Box sx={{ width: '100%', mt: 3, p: 2, borderTop: '1px solid #ccc' }}>
       {topicBreakdown}
+      <OverallPerformanceMessage
+        score={score}
+        flashcardsLength={flashcards.length}
+        prevBestRawBeforeUpdate={prevBestRawBeforeUpdate}
+        prevBestAttemptBeforeUpdate={prevBestAttemptBeforeUpdate}
+      />
       <Typography variant="h6" sx={{ mt: 3, mb: 2, textAlign: 'center' }}>
         Detailed Breakdown:
       </Typography>
       {detailedBreakdown}
     </Box>
   );
+};
+
+const arraysEqual = (a, b) => {
+  if (a.length !== b.length) return false;
+  const sortedA = [...a].sort();
+  const sortedB = [...b].sort();
+  return sortedA.every((val, index) => val === sortedB[index]);
 };
 
 export default PerformanceBreakdown;

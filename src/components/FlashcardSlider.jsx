@@ -8,16 +8,22 @@ import 'swiper/css/navigation';
 import '../app.css';
 import './styles.css';
 import { Pagination, Navigation } from 'swiper/modules';
+import useAudioService from '../services/AudioService';
 
-export default function FlashcardSlider({ flashcards }) {
-  const [flipStates, setFlipStates] = useState(flashcards.map(() => false));
+export default function FlashcardSlider({ flashcards, playFlipSound }) {
+  const { playSwipeSound } = useAudioService();
+  const [flipStates, setFlipStates] = useState(Array(flashcards.length).fill(false));
 
-  const handleSlideChange = () => {
-    setFlipStates(flipStates.map(() => false));
+  const handleRealSlideChange = () => {
+    // Only play sound on actual slide changes, not initial load
+    playSwipeSound();
+    setFlipStates(prev => prev.map(() => false));
   };
 
   const handleFlip = (index) => {
-    setFlipStates(flipStates.map((flip, i) => (i === index ? !flip : flip)));
+    setFlipStates(prev => 
+      prev.map((state, i) => i === index ? !state : state)
+    );
   };
 
   return (
@@ -31,14 +37,16 @@ export default function FlashcardSlider({ flashcards }) {
       navigation={true}
       modules={[Pagination, Navigation]}
       className="mySwiper"
-      onSlideChange={handleSlideChange}
+      onSlideNextTransitionStart={handleRealSlideChange}
+      onSlidePrevTransitionStart={handleRealSlideChange}
     >
       {flashcards.map((flashcard, index) => (
-        <SwiperSlide key={flashcard.id} style={{ height: '100%' }}>
+        <SwiperSlide key={flashcard.id || index} style={{ height: '100%' }}>
           <Flashcard
             flashcard={flashcard}
-            flip={flipStates[index]}
+            flip={flipStates[index] || false}
             onFlip={() => handleFlip(index)}
+            playFlipSound={playFlipSound}
           />
         </SwiperSlide>
       ))}
@@ -46,14 +54,20 @@ export default function FlashcardSlider({ flashcards }) {
   );
 }
 
-// Define propTypes for FlashcardSlider
 FlashcardSlider.propTypes = {
   flashcards: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.string,
       question: PropTypes.string.isRequired,
-      ans: PropTypes.string.isRequired,
+      ans: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array
+      ]).isRequired,
       option: PropTypes.arrayOf(PropTypes.string).isRequired,
+      type: PropTypes.string,
+      image_link: PropTypes.string,
+      reasoning: PropTypes.string,
     })
   ).isRequired,
+  playFlipSound: PropTypes.func
 };

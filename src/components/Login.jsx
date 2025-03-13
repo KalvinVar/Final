@@ -1,34 +1,61 @@
-import React, { useState } from "react"; // Step 1.1: Import necessary hooks from React
-import { useNavigate } from "react-router-dom"; // Step 1.2: Import navigation hooks from react-router-dom
-import { Box, TextField, Button, Typography, Paper, Alert } from "@mui/material"; // Step 1.3: Import components from Material-UI
-import { loginUser } from "../auth"; // Step 1.4: Import loginUser function from auth module
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Box, TextField, Button, Typography, Paper, Alert } from "@mui/material";
 
-// Login Component
 const Login = () => {
-  // State hooks for username, password, and error messages
-  const [username, setUsername] = useState(""); // Step 2.1: Initialize state for username
-  const [password, setPassword] = useState(""); // Step 2.2: Initialize state for password
-  const [error, setError] = useState(""); // Step 2.3: Initialize state for error messages
-  const navigate = useNavigate(); // Step 2.4: Initialize useNavigate for navigation
+  const [username, setUsername] = useState(""); // State for username
+  const [password, setPassword] = useState(""); // State for password
+  const [error, setError] = useState("");       // State for error messages
+  const navigate = useNavigate();
 
-  // Function to handle form submission
+  // Function to handle form submission using the API
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Step 3.1: Prevent default form submission behavior
+    e.preventDefault();
+
+    if (!username || !password) {
+      setError("Username and password are required");
+      return;
+    }
+
     try {
-      if (!username || !password) {
-        setError('Username and password are required'); // Step 3.1.1: Set error message if inputs are empty
+      const response = await fetch("https://mindflipkalvin.mooo.com/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await response.json();
+      
+      if (!response.ok) {
+        setError(data.error || "Login failed");
         return;
       }
-      await loginUser(username, password); // Step 3.2: Call loginUser function
-      navigate("/app"); // Step 3.3: Navigate to the main app page upon success
+      
+      // Set authentication flag AND username
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("currentUser", username);
+      
+      // Store the user ID from the response
+      if (data.userId) {
+        localStorage.setItem("userId", data.userId);
+      }
+      
+      // Clear any errors
+      setError("");
+      
+      // Force a redirect to the app page
+      console.log("Login successful, redirecting to /app");
+      setTimeout(() => {
+        navigate("/app", { replace: true });
+      }, 100);
     } catch (err) {
-      setError(err.message); // Step 3.4: Set error message if login fails
+      console.error("Login error:", err);
+      setError(err.message || "An unexpected error occurred");
     }
   };
 
   // Navigate to the register page
   const handleRegisterClick = () => {
-    navigate('/register'); // Step 4.1: Navigate to the register page
+    navigate("/register");
   };
 
   return (
@@ -58,7 +85,7 @@ const Login = () => {
               variant="outlined"
               fullWidth
               value={username}
-              onChange={(e) => setUsername(e.target.value)} // Step 2.1: User inputs the username
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Box>
           <Box mb={2}>
@@ -68,16 +95,16 @@ const Login = () => {
               type="password"
               fullWidth
               value={password}
-              onChange={(e) => setPassword(e.target.value)} // Step 2.2: User inputs the password
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Box>
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login {/* Step 2.3: User presses the submit button */}
+            Login
           </Button>
         </form>
         <Box mt={2} textAlign="center">
           <Button variant="outlined" color="secondary" fullWidth onClick={handleRegisterClick}>
-            Don't have an account? Register {/* Step 4.2: User presses the register button */}
+            Don't have an account? Register
           </Button>
         </Box>
       </Paper>
@@ -86,25 +113,3 @@ const Login = () => {
 };
 
 export default Login;
-
-/**
- * Login Flow:
- * 1. User navigates to the login page.
- * 2. User fills out the login form:
- *    2.1. User inputs the username.
- *    2.2. User inputs the password.
- *    2.3. User presses the submit button.
- *    2.4. (Optional) User can navigate to the register page.
- * 3. handleSubmit is called, which:
- *    3.1. Prevents the default form submission.
- *         e.preventDefault();
- *    3.2. Calls loginUser function.
- *         loginUser(username, password);
- *    3.3. If successful, navigates to the main app page.
- *         navigate('/app');
- *    3.4. If the login fails, an error message is shown.
- *         setError(err.message);
- * 4. handleRegisterClick is called, which:
- *    4.1. Navigates to the register page.
- *         navigate('/register');
- */

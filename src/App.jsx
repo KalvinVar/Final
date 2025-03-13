@@ -1,27 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FlashcardList from './components/FlashcardList';
 import FlashcardSlider from './components/FlashcardSlider';
 import './app.css';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Box, TextField, Button, Typography, AppBar, Toolbar } from '@mui/material';
+import { Box, TextField, Button, Typography, AppBar, Toolbar, CircularProgress } from '@mui/material';
 import { getCurrentUser, isAuthenticated, logoutUser } from './auth';
-import eventsData from './questions/Events.json';
-import peopleData from './questions/People.json';
-import proceduresData from './questions/Procedures.json';
-import qualityData from './questions/Quality.json';
+import useAudioService from './services/AudioService';
+
+const parseJSONSafely = (data, fallback = []) => {
+  try {
+    return typeof data === 'string' ? JSON.parse(data) : data;
+  } catch (error) {
+    console.error('JSON Parse Error:', error);
+    return fallback;
+  }
+};
 
 const App = () => {
+  const { 
+    audioElements, 
+    playButtonClickSound,
+    playGenerateFlashcardsSound,
+    playFlipSound
+  } = useAudioService();
+
+  const shuffleArray = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+
   const [flashcards, setFlashcards] = useState([]);
   const [categories, setCategories] = useState(['Events', 'People', 'Procedures', 'Quality']);
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState(12);
   const [score, setScore] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState('');
-  const [isSliderActive, setIsSliderActive] = useState(true); // Set default view to slider
+  const [isSliderActive, setIsSliderActive] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const username = getCurrentUser();
 
@@ -46,96 +69,98 @@ const App = () => {
     return textArea.value;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    let selectedQuestions = [];
-    switch (category) {
-      case 'Events':
-        selectedQuestions = eventsData;
-        break;
-      case 'People':
-        selectedQuestions = peopleData;
-        break;
-      case 'Procedures':
-        selectedQuestions = proceduresData;
-        break;
-      case 'Quality':
-        selectedQuestions = qualityData;
-        break;
-      default:
-        break;
-    }
-
-    selectedQuestions = selectedQuestions.slice(0, amount).map((qItem) => {
-      const question = htmldecoder(qItem.question);
-      // Special types: Create an option property from available data
-      if (qItem.type === 'sorting') {
-        return {
-          id: qItem.id,
-          question,
-          ans: qItem.correct_order ? qItem.correct_order.join(', ') : '',
-          correct_order: qItem.correct_order,
-          answers: qItem.answers || [],
-          // Provide an option property for text-only review (could be the same as answers or correct_order)
-          option: qItem.answers && qItem.answers.length > 0 ? qItem.answers : (qItem.correct_order || []),
-          reasoning: qItem.reasoning || '',
-          type: 'sorting'
-        };
-      } else if (qItem.type === 'matching') {
-        return {
-          id: qItem.id,
-          question,
-          ans: qItem.pairs
-            ? qItem.pairs.map(pair => `${pair.term}: ${pair.definition}`).join('; ')
-            : '',
-          pairs: qItem.pairs,
-          // Provide an option property for matching questions as a formatted array of strings
-          option: qItem.pairs ? qItem.pairs.map(pair => `${pair.term}: ${pair.definition}`) : [],
-          reasoning: qItem.reasoning || '',
-          type: 'matching'
-        };
-      } else {
-        // Multiple-choice or multi-select questions
-        // If a correct_answers array exists, handle multi-select questions using it.
-        if (qItem.correct_answers) {
-          const correctAnswersArray = qItem.correct_answers.map(ans => htmldecoder(ans));
-          const options = [
-            ...qItem.incorrect_answers.map(o => htmldecoder(o)),
-            ...correctAnswersArray
-          ];
-          return {
-            id: qItem.id,
-            question,
-            ans: correctAnswersArray.join(', '),
-            option: options.sort(() => Math.random() - 0.5),
-            reasoning: qItem.reasoning || '',
-            type: 'multiple-choice',
-            image_link: qItem.image_link || null  // <-- This gives each flashcard an image_link property if present
-          };
-        } else {
-          // Normal multiple-choice questions with a single correct answer
-          const correctAnswer = htmldecoder(qItem.correct_answer);
-          const options = [
-            ...qItem.incorrect_answers.map(o => htmldecoder(o)),
-            correctAnswer
-          ];
-          return {
-            id: qItem.id,
-            question,
-            ans: correctAnswer,
-            option: options.sort(() => Math.random() - 0.5),
-            reasoning: qItem.reasoning || '',
-            type: 'multiple-choice',
-            image_link: qItem.image_link || null  // <-- This gives each flashcard an image_link property if present
-          };
-        }
+    playGenerateFlashcardsSound();
+    if (!category) return;
+    
+    setIsLoading(true);
+    setError(null);
+  
+    try {
+      const response = await fetch(`https://mindflipkalvin.mooo.com/${category.toLowerCase()}`);
+      if (!response.ok) throw new Error(`Failed to fetch ${category} data`);
+      
+      const data = await response.json();
+      
+      if (!Array.isArray(data.message)) {
+        throw new Error('Invalid data format received');
       }
-    });
-    setFlashcards(selectedQuestions);
+  
+      const questions = data.message;
+      
+      const processed = questions
+        .slice(0, amount)
+        .map(qItem => {
+          if (!qItem || !qItem.question) return null;
+  
+          const question = htmldecoder(qItem.question);
+          const incorrectAnswers = parseJSONSafely(qItem.incorrect_answers, [])
+            .map(ans => htmldecoder(ans));
+  
+          const baseQuestion = {
+            id: String(qItem.id || Date.now()),
+            question,
+            reasoning: qItem.reasoning || '',
+            image_link: qItem.image_link || null,
+            type: qItem.type || 'multiple-choice'
+          };
+  
+          switch (qItem.type) {
+            case 'sorting':
+              const sortingAnswers = parseJSONSafely(qItem.answers, []);
+              const correctOrder = parseJSONSafely(qItem.correct_order, []);
+              if (!sortingAnswers.length || !correctOrder.length) return null;
+              return {
+                ...baseQuestion,
+                ans: correctOrder.join(', '),
+                option: sortingAnswers
+              };
+  
+            case 'matching':
+              const pairs = parseJSONSafely(qItem.answers, []);
+              if (!Array.isArray(pairs) || !pairs.length) return null;
+              return {
+                ...baseQuestion,
+                ans: pairs.map(pair => `${pair.term} → ${pair.definition}`).join('\n'),
+                option: pairs.map(pair => `${pair.term}: ${pair.definition}`)
+              };
+  
+            case 'multiple-answer':
+              const multipleAnswers = parseJSONSafely(qItem.answers, []);
+              if (!Array.isArray(multipleAnswers) || !multipleAnswers.length) return null;
+              return {
+                ...baseQuestion,
+                ans: multipleAnswers.join(', '),
+                option: shuffleArray([...incorrectAnswers, ...multipleAnswers])
+              };
+  
+            default:
+              const correctAnswer = htmldecoder(qItem.correct_answer || '');
+              if (!correctAnswer) return null;
+              return {
+                ...baseQuestion,
+                ans: correctAnswer,
+                option: shuffleArray([...incorrectAnswers, correctAnswer])
+              };
+          }
+        })
+        .filter(Boolean);
+  
+      setFlashcards(processed);
+    } catch (err) {
+      console.error('Error processing questions:', err);
+      setError(err.message);
+      setFlashcards([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleScoreSubmit = (e) => {
     e.preventDefault();
+    playButtonClickSound();
+    
     const newScore = score + Number(correctAnswers);
     setScore(newScore);
     setCorrectAnswers('');
@@ -143,20 +168,21 @@ const App = () => {
   };
 
   const handleScoreReset = () => {
+    playButtonClickSound();
+    
     setScore(0);
     localStorage.removeItem(`score_${username}`);
   };
 
   const handleLogout = () => {
+    playButtonClickSound();
+    
     logoutUser();
     navigate('/login');
   };
 
-  const handleSliderClick = () => {
-    setIsSliderActive(!isSliderActive);
-  };
-
   const handleQuizClick = () => {
+    playButtonClickSound();
     navigate('/quiz');
   };
 
@@ -166,23 +192,15 @@ const App = () => {
 
   return (
     <div className="app-container">
-      {/*----------------------------------------------------NAME, SCORE AND LOGOUT SECTION----------------------------------------------------------------------------------- */}
       <AppBar position="static" sx={{ borderRadius: '10px', marginBottom: '20px' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography variant="h6" component="div">
-            Welcome, {username} {/* Step 1.2.1: Display username */}
+            Welcome, {username}
           </Typography>
           <Typography variant="h6" component="div" sx={{ marginLeft: '20px' }}>
-            Total Correct Answers: {score} {/* Step 1.2.2: Display total correct answers */}
+            Total Correct Answers: {score}
           </Typography>
           <Box sx={{ display: 'flex', gap: '10px' }}>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: isSliderActive ? 'whitesmoke' : 'secondary.main', color: isSliderActive ? 'black' : 'white' }}
-              onClick={handleSliderClick}
-            >
-              {isSliderActive ? 'Grid' : 'Slider'}
-            </Button>
             <Button
               variant="contained"
               color="primary"
@@ -191,14 +209,12 @@ const App = () => {
               Quiz
             </Button>
             <Button variant="contained" color="secondary" onClick={handleLogout}>
-              Logout {/* Step 1.2.3: Logout button */}
+              Logout
             </Button>
           </Box>
         </Toolbar>
       </AppBar>
-      {/*----------------------------------------------------NAME, SCORE AND LOGOUT SECTION----------------------------------------------------------------------------------- */}
 
-      {/*----------------------------------------------------CATEGORY AND CARD # SECTION----------------------------------------------------------------------------------- */}
       <form className="header" onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
         <Box className="form-row" sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', gap: '20px' }}>
           <FormControl className="form-group" sx={{ minWidth: 120 }}>
@@ -207,7 +223,7 @@ const App = () => {
               labelId="category-label"
               id="category"
               value={category}
-              onChange={(e) => setCategory(e.target.value)} // Step 2.1: User selects category
+              onChange={(e) => setCategory(e.target.value)}
               label="Category"
             >
               {categories.map((category, index) => (
@@ -221,34 +237,44 @@ const App = () => {
               label="Number of Questions"
               type="number"
               value={amount}
-              onChange={(e) => setAmount(e.target.value)} // Step 2.2: User inputs number of questions
+              onChange={(e) => setAmount(e.target.value)}
               InputProps={{ inputProps: { min: 1 } }}
             />
           </FormControl>
         </Box>
         <div className="form-group" style={{ marginTop: '20px', width: '100%' }}>
-          <Button type="submit" variant="contained" color="primary" className="generatebtn" sx={{ height: '56px' }}>
-            Generate {/* Step 2.3: Generate flashcards */}
+          <Button 
+            type="submit" 
+            variant="contained" 
+            color="primary" 
+            className="generatebtn" 
+            sx={{ height: '56px' }}
+          >
+            Generate
           </Button>
         </div>
       </form>
-      {/*----------------------------------------------------CATEGORY AND CARD # SECTION----------------------------------------------------------------------------------- */}
-
-      {/*----------------------------------------------------FLASHCARD LIST SECTION----------------------------------------------------------------------------------- */}
-      {flashcards.length > 0 && (
-        isSliderActive ? (
-          <FlashcardSlider flashcards={flashcards} /> // Render FlashcardSlider when isSliderActive is true
-        ) : (
-          <FlashcardList flashcards={flashcards} /> // Render FlashcardList when isSliderActive is false
-        )
+      
+      {isLoading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
+          <CircularProgress />
+        </Box>
       )}
-      {/*----------------------------------------------------FLASHCARD LIST SECTION----------------------------------------------------------------------------------- */}
+      
+      {error && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', my: 4, color: 'error.main' }}>
+          <Typography>Error: {error}</Typography>
+        </Box>
+      )}
 
-      {/*----------------------------------------------------SCORE SECTION----------------------------------------------------------------------------------- */}
+      {flashcards.length > 0 && (
+        <FlashcardSlider flashcards={flashcards} playFlipSound={playFlipSound} />
+      )}
+
       <form className="header" onSubmit={handleScoreSubmit} style={{ marginTop: '20px' }}>
         <Box className="form-row" sx={{ display: 'flex', alignItems: 'center', width: '100%', gap: '20px' }}>
           <Button type="submit" variant="contained" color="primary" className="scorebtn" sx={{ flex: 1, height: '56px' }}>
-            Submit {/* Step 2.5: Submit correct answers count */}
+            Submit
           </Button>
           <FormControl className="form-group" sx={{ flex: 6 }}>
             <TextField
@@ -256,18 +282,19 @@ const App = () => {
               label="How many questions you answered correctly?"
               type="number"
               value={correctAnswers}
-              onChange={(e) => setCorrectAnswers(e.target.value)} // Step 2.6: User inputs correct answers count
+              onChange={(e) => setCorrectAnswers(e.target.value)}
               InputProps={{ inputProps: { min: 0 } }}
               fullWidth
               sx={{ height: '56px' }}
             />
           </FormControl>
           <Button type="button" variant="contained" color="secondary" onClick={handleScoreReset} className="resetbtn" sx={{ flex: 1, height: '56px' }}>
-            Reset {/* Step 2.7: Reset correct answers count */}
+            Reset
           </Button>
         </Box>
       </form>
-      {/*----------------------------------------------------SCORE SECTION----------------------------------------------------------------------------------- */}
+      
+      {audioElements}
     </div>
   );
 };
